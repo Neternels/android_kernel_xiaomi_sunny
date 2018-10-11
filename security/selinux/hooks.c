@@ -7041,7 +7041,9 @@ void set_selinux(int value)
 
 /* SELinux requires early initialization in order to label
    all processes and objects when they are created. */
-security_initcall(selinux_init);
+DEFINE_LSM(selinux) = {
+	.init = selinux_init,
+};
 
 #if defined(CONFIG_NETFILTER)
 
