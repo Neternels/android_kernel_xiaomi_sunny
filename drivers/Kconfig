@@ -229,4 +229,7 @@ config XIMI_MOJITO
         bool "Xiaomi Mojito"
         default n
 
+
+source "techpack/data/drivers/Kconfig"
+
 endmenu
