@@ -66,6 +66,7 @@ obj-$(CONFIG_DM_INTEGRITY)	+= dm-integrity.o
 obj-$(CONFIG_DM_ZONED)		+= dm-zoned.o
 obj-$(CONFIG_DM_ANDROID_VERITY) += dm-android-verity.o
 obj-$(CONFIG_DM_BOW)		+= dm-bow.o
+obj-$(CONFIG_DM_USER)		+= dm-user.o
 
 ifeq ($(CONFIG_DM_UEVENT),y)
 dm-mod-objs			+= dm-uevent.o
