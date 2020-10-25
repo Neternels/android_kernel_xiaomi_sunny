@@ -1,4 +1,4 @@
- /* Copyright (c) 2018-2020, The Linux Foundation.All rights reserved.
+/* Copyright (c) 2018-2020, The Linux Foundation.All rights reserved.
  * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -632,11 +632,6 @@
 		dfps_data_memory: dfps_data_region@9cf00000 {
 			reg = <0x0 0x9cf00000 0x0 0x0100000>;
 			label = "dfps_data_region";
-		};
-
-		disp_rdump_memory: disp_rdump_region@9c000000 {
-			reg = <0x0 0x9c000000 0x0 0x0f00000>;
-			label = "disp_rdump_region";
 		};
 
 		dump_mem: mem_dump_region {
