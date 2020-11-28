@@ -439,6 +439,7 @@
 						00 00 10 0f
 						00 00 10 8f];
 		qcom,platform-regulator-settings = [1d 1d 1d 1d 1d];
+		qcom,panel-allow-phy-poweroff;
 		qcom,phy-supply-entries {
 			#address-cells = <1>;
 			#size-cells = <0>;
