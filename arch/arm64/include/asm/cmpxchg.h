@@ -29,46 +29,40 @@
  * barrier case is generated as release+dmb for the former and
  * acquire+release for the latter.
  */
-#define __XCHG_CASE(w, sfx, name, sz, mb, nop_lse, acq, acq_lse, rel, cl)	\
-static inline u##sz __xchg_case_##name##sz(u##sz x, volatile void *ptr)		\
-{										\
-	u##sz ret;								\
-	unsigned long tmp;							\
-										\
-	asm volatile(ARM64_LSE_ATOMIC_INSN(					\
-	/* LL/SC */								\
-	"	prfm	pstl1strm, %2\n"					\
-	"1:	ld" #acq "xr" #sfx "\t%" #w "0, %2\n"				\
-	"	st" #rel "xr" #sfx "\t%w1, %" #w "3, %2\n"			\
-	"	cbnz	%w1, 1b\n"						\
-	"	" #mb,								\
-	/* LSE atomics */							\
-	"	swp" #acq_lse #rel #sfx "\t%" #w "3, %" #w "0, %2\n"		\
-		__nops(3)							\
-	"	" #nop_lse)							\
-	: "=&r" (ret), "=&r" (tmp), "+Q" (*(u##sz *)ptr)			\
-	: "r" (x)								\
-	: cl);									\
-										\
-	return ret;								\
+#define __XCHG_CASE(w, sz, name, mb, acq, acq_lse, rel, cl)		\
+static inline unsigned long __xchg_case_##name(unsigned long x,		\
+					       volatile void *ptr)	\
+{									\
+	unsigned long ret, tmp;						\
+									\
+	asm volatile(ARM64_LSE_ATOMIC_INSN(				\
+	/* LSE atomics */						\
+	"	prfm	pstl1strm, %2\n"				\
+	"	swp" #acq_lse #rel #sz "\t%" #w "3, %" #w "0, %2\n"	\
+	)								\
+	: "=&r" (ret), "=&r" (tmp), "+Q" (*(unsigned long *)ptr)	\
+	: "r" (x)							\
+	: cl);								\
+									\
+	return ret;							\
 }
 
-__XCHG_CASE(w, b,     ,  8,        ,    ,  ,  ,  ,         )
-__XCHG_CASE(w, h,     , 16,        ,    ,  ,  ,  ,         )
-__XCHG_CASE(w,  ,     , 32,        ,    ,  ,  ,  ,         )
-__XCHG_CASE( ,  ,     , 64,        ,    ,  ,  ,  ,         )
-__XCHG_CASE(w, b, acq_,  8,        ,    , a, a,  , "memory")
-__XCHG_CASE(w, h, acq_, 16,        ,    , a, a,  , "memory")
-__XCHG_CASE(w,  , acq_, 32,        ,    , a, a,  , "memory")
-__XCHG_CASE( ,  , acq_, 64,        ,    , a, a,  , "memory")
-__XCHG_CASE(w, b, rel_,  8,        ,    ,  ,  , l, "memory")
-__XCHG_CASE(w, h, rel_, 16,        ,    ,  ,  , l, "memory")
-__XCHG_CASE(w,  , rel_, 32,        ,    ,  ,  , l, "memory")
-__XCHG_CASE( ,  , rel_, 64,        ,    ,  ,  , l, "memory")
-__XCHG_CASE(w, b,  mb_,  8, dmb ish, nop,  , a, l, "memory")
-__XCHG_CASE(w, h,  mb_, 16, dmb ish, nop,  , a, l, "memory")
-__XCHG_CASE(w,  ,  mb_, 32, dmb ish, nop,  , a, l, "memory")
-__XCHG_CASE( ,  ,  mb_, 64, dmb ish, nop,  , a, l, "memory")
+__XCHG_CASE(w, b,     1,        ,  ,  ,  ,         )
+__XCHG_CASE(w, h,     2,        ,  ,  ,  ,         )
+__XCHG_CASE(w,  ,     4,        ,  ,  ,  ,         )
+__XCHG_CASE( ,  ,     8,        ,  ,  ,  ,         )
+__XCHG_CASE(w, b, acq_1,        , a, a,  , "memory")
+__XCHG_CASE(w, h, acq_2,        , a, a,  , "memory")
+__XCHG_CASE(w,  , acq_4,        , a, a,  , "memory")
+__XCHG_CASE( ,  , acq_8,        , a, a,  , "memory")
+__XCHG_CASE(w, b, rel_1,        ,  ,  , l, "memory")
+__XCHG_CASE(w, h, rel_2,        ,  ,  , l, "memory")
+__XCHG_CASE(w,  , rel_4,        ,  ,  , l, "memory")
+__XCHG_CASE( ,  , rel_8,        ,  ,  , l, "memory")
+__XCHG_CASE(w, b,  mb_1, dmb ish,  , a, l, "memory")
+__XCHG_CASE(w, h,  mb_2, dmb ish,  , a, l, "memory")
+__XCHG_CASE(w,  ,  mb_4, dmb ish,  , a, l, "memory")
+__XCHG_CASE( ,  ,  mb_8, dmb ish,  , a, l, "memory")
 
 #undef __XCHG_CASE
 
