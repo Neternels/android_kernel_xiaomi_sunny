@@ -2,6 +2,7 @@
  * algif_aead: User-space interface for AEAD algorithms
  *
  * Copyright (C) 2014, Stephan Mueller <smueller@chronox.de>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This file provides the user-space API for AEAD ciphers.
  *
