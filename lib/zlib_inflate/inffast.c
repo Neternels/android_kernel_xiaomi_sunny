@@ -1,5 +1,6 @@
 /* inffast.c -- fast decoding
  * Copyright (C) 1995-2004 Mark Adler
+ * Copyright (C) 2021 XiaoMi, Inc.
  * For conditions of distribution and use, see copyright notice in zlib.h
  */
 
