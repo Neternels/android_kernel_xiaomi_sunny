@@ -2,6 +2,7 @@
  * bio-integrity.c - bio data integrity extensions
  *
  * Copyright (C) 2007, 2008, 2009 Oracle Corporation
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Written by: Martin K. Petersen <martin.petersen@oracle.com>
  *
  * This program is free software; you can redistribute it and/or

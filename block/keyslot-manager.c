@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
  * Copyright 2019 Google LLC
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 /**
@@ -469,6 +470,7 @@ int keyslot_manager_evict_key(struct keyslot_manager *ksm,
 	keyslot_manager_hw_enter(ksm);
 
 	slot = find_keyslot(ksm, key);
+
 	if (slot < 0) {
 		err = slot;
 		goto out_unlock;
