@@ -2,6 +2,7 @@
  * Freescale ASRC ALSA SoC Platform (DMA) driver
  *
  * Copyright (C) 2014 Freescale Semiconductor, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Author: Nicolin Chen <nicoleotsuka@gmail.com>
  *

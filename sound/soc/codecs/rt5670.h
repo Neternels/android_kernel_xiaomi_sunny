@@ -2,6 +2,7 @@
  * rt5670.h  --  RT5670 ALSA SoC audio driver
  *
  * Copyright 2014 Realtek Microelectronics
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Bard Liao <bardliao@realtek.com>
  *
  * This program is free software; you can redistribute it and/or modify

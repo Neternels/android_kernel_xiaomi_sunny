@@ -2,6 +2,7 @@
  * ALSA USB Audio Driver
  *
  * Copyright (c) 2002 by Takashi Iwai <tiwai@suse.de>,
+ * Copyright (C) 2021 XiaoMi, Inc.
  *                       Clemens Ladisch <clemens@ladisch.de>
  *
  *

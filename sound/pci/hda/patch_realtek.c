@@ -4,6 +4,7 @@
  * HD audio interface patch for Realtek ALC codecs
  *
  * Copyright (c) 2004 Kailang Yang <kailang@realtek.com.tw>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *                    PeiSen Hou <pshou@realtek.com.tw>
  *                    Takashi Iwai <tiwai@suse.de>
  *                    Jonathan Woithe <jwoithe@just42.net>
