@@ -2,6 +2,7 @@
  * Note: I added some stuff for use with gnupg
  *
  * Copyright (C) 1991, 1992, 1993, 1994, 1996, 1998,
+ * Copyright (C) 2021 XiaoMi, Inc.
  *	2000, 2001, 2002, 2003 Free Software Foundation, Inc.
  *
  * This file is free software; you can redistribute it and/or modify
