@@ -11,6 +11,7 @@
  *   connections.
  *
  * Copyright (c) 2001 by Jay Schulist <jschlst@samba.org>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *		 2002-2003 by Arnaldo Carvalho de Melo <acme@conectiva.com.br>
  *
  * This program can be redistributed or modified under the terms of the

@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015, Sony Mobile Communications Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2013, 2018-2019 The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify

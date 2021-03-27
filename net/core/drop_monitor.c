@@ -2,6 +2,7 @@
  * Monitoring code for network dropped packet alerts
  *
  * Copyright (C) 2009 Neil Horman <nhorman@tuxdriver.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt

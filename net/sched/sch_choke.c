@@ -2,6 +2,7 @@
  * net/sched/sch_choke.c	CHOKE scheduler
  *
  * Copyright (c) 2011 Stephen Hemminger <shemminger@vyatta.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2011 Eric Dumazet <eric.dumazet@gmail.com>
  *
  * This program is free software; you can redistribute it and/or

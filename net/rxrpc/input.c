@@ -1,6 +1,7 @@
 /* RxRPC packet reception
  *
  * Copyright (C) 2007, 2016 Red Hat, Inc. All Rights Reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Written by David Howells (dhowells@redhat.com)
  *
  * This program is free software; you can redistribute it and/or

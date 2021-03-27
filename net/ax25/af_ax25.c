@@ -5,6 +5,7 @@
  * (at your option) any later version.
  *
  * Copyright (C) Alan Cox GW4PTS (alan@lxorguk.ukuu.org.uk)
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) Jonathan Naylor G4KLX (g4klx@g4klx.demon.co.uk)
  * Copyright (C) Darryl Miles G7LED (dlm@g7led.demon.co.uk)
  * Copyright (C) Steven Whitehouse GW7RRM (stevew@acm.org)

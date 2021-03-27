@@ -1,5 +1,6 @@
 /*
  * Copyright 2002-2005, Instant802 Networks, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright 2005-2006, Devicescape Software, Inc.
  * Copyright 2006-2007	Jiri Benc <jbenc@suse.cz>
  * Copyright 2007-2010	Johannes Berg <johannes@sipsolutions.net>

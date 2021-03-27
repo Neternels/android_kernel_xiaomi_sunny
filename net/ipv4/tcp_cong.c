@@ -4,6 +4,7 @@
  * Based on ideas from I/O scheduler support and Web100.
  *
  * Copyright (C) 2005 Stephen Hemminger <shemminger@osdl.org>
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #define pr_fmt(fmt) "TCP: " fmt
