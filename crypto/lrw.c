@@ -2,6 +2,7 @@
  *	http://grouper.ieee.org/groups/1619/email/pdf00017.pdf
  *
  * Copyright (c) 2006 Rik Snel <rsnel@cube.dyndns.org>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Based on ecb.c
  * Copyright (c) 2006 Herbert Xu <herbert@gondor.apana.org.au>
