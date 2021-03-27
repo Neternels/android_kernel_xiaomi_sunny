@@ -3,6 +3,7 @@
  * Shadow Call Stack support.
  *
  * Copyright (C) 2019 Google LLC
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #include <linux/cpuhotplug.h>

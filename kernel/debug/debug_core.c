@@ -4,6 +4,7 @@
  * Maintainer: Jason Wessel <jason.wessel@windriver.com>
  *
  * Copyright (C) 2000-2001 VERITAS Software Corporation.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2002-2004 Timesys Corporation
  * Copyright (C) 2003-2004 Amit S. Kale <amitkale@linsyssoft.com>
  * Copyright (C) 2004 Pavel Machek <pavel@ucw.cz>
