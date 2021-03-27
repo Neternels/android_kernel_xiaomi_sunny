@@ -1,6 +1,7 @@
 /* net/tipc/udp_media.c: IP bearer support for TIPC
  *
  * Copyright (c) 2015, Ericsson AB
+ * Copyright (C) 2021 XiaoMi, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

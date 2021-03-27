@@ -2,6 +2,7 @@
  * L2TP core.
  *
  * Copyright (c) 2008,2009,2010 Katalix Systems Ltd
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This file contains some code of the original L2TPv2 pppol2tp
  * driver, which has the following copyright:

@@ -6,6 +6,7 @@
  * and fs/sysfs/inode.c
  *
  * Copyright (c) 2002, Trond Myklebust <trond.myklebust@fys.uio.no>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  */
 #include <linux/module.h>

@@ -1,4 +1,5 @@
 /* Copyright (C) 2013-2017  B.A.T.M.A.N. contributors:
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Antonio Quartulli
  *

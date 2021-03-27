@@ -1,4 +1,5 @@
 /* Copyright (C) 2000-2002 Joakim Axelsson <gozem@linux.nu>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *                         Patrick Schaaf <bof@bof.de>
  * Copyright (C) 2003-2013 Jozsef Kadlecsik <kadlec@blackhole.kfki.hu>
  *

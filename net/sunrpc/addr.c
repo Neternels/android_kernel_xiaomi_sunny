@@ -1,5 +1,6 @@
 /*
  * Copyright 2009, Oracle.  All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Convert socket addresses to presentation addresses and universal
  * addresses, and vice versa.
