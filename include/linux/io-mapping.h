@@ -1,5 +1,6 @@
 /*
  * Copyright © 2008 Keith Packard <keithp@keithp.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This file is free software; you can redistribute it and/or modify
  * it under the terms of version 2 of the GNU General Public License

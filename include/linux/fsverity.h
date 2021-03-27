@@ -6,6 +6,7 @@
  * filesystems that support fs-verity.
  *
  * Copyright 2019 Google LLC
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #ifndef _LINUX_FSVERITY_H
