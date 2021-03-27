@@ -4,6 +4,7 @@
  * See Documentation/padata.txt for an api documentation.
  *
  * Copyright (C) 2008, 2009 secunet Security Networks AG
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2008, 2009 Steffen Klassert <steffen.klassert@secunet.com>
  *
  * This program is free software; you can redistribute it and/or modify it

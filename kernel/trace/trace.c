@@ -2,6 +2,7 @@
  * ring buffer based function tracer
  *
  * Copyright (C) 2007-2012 Steven Rostedt <srostedt@redhat.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2008 Ingo Molnar <mingo@redhat.com>
  *
  * Originally taken from the RT patch by:

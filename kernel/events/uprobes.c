@@ -16,6 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  *
  * Copyright (C) IBM Corporation, 2008-2012
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Authors:
  *	Srikar Dronamraju
  *	Jim Keniston
