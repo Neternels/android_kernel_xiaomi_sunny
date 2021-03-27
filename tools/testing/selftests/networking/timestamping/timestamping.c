@@ -13,6 +13,7 @@
  * SO_TIMESTAMP[NS].
  *
  * Copyright (C) 2009 Intel Corporation.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Patrick Ohly <patrick.ohly@intel.com>
  *
  * This program is free software; you can redistribute it and/or modify it
