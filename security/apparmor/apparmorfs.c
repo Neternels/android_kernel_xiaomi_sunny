@@ -4,6 +4,7 @@
  * This file contains AppArmor /sys/kernel/security/apparmor interface functions
  *
  * Copyright (C) 1998-2008 Novell/SUSE
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright 2009-2010 Canonical Ltd.
  *
  * This program is free software; you can redistribute it and/or
