@@ -1,4 +1,5 @@
 /* Copyright (C) by Paul Barton-Davis 1998-1999
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Some portions of this file are taken from work that is
  * copyright (C) by Hannu Savolainen 1993-1996

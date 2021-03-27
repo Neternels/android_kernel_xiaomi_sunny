@@ -2,6 +2,7 @@
  * usbmidi.c - ALSA USB MIDI driver
  *
  * Copyright (c) 2002-2009 Clemens Ladisch
+ * Copyright (C) 2021 XiaoMi, Inc.
  * All rights reserved.
  *
  * Based on the OSS usb-midi driver by NAGANO Daisuke,

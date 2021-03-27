@@ -8,6 +8,7 @@
  *         Steve Chen <schen@.mvista.com>
  *
  * Copyright:   (C) 2009 MontaVista Software, Inc., <source@mvista.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright:   (C) 2009  Texas Instruments, India
  *
  * This program is free software; you can redistribute it and/or modify
