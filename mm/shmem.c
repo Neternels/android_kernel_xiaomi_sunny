@@ -2,6 +2,7 @@
  * Resizable virtual memory filesystem for Linux.
  *
  * Copyright (C) 2000 Linus Torvalds.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *		 2000 Transmeta Corp.
  *		 2000-2001 Christoph Rohland
  *		 2000-2001 SAP AG
