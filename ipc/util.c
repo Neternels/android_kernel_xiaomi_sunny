@@ -2,6 +2,7 @@
 /*
  * linux/ipc/util.c
  * Copyright (C) 1992 Krishna Balasubramanian
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Sep 1997 - Call suser() last after "normal" permission checks so we
  *            get BSD style process accounting right.
