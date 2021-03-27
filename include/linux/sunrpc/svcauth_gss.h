@@ -4,6 +4,7 @@
  *
  * Bruce Fields <bfields@umich.edu>
  * Copyright (c) 2002 The Regents of the University of Michigan
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #ifndef _LINUX_SUNRPC_SVCAUTH_GSS_H

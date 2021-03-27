@@ -2,6 +2,7 @@
 /*
  * Linux Plug and Play Support
  * Copyright by Adam Belay <ambx1@neo.rr.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2008 Hewlett-Packard Development Company, L.P.
  *	Bjorn Helgaas <bjorn.helgaas@hp.com>
  */
