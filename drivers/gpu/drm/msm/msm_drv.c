@@ -633,10 +633,21 @@ static int msm_drm_init(struct device *dev, struct drm_driver *drv)
 		priv->disp_thread[i].crtc_id = priv->crtcs[i]->base.id;
 		kthread_init_worker(&priv->disp_thread[i].worker);
 		priv->disp_thread[i].dev = ddev;
-		priv->disp_thread[i].thread =
-			kthread_run_perf_critical(kthread_worker_fn,
-				&priv->disp_thread[i].worker,
-				"crtc_commit:%d", priv->disp_thread[i].crtc_id);
+		/* Only pin actual display thread to big cluster */
+		if (i == 0) {
+			priv->disp_thread[i].thread =
+				kthread_run_perf_critical(cpu_perf_mask, kthread_worker_fn,
+					&priv->disp_thread[i].worker,
+					"crtc_commit:%d", priv->disp_thread[i].crtc_id);
+			pr_info("%i to big cluster", priv->disp_thread[i].crtc_id);
+		} else {
+			priv->disp_thread[i].thread =
+				kthread_run(kthread_worker_fn,
+					&priv->disp_thread[i].worker,
+					"crtc_commit:%d", priv->disp_thread[i].crtc_id);
+			pr_info("%i to little cluster", priv->disp_thread[i].crtc_id);
+		}
+
 		ret = sched_setscheduler(priv->disp_thread[i].thread,
 							SCHED_FIFO, &param);
 		if (ret)
@@ -652,10 +663,20 @@ static int msm_drm_init(struct device *dev, struct drm_driver *drv)
 		priv->event_thread[i].crtc_id = priv->crtcs[i]->base.id;
 		kthread_init_worker(&priv->event_thread[i].worker);
 		priv->event_thread[i].dev = ddev;
-		priv->event_thread[i].thread =
-			kthread_run_perf_critical(kthread_worker_fn,
-				&priv->event_thread[i].worker,
-				"crtc_event:%d", priv->event_thread[i].crtc_id);
+		/* Only pin first event thread to big cluster */
+		if (i == 0) {
+			priv->event_thread[i].thread =
+				kthread_run_perf_critical(cpu_perf_mask, kthread_worker_fn,
+					&priv->event_thread[i].worker,
+					"crtc_event:%d", priv->event_thread[i].crtc_id);
+			pr_info("%i to big cluster", priv->event_thread[i].crtc_id);
+		} else {
+			priv->event_thread[i].thread =
+				kthread_run(kthread_worker_fn,
+					&priv->event_thread[i].worker,
+					"crtc_event:%d", priv->event_thread[i].crtc_id);
+			pr_info("%i to little cluster", priv->event_thread[i].crtc_id);
+		}
 		/**
 		 * event thread should also run at same priority as disp_thread
 		 * because it is handling frame_done events. A lower priority
@@ -700,8 +721,8 @@ static int msm_drm_init(struct device *dev, struct drm_driver *drv)
 	 * other important events.
 	 */
 	kthread_init_worker(&priv->pp_event_worker);
-	priv->pp_event_thread = kthread_run_perf_critical(kthread_worker_fn,
-			&priv->pp_event_worker, "pp_event");
+	priv->pp_event_thread = kthread_run_perf_critical(cpu_perf_mask,
+			kthread_worker_fn, &priv->pp_event_worker, "pp_event");
 
 	ret = sched_setscheduler(priv->pp_event_thread,
 						SCHED_FIFO, &param);
@@ -730,6 +751,7 @@ static int msm_drm_init(struct device *dev, struct drm_driver *drv)
 			goto fail;
 		}
 	}
+	irq_set_perf_affinity(platform_get_irq(pdev, 0), IRQF_PERF_AFFINE);
 
 	ret = drm_dev_register(ddev, 0);
 	if (ret)
