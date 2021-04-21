@@ -3,6 +3,7 @@
  * fs/verity/verify.c: data verification functions, i.e. hooks for ->readpages()
  *
  * Copyright 2019 Google LLC
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #include "fsverity_private.h"

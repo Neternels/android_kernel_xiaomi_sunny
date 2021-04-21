@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2000-2002,2005 Silicon Graphics, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * All Rights Reserved.
  *
  * This program is free software; you can redistribute it and/or

@@ -3,6 +3,7 @@
  * This contains encryption functions for per-file encryption.
  *
  * Copyright (C) 2015, Google, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2015, Motorola Mobility
  *
  * Written by Michael Halcrow, 2014.

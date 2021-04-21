@@ -3,6 +3,7 @@
  * fs/verity/enable.c: ioctl to enable verity on a file
  *
  * Copyright 2019 Google LLC
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #include "fsverity_private.h"

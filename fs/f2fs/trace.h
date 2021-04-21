@@ -3,6 +3,7 @@
  * f2fs IO tracer
  *
  * Copyright (c) 2014 Motorola Mobility
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2014 Jaegeuk Kim <jaegeuk@kernel.org>
  */
 #ifndef __F2FS_TRACE_H__

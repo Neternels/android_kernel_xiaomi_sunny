@@ -3,6 +3,7 @@
  * f2fs compress support
  *
  * Copyright (c) 2019 Chao Yu <chao@kernel.org>
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #include <linux/fs.h>

@@ -3,6 +3,7 @@
  * linux/fs/ext4/xattr.c
  *
  * Copyright (C) 2001-2003 Andreas Gruenbacher, <agruen@suse.de>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Fix by Harrison Xing <harrison@mountainviewdata.com>.
  * Ext4 code with a lot of help from Eric Jarman <ejarman@acm.org>.
