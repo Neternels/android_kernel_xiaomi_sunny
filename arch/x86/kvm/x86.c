@@ -4,6 +4,7 @@
  * derived from drivers/kvm/kvm_main.c
  *
  * Copyright (C) 2006 Qumranet, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2008 Qumranet, Inc.
  * Copyright IBM Corporation, 2008
  * Copyright 2010 Red Hat, Inc. and/or its affiliates.

@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2013 Imagination Technologies
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Paul Burton <paul.burton@mips.com>
  *
  * This program is free software; you can redistribute it and/or modify it

@@ -4,6 +4,7 @@
  * for more details.
  *
  * Copyright (C) 1994 - 2000, 2001, 2003 Ralf Baechle
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 1999, 2000 Silicon Graphics, Inc.
  * Copyright (C) 2002, 2007  Maciej W. Rozycki
  * Copyright (C) 2001, 2012 MIPS Technologies, Inc.  All rights reserved.

@@ -4,6 +4,7 @@
  * for more details.
  *
  * Copyright (C) 1994, 1995, 1996, 1997, 2000, 2001 by Ralf Baechle
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2000 Silicon Graphics, Inc.
  * Modified for further R[236]000 support by Paul M. Antoine, 1996.
  * Kevin D. Kissell, kevink@mips.com and Carsten Langgaard, carstenl@mips.com

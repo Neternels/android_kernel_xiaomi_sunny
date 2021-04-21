@@ -4,6 +4,7 @@
  * for more details.
  *
  * Copyright (C) 1994 - 1999, 2000, 01, 06 Ralf Baechle
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 1995, 1996 Paul M. Antoine
  * Copyright (C) 1998 Ulf Carlsson
  * Copyright (C) 1999 Silicon Graphics, Inc.

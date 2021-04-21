@@ -1,5 +1,6 @@
 /*
  * Copyright 2017, Nicholas Piggin, IBM Corporation
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Licensed under GPLv2.
  */
 

@@ -6,6 +6,7 @@
  * for more details.
  *
  * Copyright (C) 1995  Linus Torvalds
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2001 - 2005  Tensilica Inc.
  * Copyright (C) 2014 - 2016  Cadence Design Systems Inc.
  *

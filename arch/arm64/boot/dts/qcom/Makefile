@@ -408,6 +408,10 @@ endif
 
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 	dtbo-$(CONFIG_ARCH_ATOLL) += \
+		curtana-atoll-idp-overlay.dtbo\
+		excalibur-atoll-idp-overlay.dtbo\
+		joyeuse-atoll-idp-overlay.dtbo\
+		gram-atoll-idp-overlay.dtbo\
 		atoll-idp-overlay.dtbo\
 		atoll-atp-overlay.dtbo\
 		atoll-qrd-overlay.dtbo\
@@ -417,10 +421,18 @@ ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 		atollp-idp-overlay.dtbo\
 		atollp-atp-overlay.dtbo\
 		atollp-qrd-overlay.dtbo\
+		curtana-atoll-ab-idp-overlay.dtbo\
+		excalibur-atoll-ab-idp-overlay.dtbo\
+		joyeuse-atoll-ab-idp-overlay.dtbo\
+		gram-atoll-ab-idp-overlay.dtbo\
 		atoll-ab-idp-overlay.dtbo\
 		atoll-ab-atp-overlay.dtbo\
 		atoll-ab-qrd-overlay.dtbo
 
+curtana-atoll-idp-overlay.dtbo-base := atoll.dtb
+excalibur-atoll-idp-overlay.dtbo-base := atoll.dtb
+joyeuse-atoll-idp-overlay.dtbo-base := atoll.dtb
+gram-atoll-idp-overlay.dtbo-base := atoll.dtb
 atoll-idp-overlay.dtbo-base := atoll.dtb
 atoll-atp-overlay.dtbo-base := atoll.dtb
 atoll-qrd-overlay.dtbo-base := atoll.dtb
@@ -430,6 +442,10 @@ atoll-usbc-idp-overlay.dtbo-base := atoll.dtb
 atollp-idp-overlay.dtbo-base := atollp.dtb
 atollp-atp-overlay.dtbo-base := atollp.dtb
 atollp-qrd-overlay.dtbo-base := atollp.dtb
+curtana-atoll-ab-idp-overlay.dtbo-base := atoll-ab.dtb
+excalibur-atoll-ab-idp-overlay.dtbo-base := atoll-ab.dtb
+joyeuse-atoll-ab-idp-overlay.dtbo-base := atoll-ab.dtb
+gram-atoll-ab-idp-overlay.dtbo-base := atoll-ab.dtb
 atoll-ab-idp-overlay.dtbo-base := atoll-ab.dtb
 atoll-ab-atp-overlay.dtbo-base := atoll-ab.dtb
 atoll-ab-qrd-overlay.dtbo-base := atoll-ab.dtb

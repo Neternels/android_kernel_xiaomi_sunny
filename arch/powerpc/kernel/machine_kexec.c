@@ -2,6 +2,7 @@
  * Code to handle transition of Linux booting another kernel.
  *
  * Copyright (C) 2002-2003 Eric Biederman  <ebiederm@xmission.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * GameCube/ppc32 port Copyright (C) 2004 Albert Herranz
  * Copyright (C) 2005 IBM Corporation.
  *

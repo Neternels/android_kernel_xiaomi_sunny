@@ -14,6 +14,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  *
  * Copyright (C) IBM Corporation, 2005
+ * Copyright (C) 2021 XiaoMi, Inc.
  *               Jeff Muizelaar, 2006, 2007
  *               Pekka Paalanen, 2008 <pq@iki.fi>
  *

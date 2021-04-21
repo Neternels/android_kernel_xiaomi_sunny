@@ -3,6 +3,7 @@
  *
  * Paul Mackerras	August 1996.
  * Copyright (C) 1996-2005 Paul Mackerras.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * 
  *  Adapted for 64bit PowerPC by Dave Engebretsen and Peter Bergner.
  *    {engebret|bergner}@us.ibm.com 

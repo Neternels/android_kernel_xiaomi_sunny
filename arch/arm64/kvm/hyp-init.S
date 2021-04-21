@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012,2013 - ARM Ltd
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Marc Zyngier <marc.zyngier@arm.com>
  *
  * This program is free software; you can redistribute it and/or modify

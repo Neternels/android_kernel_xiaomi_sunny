@@ -3,6 +3,7 @@
  * (included from entry-<isa>.S
  *
  * Copyright (C) 2014-15 Synopsys, Inc. (www.synopsys.com)
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2004, 2007-2010, 2011-2012 Synopsys, Inc. (www.synopsys.com)
  *
  * This program is free software; you can redistribute it and/or modify
