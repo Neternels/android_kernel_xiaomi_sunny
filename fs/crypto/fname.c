@@ -3,6 +3,7 @@
  * This contains functions for filename crypto management
  *
  * Copyright (C) 2015, Google, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2015, Motorola Mobility
  *
  * Written by Uday Savagaonkar, 2014.

@@ -11,6 +11,7 @@
  * dentry, don't worry--they have been taken care of.
  *
  * Copyright (C) 1995-1999 Olaf Kirch <okir@monad.swb.de>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Zerocpy NFS support (C) 2002 Hirokazu Takahashi <taka@valinux.co.jp>
  */
 

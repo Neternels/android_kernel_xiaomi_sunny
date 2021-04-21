@@ -3,6 +3,7 @@
  * fs/verity/measure.c: ioctl to get a verity file's measurement
  *
  * Copyright 2019 Google LLC
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #include "fsverity_private.h"

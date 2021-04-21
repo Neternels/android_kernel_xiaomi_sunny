@@ -3,6 +3,7 @@
  * fs/f2fs/file.c
  *
  * Copyright (c) 2012 Samsung Electronics Co., Ltd.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *             http://www.samsung.com/
  */
 #include <linux/fs.h>
