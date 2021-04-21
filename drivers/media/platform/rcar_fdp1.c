@@ -5,6 +5,7 @@
  *
  * Author: Kieran Bingham, <kieran@bingham.xyz>
  * Copyright (c) 2016 Renesas Electronics Corporation.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This code is developed and inspired from the vim2m, rcar_jpu,
  * m2m-deinterlace, and vsp1 drivers.

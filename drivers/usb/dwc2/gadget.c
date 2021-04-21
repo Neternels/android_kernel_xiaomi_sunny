@@ -1,5 +1,6 @@
 /**
  * Copyright (c) 2011 Samsung Electronics Co., Ltd.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *		http://www.samsung.com
  *
  * Copyright 2008 Openmoko, Inc.

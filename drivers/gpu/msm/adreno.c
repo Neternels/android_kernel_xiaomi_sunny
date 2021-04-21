@@ -1,4 +1,5 @@
 /* Copyright (c) 2002,2007-2020, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -2445,8 +2446,7 @@ int adreno_reset(struct kgsl_device *device, int fault)
 					break;
 			}
 		}
-
-		device->pwrctrl.ctrl_flags = flags;
+			device->pwrctrl.ctrl_flags = flags;
 	}
 	if (ret)
 		return ret;

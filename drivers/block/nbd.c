@@ -5,6 +5,7 @@
  * deadlocks sometimes - you can not swap over TCP in general.
  * 
  * Copyright 1997-2000, 2008 Pavel Machek <pavel@ucw.cz>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Parts copyright 2001 Steven Whitehouse <steve@chygwyn.com>
  *
  * This file is released under GPLv2 or later.

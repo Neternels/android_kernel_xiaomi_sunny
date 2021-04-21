@@ -1,4 +1,5 @@
 /* Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -14,8 +15,10 @@
 #include "cam_csiphy_core.h"
 #include "include/cam_csiphy_1_1_hwreg.h"
 #include "include/cam_csiphy_1_0_hwreg.h"
+
 #include "include/cam_csiphy_1_2_hwreg.h"
 #include "include/cam_csiphy_1_2_2_hwreg.h"
+
 #include "include/cam_csiphy_2_0_hwreg.h"
 
 #define CSIPHY_3PH_DIVISOR           16

@@ -4,6 +4,7 @@
  * Quirks for I2C-HID devices that do not supply proper descriptors
  *
  * Copyright (c) 2018 Julian Sax <jsbc@gmx.de>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  */
 

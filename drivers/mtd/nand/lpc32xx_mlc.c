@@ -4,6 +4,7 @@
  * Author: Roland Stigge <stigge@antcom.de>
  *
  * Copyright © 2011 WORK Microwave GmbH
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright © 2011, 2012 Roland Stigge
  *
  * This program is free software; you can redistribute it and/or modify

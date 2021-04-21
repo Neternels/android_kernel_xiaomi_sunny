@@ -2,6 +2,7 @@
  * Driver for Broadcom BCM2835 SPI Controllers
  *
  * Copyright (C) 2012 Chris Boot
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2013 Stephen Warren
  * Copyright (C) 2015 Martin Sperl
  *

@@ -2,6 +2,7 @@
  * xhci-plat.c - xHCI host controller driver platform Bus Glue.
  *
  * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
  *
  * A lot of code borrowed from the Linux xHCI driver.

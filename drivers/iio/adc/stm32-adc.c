@@ -2,6 +2,7 @@
  * This file is part of STM32 ADC driver
  *
  * Copyright (C) 2016, STMicroelectronics - All Rights Reserved
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Fabrice Gasnier <fabrice.gasnier@st.com>.
  *
  * License type: GPLv2

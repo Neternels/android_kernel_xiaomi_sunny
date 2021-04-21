@@ -5,6 +5,7 @@
  * Implementation of FSF commands.
  *
  * Copyright IBM Corp. 2002, 2017
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #define KMSG_COMPONENT "zfcp"

@@ -3,6 +3,7 @@
  * Linux device driver for USB based Prism54
  *
  * Copyright (c) 2006, Michael Wu <flamingice@sourmilk.net>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Based on the islsm (softmac prism54) driver, which is:
  * Copyright 2004-2006 Jean-Baptiste Note <jbnote@gmail.com>, et al.

@@ -2,6 +2,7 @@
  * OF helpers for the MDIO (Ethernet PHY) API
  *
  * Copyright (c) 2009 Secret Lab Technologies, Ltd.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This file is released under the GPLv2
  *

@@ -2,6 +2,7 @@
  * Pinctrl based I2C DeMultiplexer
  *
  * Copyright (C) 2015-16 by Wolfram Sang, Sang Engineering <wsa@sang-engineering.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2015-16 by Renesas Electronics Corporation
  *
  * This program is free software; you can redistribute it and/or modify it

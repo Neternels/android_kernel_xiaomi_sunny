@@ -2,6 +2,7 @@
  * Freescale UPM NAND driver.
  *
  * Copyright © 2007-2008  MontaVista Software, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Author: Anton Vorontsov <avorontsov@ru.mvista.com>
  *

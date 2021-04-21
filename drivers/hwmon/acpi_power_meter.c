@@ -1,6 +1,7 @@
 /*
  * A hwmon driver for ACPI 4.0 power meters
  * Copyright (C) 2009 IBM
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Author: Darrick J. Wong <darrick.wong@oracle.com>
  *

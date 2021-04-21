@@ -2,6 +2,7 @@
  * cdc-acm.c
  *
  * Copyright (c) 1999 Armin Fuerst	<fuerst@in.tum.de>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 1999 Pavel Machek	<pavel@ucw.cz>
  * Copyright (c) 1999 Johannes Erdfelt	<johannes@erdfelt.com>
  * Copyright (c) 2000 Vojtech Pavlik	<vojtech@suse.cz>

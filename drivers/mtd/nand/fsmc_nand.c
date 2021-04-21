@@ -6,6 +6,7 @@
  * Driver for NAND portions
  *
  * Copyright © 2010 ST Microelectronics
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Vipin Kumar <vipin.kumar@st.com>
  * Ashish Priyadarshi
  *

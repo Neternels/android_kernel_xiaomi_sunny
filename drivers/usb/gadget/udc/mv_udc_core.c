@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2011 Marvell International Ltd. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Chao Xie <chao.xie@marvell.com>
  *	   Neil Zhang <zhangwm@marvell.com>
  *

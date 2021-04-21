@@ -2,6 +2,7 @@
  * Export the iSCSI boot info to userland via sysfs.
  *
  * Copyright (C) 2010 Red Hat, Inc.  All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2010 Mike Christie
  *
  * This program is free software; you can redistribute it and/or modify

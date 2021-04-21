@@ -2,6 +2,7 @@
  * Mediatek 8250 driver.
  *
  * Copyright (c) 2014 MundoReader S.L.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Matthias Brugger <matthias.bgg@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify

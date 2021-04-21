@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
  * Copyright (C) 2010 Kent Overstreet <kent.overstreet@gmail.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Uses a block device as cache for other block devices; optimized for SSDs.
  * All allocation is done in buckets, which should match the erase block size

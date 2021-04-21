@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 MediaTek Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Hanyi Wu <hanyi.wu@mediatek.com>
  *         Sascha Hauer <s.hauer@pengutronix.de>
  *         Dawei Chien <dawei.chien@mediatek.com>

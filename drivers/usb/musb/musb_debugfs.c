@@ -2,6 +2,7 @@
  * MUSB OTG driver debugfs support
  *
  * Copyright 2010 Nokia Corporation
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Contact: Felipe Balbi <felipe.balbi@nokia.com>
  *
  * This program is free software; you can redistribute it and/or

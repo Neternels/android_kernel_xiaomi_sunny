@@ -2,6 +2,7 @@
  * SD/MMC Greybus driver.
  *
  * Copyright 2014-2015 Google Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright 2014-2015 Linaro Ltd.
  *
  * Released under the GPLv2 only.

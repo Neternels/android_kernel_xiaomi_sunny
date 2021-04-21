@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2010-2011 Atheros Communications Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above

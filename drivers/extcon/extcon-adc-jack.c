@@ -4,6 +4,7 @@
  * Analog Jack extcon driver with ADC-based detection capability.
  *
  * Copyright (C) 2016 Samsung Electronics
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Chanwoo Choi <cw00.choi@samsung.com>
  *
  * Copyright (C) 2012 Samsung Electronics

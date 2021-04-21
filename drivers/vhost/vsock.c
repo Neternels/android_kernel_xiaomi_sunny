@@ -2,6 +2,7 @@
  * vhost transport for vsock
  *
  * Copyright (C) 2013-2015 Red Hat, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Asias He <asias@redhat.com>
  *         Stefan Hajnoczi <stefanha@redhat.com>
  *

@@ -1,6 +1,7 @@
 /*
  * Pinctrl GPIO driver for Intel Baytrail
  * Copyright (c) 2012-2013, Intel Corporation.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Author: Mathias Nyman <mathias.nyman@linux.intel.com>
  *

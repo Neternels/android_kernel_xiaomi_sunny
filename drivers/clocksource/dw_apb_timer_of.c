@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 Altera Corporation
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2011 Picochip Ltd., Jamie Iles
  *
  * Modified from mach-picoxcell/time.c

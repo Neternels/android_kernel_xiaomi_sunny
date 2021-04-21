@@ -1,5 +1,6 @@
 /*
  * Copyright 2004-2008 Freescale Semiconductor, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright 2009 Semihalf.
  *
  * Approved as OSADL project by a majority of OSADL members and funded

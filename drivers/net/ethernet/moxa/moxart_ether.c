@@ -1,6 +1,7 @@
 /* MOXA ART Ethernet (RTL8201CP) driver.
  *
  * Copyright (C) 2013 Jonas Jensen
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Jonas Jensen <jonas.jensen@gmail.com>
  *

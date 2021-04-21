@@ -11,6 +11,7 @@
  * FXLS8471Q	14 bit		0x1e / 0x1d / 0x1c / 0x1f
  *
  * Copyright 2015 Martin Kepplinger <martink@posteo.de>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright 2014 Peter Meerwald <pmeerw@pmeerw.net>
  *
  * This file is subject to the terms and conditions of version 2 of

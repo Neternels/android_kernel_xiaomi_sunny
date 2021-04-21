@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2016 Free Electrons
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2016 NextThing Co
  *
  * Maxime Ripard <maxime.ripard@free-electrons.com>

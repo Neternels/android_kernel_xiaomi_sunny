@@ -4,6 +4,7 @@
  * mac80211 interaction code
  *
  * Copyright 2008, Johannes Berg <johannes@sipsolutions.net>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright 2009, 2010, Christian Lamparter <chunkeey@googlemail.com>
  *
  * This program is free software; you can redistribute it and/or modify

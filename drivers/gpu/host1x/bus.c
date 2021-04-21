@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 Avionic Design GmbH
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2012-2013, NVIDIA Corporation
  *
  * This program is free software; you can redistribute it and/or modify it

@@ -2,6 +2,7 @@
  * wm8994-core.c  --  Device access for Wolfson WM8994
  *
  * Copyright 2009 Wolfson Microelectronics PLC.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Author: Mark Brown <broonie@opensource.wolfsonmicro.com>
  *

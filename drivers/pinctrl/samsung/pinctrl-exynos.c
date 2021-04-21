@@ -2,6 +2,7 @@
  * Exynos specific support for Samsung pinctrl/gpiolib driver with eint support.
  *
  * Copyright (c) 2012 Samsung Electronics Co., Ltd.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *		http://www.samsung.com
  * Copyright (c) 2012 Linaro Ltd
  *		http://www.linaro.org

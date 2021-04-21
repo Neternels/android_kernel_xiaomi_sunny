@@ -2,6 +2,7 @@
  * rrunner.c: Linux driver for the Essential RoadRunner HIPPI board.
  *
  * Copyright (C) 1998-2002 by Jes Sorensen, <jes@wildopensource.com>.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Thanks to Essential Communication for providing us with hardware
  * and very comprehensive documentation without which I would not have

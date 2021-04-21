@@ -4,6 +4,7 @@
  * Author: Artem B. Bityuckiy <dedekind@oktetlabs.ru>, <dedekind@infradead.org>
  *
  * Copyright (C) 2004 Nokia Corporation
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Note: NS means "NAND Simulator".
  * Note: Input means input TO flash chip, output means output FROM chip.

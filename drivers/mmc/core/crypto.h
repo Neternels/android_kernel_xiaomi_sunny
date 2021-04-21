@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0 */
 /*
  * Copyright 2020 Google LLC
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #ifndef _MMC_CORE_CRYPTO_H

@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2011-2016 Synaptics Incorporated
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2011 Unixphere
  *
  * This driver provides the core support for a single RMI4-based device.

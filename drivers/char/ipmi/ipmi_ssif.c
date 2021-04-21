@@ -12,6 +12,7 @@
  * transactions, add PEC support, and general clenaup.
  *
  * Copyright 2003 Intel Corporation
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright 2005 MontaVista Software
  *
  *  This program is free software; you can redistribute it and/or modify it

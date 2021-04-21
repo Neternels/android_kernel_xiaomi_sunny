@@ -4,6 +4,7 @@
  *
  * This code is based on drivers/scsi/mpt3sas/mpt3sas_base.c
  * Copyright (C) 2012-2014  LSI Corporation
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2013-2014 Avago Technologies
  *  (mailto: MPT-FusionLinux.pdl@avagotech.com)
  *

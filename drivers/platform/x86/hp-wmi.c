@@ -2,6 +2,7 @@
  * HP WMI hotkeys
  *
  * Copyright (C) 2008 Red Hat <mjg@redhat.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2010, 2011 Anssi Hannula <anssi.hannula@iki.fi>
  *
  * Portions based on wistron_btns.c:

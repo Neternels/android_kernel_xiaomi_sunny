@@ -3,6 +3,7 @@
  * Apple Powermacs.  Assumes it's under a DBDMA controller.
  *
  * Copyright (C) 1998 Randy Gobbel.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * May 1999, Al Viro: proper release of /proc/net/bmac entry, switched to
  * dynamic procfs inode.

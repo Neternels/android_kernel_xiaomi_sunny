@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2017 Western Digital Corporation or its affiliates.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This file is released under the GPL.
  */

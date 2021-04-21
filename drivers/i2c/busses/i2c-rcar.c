@@ -2,6 +2,7 @@
  * Driver for the Renesas R-Car I2C unit
  *
  * Copyright (C) 2014-15 Wolfram Sang <wsa@sang-engineering.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2011-2015 Renesas Electronics Corporation
  *
  * Copyright (C) 2012-14 Renesas Solutions Corp.

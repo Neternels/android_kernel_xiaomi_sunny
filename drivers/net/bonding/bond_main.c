@@ -2,6 +2,7 @@
  * originally based on the dummy device.
  *
  * Copyright 1999, Thomas Davis, tadavis@lbl.gov.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Licensed under the GPL. Based on dummy.c, and eql.c devices.
  *
  * bonding.c: an Ethernet Bonding driver

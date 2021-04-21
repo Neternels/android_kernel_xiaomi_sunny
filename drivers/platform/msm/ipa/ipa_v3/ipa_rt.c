@@ -1,4 +1,5 @@
 /* Copyright (c) 2012-2020, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -1087,10 +1088,7 @@ static int __ipa_finish_rt_rule_add(struct ipa3_rt_entry *entry, u32 *rule_hdl,
 {
 	int id;
 
-	if (tbl->rule_cnt < IPA_RULE_CNT_MAX)
-		tbl->rule_cnt++;
-	else
-		return -EINVAL;
+	tbl->rule_cnt++;
 	if (entry->hdr)
 		entry->hdr->ref_cnt++;
 	else if (entry->proc_ctx)

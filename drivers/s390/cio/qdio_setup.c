@@ -2,6 +2,7 @@
  * qdio queue initialization
  *
  * Copyright IBM Corp. 2008
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author(s): Jan Glauber <jang@linux.vnet.ibm.com>
  */
 #include <linux/kernel.h>

@@ -2,6 +2,7 @@
  * Summit Microelectronics SMB347 Battery Charger Driver
  *
  * Copyright (C) 2011, Intel Corporation
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Authors: Bruce E. Robertson <bruce.e.robertson@intel.com>
  *          Mika Westerberg <mika.westerberg@linux.intel.com>

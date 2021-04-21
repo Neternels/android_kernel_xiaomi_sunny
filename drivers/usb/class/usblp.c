@@ -2,6 +2,7 @@
  * usblp.c
  *
  * Copyright (c) 1999 Michael Gee	<michael@linuxspecific.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 1999 Pavel Machek	<pavel@ucw.cz>
  * Copyright (c) 2000 Randy Dunlap	<rdunlap@xenotime.net>
  * Copyright (c) 2000 Vojtech Pavlik	<vojtech@suse.cz>

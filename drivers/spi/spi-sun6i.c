@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 - 2014 Allwinner Tech
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Pan Nan <pannan@allwinnertech.com>
  *
  * Copyright (C) 2014 Maxime Ripard

@@ -2,6 +2,7 @@
 /* Atlantic Network Driver
  *
  * Copyright (C) 2017 aQuantia Corporation
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2019-2020 Marvell International Ltd.
  * Portions Copyright (C) various contributors (see specific commit references)
  *

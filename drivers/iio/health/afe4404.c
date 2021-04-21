@@ -2,6 +2,7 @@
  * AFE4404 Heart Rate Monitors and Low-Cost Pulse Oximeters
  *
  * Copyright (C) 2015-2016 Texas Instruments Incorporated - http://www.ti.com/
+ * Copyright (C) 2021 XiaoMi, Inc.
  *	Andrew F. Davis <afd@ti.com>
  *
  * This program is free software; you can redistribute it and/or modify

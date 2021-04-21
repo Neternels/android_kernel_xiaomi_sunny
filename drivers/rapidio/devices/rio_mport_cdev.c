@@ -2,6 +2,7 @@
  * RapidIO mport character device
  *
  * Copyright 2014-2015 Integrated Device Technology, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *    Alexandre Bounine <alexandre.bounine@idt.com>
  * Copyright 2014-2015 Prodrive Technologies
  *    Andre van Herk <andre.van.herk@prodrive-technologies.com>

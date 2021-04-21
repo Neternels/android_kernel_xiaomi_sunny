@@ -1,6 +1,7 @@
 /*
  * drivers/net/ethernet/mellanox/mlxsw/spectrum_router.c
  * Copyright (c) 2016-2017 Mellanox Technologies. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2016 Jiri Pirko <jiri@mellanox.com>
  * Copyright (c) 2016 Ido Schimmel <idosch@mellanox.com>
  * Copyright (c) 2016 Yotam Gigi <yotamg@mellanox.com>

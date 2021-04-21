@@ -2,6 +2,7 @@
  * davinci_nand.c - NAND Flash Driver for DaVinci family chips
  *
  * Copyright © 2006 Texas Instruments.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Port to 2.6.23 Copyright © 2008 by:
  *   Sander Huijsen <Shuijsen@optelecom-nkf.com>

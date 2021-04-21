@@ -2,6 +2,7 @@
  * Hisilicon NAND Flash controller driver
  *
  * Copyright © 2012-2014 HiSilicon Technologies Co., Ltd.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *              http://www.hisilicon.com
  *
  * Author: Zhou Wang <wangzhou.bry@gmail.com>

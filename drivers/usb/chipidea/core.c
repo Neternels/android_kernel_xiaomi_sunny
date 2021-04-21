@@ -2,6 +2,7 @@
  * core.c - ChipIdea USB IP core family device controller
  *
  * Copyright (C) 2008 Chipidea - MIPS Technologies, Inc. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Author: David Lopo
  *

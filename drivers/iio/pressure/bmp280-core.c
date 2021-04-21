@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2010 Christoph Mair <christoph.mair@gmail.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2012 Bosch Sensortec GmbH
  * Copyright (c) 2012 Unixphere AB
  * Copyright (c) 2014 Intel Corporation

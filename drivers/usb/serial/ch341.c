@@ -1,5 +1,6 @@
 /*
  * Copyright 2007, Frank A Kingswood <frank@kingswood-consulting.co.uk>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright 2007, Werner Cornelius <werner@cornelius-consult.de>
  * Copyright 2009, Boris Hajduk <boris@hajduk.org>
  *

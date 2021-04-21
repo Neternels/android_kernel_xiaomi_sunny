@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Rockchip Electronics Co. Ltd.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Xing Zheng <zhengxing@rock-chips.com>
  *         Jeffy Chen <jeffy.chen@rock-chips.com>
  *

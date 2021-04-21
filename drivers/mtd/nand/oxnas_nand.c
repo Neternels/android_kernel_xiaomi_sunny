@@ -2,6 +2,7 @@
  * Oxford Semiconductor OXNAS NAND driver
 
  * Copyright (C) 2016 Neil Armstrong <narmstrong@baylibre.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Heavily based on plat_nand.c :
  * Author: Vitaly Wool <vitalywool@gmail.com>
  * Copyright (C) 2013 Ma Haijun <mahaijuns@gmail.com>

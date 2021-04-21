@@ -2,6 +2,7 @@
  * u_ether.c -- Ethernet-over-USB link layer utilities for Gadget stack
  *
  * Copyright (C) 2003-2005,2008 David Brownell
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2003-2004 Robert Schwebel, Benedikt Spranger
  * Copyright (C) 2008 Nokia Corporation
  *

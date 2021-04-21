@@ -6,6 +6,7 @@
  * the Free Software Foundation.
  *
  * Copyright (c) 2009 Jonathan Cameron <jic23@kernel.org>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * See industrialio/accels/sca3000.h for comments.
  */

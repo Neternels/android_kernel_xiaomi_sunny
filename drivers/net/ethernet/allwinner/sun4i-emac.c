@@ -2,6 +2,7 @@
  * Allwinner EMAC Fast Ethernet driver for Linux.
  *
  * Copyright 2012-2013 Stefan Roese <sr@denx.de>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright 2013 Maxime Ripard <maxime.ripard@free-electrons.com>
  *
  * Based on the Linux driver provided by Allwinner:

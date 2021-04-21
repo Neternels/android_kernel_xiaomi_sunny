@@ -1,6 +1,7 @@
 /*
  * addi_apci_1032.c
  * Copyright (C) 2004,2005  ADDI-DATA GmbH for the source code of this module.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Project manager: Eric Stolz
  *
  *	ADDI-DATA GmbH

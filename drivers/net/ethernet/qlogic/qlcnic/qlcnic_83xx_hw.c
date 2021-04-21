@@ -1,6 +1,7 @@
 /*
  * QLogic qlcnic NIC Driver
  * Copyright (c) 2009-2013 QLogic Corporation
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * See LICENSE.qlcnic for copyright and licensing details.
  */

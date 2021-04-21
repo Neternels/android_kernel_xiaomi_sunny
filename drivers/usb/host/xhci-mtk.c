@@ -2,6 +2,7 @@
  * MediaTek xHCI Host Controller Driver
  *
  * Copyright (c) 2015 MediaTek Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author:
  *  Chunfeng Yun <chunfeng.yun@mediatek.com>
  *

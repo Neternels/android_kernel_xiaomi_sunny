@@ -2,6 +2,7 @@
  * Originally from efivars.c,
  *
  * Copyright (C) 2001,2003,2004 Dell <Matt_Domsch@dell.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2004 Intel Corporation <matthew.e.tolentino@intel.com>
  *
  * This code takes all variables accessible from EFI runtime and

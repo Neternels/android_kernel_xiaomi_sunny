@@ -4,6 +4,7 @@
  * Based on a patch from Samu Onkalo and the AK8975 IIO driver.
  *
  * Copyright (C) 2010 Nokia Corporation and/or its subsidiary(-ies).
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2010 NVIDIA Corporation.
  * Copyright (C) 2016 Linaro Ltd.
  *

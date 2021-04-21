@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2010,2015 Broadcom
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2012 Stephen Warren
  *
  * This program is free software; you can redistribute it and/or modify

@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2007 Google, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2012-2020 The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify

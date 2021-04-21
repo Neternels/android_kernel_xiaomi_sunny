@@ -2,6 +2,7 @@
  * X-Box gamepad driver
  *
  * Copyright (c) 2002 Marko Friedemann <mfr@bmx-chemnitz.de>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *               2004 Oliver Schwartz <Oliver.Schwartz@gmx.de>,
  *                    Steven Toth <steve@toth.demon.co.uk>,
  *                    Franz Lehner <franz@caos.at>,

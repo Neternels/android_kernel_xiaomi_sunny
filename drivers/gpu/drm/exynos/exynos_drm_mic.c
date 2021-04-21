@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2015 Samsung Electronics Co.Ltd
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Authors:
  *	Hyungwon Hwang <human.hwang@samsung.com>
  *
