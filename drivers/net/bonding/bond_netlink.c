@@ -1,6 +1,7 @@
 /*
  * drivers/net/bond/bond_netlink.c - Netlink interface for bonding
  * Copyright (c) 2013 Jiri Pirko <jiri@resnulli.us>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2013 Scott Feldman <sfeldma@cumulusnetworks.com>
  *
  * This program is free software; you can redistribute it and/or modify

@@ -7,6 +7,7 @@
  * Based on: spi-bcm2835.c
  *
  * Copyright (C) 2015 Martin Sperl
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

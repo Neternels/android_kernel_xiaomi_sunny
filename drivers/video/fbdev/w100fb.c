@@ -4,6 +4,7 @@
  * Frame Buffer Device for ATI Imageon w100 (Wallaby)
  *
  * Copyright (C) 2002, ATI Corp.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2004-2006 Richard Purdie
  * Copyright (c) 2005 Ian Molton
  * Copyright (c) 2006 Alberto Mardegan

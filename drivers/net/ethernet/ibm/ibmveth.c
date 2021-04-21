@@ -15,6 +15,7 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  *
  * Copyright (C) IBM Corporation, 2003, 2010
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Authors: Dave Larson <larson1@us.ibm.com>
  *	    Santiago Leon <santil@linux.vnet.ibm.com>

@@ -2,6 +2,7 @@
  * rcar-fcp.c  --  R-Car Frame Compression Processor Driver
  *
  * Copyright (C) 2016 Renesas Electronics Corporation
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Contact: Laurent Pinchart (laurent.pinchart@ideasonboard.com)
  *

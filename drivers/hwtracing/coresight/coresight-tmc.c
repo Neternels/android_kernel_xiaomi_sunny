@@ -1,4 +1,5 @@
 /* Copyright (c) 2012, 2017-2018, 2020, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Description: CoreSight Trace Memory Controller driver
  *

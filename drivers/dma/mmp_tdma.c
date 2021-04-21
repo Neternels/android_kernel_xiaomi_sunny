@@ -2,6 +2,7 @@
  * Driver For Marvell Two-channel DMA Engine
  *
  * Copyright: Marvell International Ltd.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * The code contained herein is licensed under the GNU General Public
  * License. You may obtain a copy of the GNU General Public License

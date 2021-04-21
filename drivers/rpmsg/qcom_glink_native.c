@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2016-2017, Linaro Ltd
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -1176,8 +1177,11 @@ static int qcom_glink_handle_signals(struct qcom_glink *glink,
 	old = channel->rsigs;
 	channel->rsigs = signals;
 
-	if (channel->ept.sig_cb)
+	if (channel->ept.sig_cb) {
+		dev_err(glink->dev,"~1 channel name=%x, channel->ept=%x, channel->ept.rpdev=%x\n",
+			channel->name, channel->ept, channel->ept.rpdev);
 		channel->ept.sig_cb(channel->ept.rpdev, old, channel->rsigs);
+	}
 
 	CH_INFO(channel, "old:%d new:%d\n", old, channel->rsigs);
 

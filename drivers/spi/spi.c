@@ -2,6 +2,7 @@
  * SPI init/core code
  *
  * Copyright (C) 2005 David Brownell
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2008 Secret Lab Technologies Ltd.
  *
  * This program is free software; you can redistribute it and/or modify

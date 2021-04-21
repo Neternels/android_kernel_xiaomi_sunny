@@ -2,6 +2,7 @@
  * core_intr.c - DesignWare HS OTG Controller common interrupt handling
  *
  * Copyright (C) 2004-2013 Synopsys, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions

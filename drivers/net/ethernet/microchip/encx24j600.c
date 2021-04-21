@@ -2,6 +2,7 @@
  * Microchip ENCX24J600 ethernet driver
  *
  * Copyright (C) 2015 Gridpoint
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Jon Ringle <jringle@gridpoint.com>
  *
  * This program is free software; you can redistribute it and/or modify

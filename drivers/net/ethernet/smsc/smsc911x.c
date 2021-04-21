@@ -1,6 +1,7 @@
 /***************************************************************************
  *
  * Copyright (C) 2004-2008 SMSC
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2005-2008 ARM
  *
  * This program is free software; you can redistribute it and/or

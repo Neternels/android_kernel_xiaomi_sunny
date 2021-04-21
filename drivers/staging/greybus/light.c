@@ -2,6 +2,7 @@
  * Greybus Lights protocol driver.
  *
  * Copyright 2015 Google Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright 2015 Linaro Ltd.
  *
  * Released under the GPLv2 only.

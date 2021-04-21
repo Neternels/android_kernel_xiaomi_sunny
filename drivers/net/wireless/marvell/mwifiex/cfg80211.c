@@ -2,6 +2,7 @@
  * Marvell Wireless LAN device driver: CFG80211
  *
  * Copyright (C) 2011-2014, Marvell International Ltd.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This software file (the "File") is distributed by Marvell International
  * Ltd. under the terms of the GNU General Public License Version 2, June 1991

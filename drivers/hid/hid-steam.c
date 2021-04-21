@@ -3,6 +3,7 @@
  * HID driver for Valve Steam Controller
  *
  * Copyright (c) 2018 Rodrigo Rivas Costa <rodrigorivascosta@gmail.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Supports both the wired and wireless interfaces.
  *

@@ -4,6 +4,7 @@
  * Samsung S3C24xx series on-chip full speed USB device controllers
  *
  * Copyright (C) 2004-2007 Herbert Pötzl - Arnaud Patard
+ * Copyright (C) 2021 XiaoMi, Inc.
  *	Additional cleanups by Ben Dooks <ben-linux@fluff.org>
  *
  * This program is free software; you can redistribute it and/or modify

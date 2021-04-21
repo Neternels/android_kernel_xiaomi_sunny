@@ -2,6 +2,7 @@
  * Allwinner sun4i USB phy driver
  *
  * Copyright (C) 2014-2015 Hans de Goede <hdegoede@redhat.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Based on code from
  * Allwinner Technology Co., Ltd. <www.allwinnertech.com>

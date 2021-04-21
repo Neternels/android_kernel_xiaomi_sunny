@@ -1,4 +1,5 @@
 /* Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -959,6 +960,10 @@ int32_t cam_csiphy_core_cfg(void *phy_dev,
 			&ahb_vote, &axi_vote);
 		if (rc < 0) {
 			CAM_ERR(CAM_CSIPHY, "voting CPAS: %d", rc);
+#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+			if (rc == -EALREADY)
+				cam_cpas_stop(csiphy_dev->cpas_handle);
+#endif
 			goto release_mutex;
 		}
 

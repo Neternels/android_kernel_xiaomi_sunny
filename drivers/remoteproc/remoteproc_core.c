@@ -2,6 +2,7 @@
  * Remote Processor Framework
  *
  * Copyright (C) 2011 Texas Instruments, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2011 Google, Inc.
  *
  * Ohad Ben-Cohen <ohad@wizery.com>

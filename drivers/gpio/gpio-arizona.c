@@ -2,6 +2,7 @@
  * gpiolib support for Wolfson Arizona class devices
  *
  * Copyright 2012 Wolfson Microelectronics PLC.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Author: Mark Brown <broonie@opensource.wolfsonmicro.com>
  *

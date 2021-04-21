@@ -3,6 +3,7 @@
  * 3700.
  *
  * Copyright (C) 2016 Marvell
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Author: Hezi Shahmoon <hezi.shahmoon@marvell.com>
  *

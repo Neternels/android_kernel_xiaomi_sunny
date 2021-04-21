@@ -2,6 +2,7 @@
  * PS3 Disk Storage Driver
  *
  * Copyright (C) 2007 Sony Computer Entertainment Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright 2007 Sony Corp.
  *
  * This program is free software; you can redistribute it and/or modify it

@@ -1,6 +1,7 @@
 /*
  * ASIX AX88172A based USB 2.0 Ethernet Devices
  * Copyright (C) 2012 OMICRON electronics GmbH
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Supports external PHYs via phylib. Based on the driver for the
  * AX88772. Original copyrights follow:

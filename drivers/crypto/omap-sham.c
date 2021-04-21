@@ -4,6 +4,7 @@
  * Support for OMAP SHA1/MD5 HW acceleration.
  *
  * Copyright (c) 2010 Nokia Corporation
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Dmitry Kasatkin <dmitry.kasatkin@nokia.com>
  * Copyright (c) 2011 Texas Instruments Incorporated
  *

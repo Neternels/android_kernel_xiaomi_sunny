@@ -2,6 +2,7 @@
  * drivers/net/macsec.c - MACsec device
  *
  * Copyright (c) 2015 Sabrina Dubroca <sd@queasysnail.net>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

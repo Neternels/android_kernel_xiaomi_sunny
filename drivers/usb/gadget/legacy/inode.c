@@ -2,6 +2,7 @@
  * inode.c -- user mode filesystem api for usb gadget controllers
  *
  * Copyright (C) 2003-2004 David Brownell
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2003 Agilent Technologies
  *
  * This program is free software; you can redistribute it and/or modify

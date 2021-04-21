@@ -4,6 +4,7 @@
  * derived from the OF-version.
  *
  * Copyright (c) 2010 Pengutronix e.K.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *   Author: Wolfram Sang <kernel@pengutronix.de>
  *
  * This program is free software; you can redistribute it and/or modify

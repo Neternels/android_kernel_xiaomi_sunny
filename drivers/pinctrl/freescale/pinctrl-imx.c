@@ -2,6 +2,7 @@
  * Core driver for the imx pin controller
  *
  * Copyright (C) 2012 Freescale Semiconductor, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2012 Linaro Ltd.
  *
  * Author: Dong Aisheng <dong.aisheng@linaro.org>

@@ -20,6 +20,7 @@
  *  - EasyTouch USB Dual/Multi touch controller from Data Modul
  *
  * Copyright (C) 2004-2007 by Daniel Ritz <daniel.ritz@gmx.ch>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) by Todd E. Johnson (mtouchusb.c)
  *
  * This program is free software; you can redistribute it and/or

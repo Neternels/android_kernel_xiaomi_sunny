@@ -2,6 +2,7 @@
  * arch/arm/mach-tegra/gpio.c
  *
  * Copyright (c) 2010 Google, Inc
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Author:
  *	Erik Gilling <konkers@google.com>

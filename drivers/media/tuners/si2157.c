@@ -2,6 +2,7 @@
  * Silicon Labs Si2146/2147/2148/2157/2158 silicon tuner driver
  *
  * Copyright (C) 2014 Antti Palosaari <crope@iki.fi>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  *    This program is free software; you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by

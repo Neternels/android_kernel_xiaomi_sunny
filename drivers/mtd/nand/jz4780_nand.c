@@ -2,6 +2,7 @@
  * JZ4780 NAND driver
  *
  * Copyright (c) 2015 Imagination Technologies
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Alex Smith <alex.smith@imgtec.com>
  *
  * This program is free software; you can redistribute it and/or modify it

@@ -2,6 +2,7 @@
  * reference designs made by DiBcom (http://www.dibcom.fr/) (DiB3000M-B)
  *
  * Copyright (C) 2004-5 Patrick Boettcher (patrick.boettcher@posteo.de)
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * based on GPL code from DiBcom, which has
  * Copyright (C) 2004 Amaury Demol for DiBcom

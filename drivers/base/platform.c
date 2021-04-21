@@ -2,6 +2,7 @@
  * platform.c - platform 'pseudo' bus for legacy devices
  *
  * Copyright (c) 2002-3 Patrick Mochel
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2002-3 Open Source Development Labs
  *
  * This file is released under the GPLv2

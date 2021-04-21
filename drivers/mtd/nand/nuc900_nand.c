@@ -1,5 +1,6 @@
 /*
  * Copyright © 2009 Nuvoton technology corporation.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Wan ZongShun <mcuos.com@gmail.com>
  *

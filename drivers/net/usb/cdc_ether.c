@@ -1,6 +1,7 @@
 /*
  * CDC Ethernet based networking peripherals
  * Copyright (C) 2003-2005 by David Brownell
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2006 by Ole Andre Vadla Ravnas (ActiveSync)
  *
  * This program is free software; you can redistribute it and/or modify

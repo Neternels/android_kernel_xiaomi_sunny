@@ -1,6 +1,7 @@
 /*
  * emc2103.c - Support for SMSC EMC2103
  * Copyright (c) 2010 SMSC
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

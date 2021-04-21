@@ -1,5 +1,6 @@
 /*
  * Copyright © 2004 Texas Instruments, Jian Zhang <jzhang@ti.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright © 2004 Micron Technology Inc.
  * Copyright © 2004 David Brownell
  *

@@ -2,6 +2,7 @@
  * vga_switcheroo.c - Support for laptop with dual GPU using one set of outputs
  *
  * Copyright (c) 2010 Red Hat Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author : Dave Airlie <airlied@redhat.com>
  *
  * Copyright (c) 2015 Lukas Wunner <lukas@wunner.de>

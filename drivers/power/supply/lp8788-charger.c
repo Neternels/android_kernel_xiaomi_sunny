@@ -2,6 +2,7 @@
  * TI LP8788 MFD - battery charger driver
  *
  * Copyright 2012 Texas Instruments
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Author: Milo(Woogyom) Kim <milo.kim@ti.com>
  *

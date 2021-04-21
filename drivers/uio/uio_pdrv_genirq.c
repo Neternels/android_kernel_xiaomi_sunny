@@ -4,6 +4,7 @@
  * Userspace I/O platform driver with generic IRQ handling code.
  *
  * Copyright (C) 2008 Magnus Damm
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Based on uio_pdrv.c by Uwe Kleine-Koenig,
  * Copyright (C) 2008 by Digi International Inc.

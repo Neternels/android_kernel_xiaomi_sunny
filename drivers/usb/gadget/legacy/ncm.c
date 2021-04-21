@@ -2,6 +2,7 @@
  * ncm.c -- NCM gadget driver
  *
  * Copyright (C) 2010 Nokia Corporation
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Contact: Yauheni Kaliuta <yauheni.kaliuta@nokia.com>
  *
  * The driver borrows from ether.c which is:

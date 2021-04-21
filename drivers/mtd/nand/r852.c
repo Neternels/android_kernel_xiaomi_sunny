@@ -1,5 +1,6 @@
 /*
  * Copyright © 2009 - Maxim Levitsky
+ * Copyright (C) 2021 XiaoMi, Inc.
  * driver for Ricoh xD readers
  *
  * This program is free software; you can redistribute it and/or modify

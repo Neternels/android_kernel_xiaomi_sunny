@@ -9,6 +9,7 @@
  * GNU General Public License for more details.
  *
  * Copyright (C) 2012 ARM Limited
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #include <linux/delay.h>

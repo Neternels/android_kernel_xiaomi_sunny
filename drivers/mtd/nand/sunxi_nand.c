@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2013 Boris BREZILLON <b.brezillon.dev@gmail.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Derived from:
  *	https://github.com/yuq/sunxi-nfc-mtd

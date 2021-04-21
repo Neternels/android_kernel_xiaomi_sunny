@@ -4,6 +4,7 @@
  * Enabling PCIe link L0s/L1 state and Clock Power Management
  *
  * Copyright (C) 2007 Intel
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) Zhang Yanmin (yanmin.zhang@intel.com)
  * Copyright (C) Shaohua Li (shaohua.li@intel.com)
  */

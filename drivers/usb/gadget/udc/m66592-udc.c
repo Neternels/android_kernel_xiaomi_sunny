@@ -2,6 +2,7 @@
  * M66592 UDC (USB gadget)
  *
  * Copyright (C) 2006-2007 Renesas Solutions Corp.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Author : Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
  *

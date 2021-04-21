@@ -3,6 +3,7 @@
  * This is a driver for SMSC's 91C9x/91C1xx single-chip Ethernet devices.
  *
  * Copyright (C) 1996 by Erik Stahlman
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2001 Standard Microsystems Corporation
  *	Developed by Simple Network Magic Corporation
  * Copyright (C) 2003 Monta Vista Software, Inc.

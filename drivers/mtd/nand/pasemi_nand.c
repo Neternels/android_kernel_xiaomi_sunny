@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2006-2007 PA Semi, Inc
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Author: Egor Martovetsky <egor@pasemi.com>
  * Maintained by: Olof Johansson <olof@lixom.net>

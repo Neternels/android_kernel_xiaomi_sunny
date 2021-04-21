@@ -2,6 +2,7 @@
  * hdc100x.c - Support for the TI HDC100x temperature + humidity sensors
  *
  * Copyright (C) 2015 Matt Ranostay <mranostay@gmail.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

@@ -1,5 +1,6 @@
 /*
  * Copyright 2004-2007 Freescale Semiconductor, Inc. All Rights Reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright 2008 Sascha Hauer, kernel@pengutronix.de
  *
  * This program is free software; you can redistribute it and/or

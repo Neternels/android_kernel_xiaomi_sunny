@@ -1,6 +1,7 @@
 /*
  * drivers/net/ethernet/mellanox/mlxsw/core.c
  * Copyright (c) 2015 Mellanox Technologies. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2015 Jiri Pirko <jiri@mellanox.com>
  * Copyright (c) 2015 Ido Schimmel <idosch@mellanox.com>
  * Copyright (c) 2015 Elad Raz <eladr@mellanox.com>

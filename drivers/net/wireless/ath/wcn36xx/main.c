@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2013 Eugene Krasnikov <k.eugene.e@gmail.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above

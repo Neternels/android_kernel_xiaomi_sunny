@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Linaro Ltd.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2015 Hisilicon Limited.
  *
  * This program is free software; you can redistribute it and/or modify

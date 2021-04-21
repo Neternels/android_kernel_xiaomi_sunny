@@ -1,5 +1,6 @@
 /*
  * Copyright 2013 Emilio López
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Emilio López <emilio@elopez.com.ar>
  *

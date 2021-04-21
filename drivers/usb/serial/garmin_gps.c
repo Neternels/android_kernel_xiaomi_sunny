@@ -2,6 +2,7 @@
  * Garmin GPS driver
  *
  * Copyright (C) 2006-2011 Hermann Kneissel herkne@gmx.de
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * The latest version of the driver can be found at
  * http://sourceforge.net/projects/garmin-gps/

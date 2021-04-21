@@ -1,6 +1,7 @@
 /*
  * D-Link DIR-685 router I2C-based Touchkeys input driver
  * Copyright (C) 2017 Linus Walleij <linus.walleij@linaro.org>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This is a one-off touchkey controller based on the Cypress Semiconductor
  * CY8C214 MCU with some firmware in its internal 8KB flash. The circuit

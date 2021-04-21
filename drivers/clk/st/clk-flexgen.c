@@ -2,6 +2,7 @@
  * clk-flexgen.c
  *
  * Copyright (C) ST-Microelectronics SA 2013
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author:  Maxime Coquelin <maxime.coquelin@st.com> for ST-Microelectronics.
  * License terms:  GNU General Public License (GPL), version 2  */
 

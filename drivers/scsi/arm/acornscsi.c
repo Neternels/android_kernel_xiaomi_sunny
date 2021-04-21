@@ -616,6 +616,7 @@ datadir_t acornscsi_datadirection(int command)
 /*
  * Purpose  : provide values for synchronous transfers with 33C93.
  * Copyright: Copyright (c) 1996 John Shifflett, GeoLog Consulting
+ * Copyright (C) 2021 XiaoMi, Inc.
  *	Modified by Russell King for 8MHz WD33C93A
  */
 static struct sync_xfer_tbl {

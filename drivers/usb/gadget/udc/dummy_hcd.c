@@ -4,6 +4,7 @@
  * Maintainer: Alan Stern <stern@rowland.harvard.edu>
  *
  * Copyright (C) 2003 David Brownell
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2003-2005 Alan Stern
  *
  * This program is free software; you can redistribute it and/or modify

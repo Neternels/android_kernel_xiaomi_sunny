@@ -2,6 +2,7 @@
  * SuperH FLCTL nand controller
  *
  * Copyright (c) 2008 Renesas Solutions Corp.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2008 Atom Create Engineering Co., Ltd.
  *
  * Based on fsl_elbc_nand.c, Copyright (c) 2006-2007 Freescale Semiconductor

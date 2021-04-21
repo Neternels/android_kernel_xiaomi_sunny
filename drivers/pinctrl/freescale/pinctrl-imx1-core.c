@@ -2,6 +2,7 @@
  * Core driver for the imx pin controller in imx1/21/27
  *
  * Copyright (C) 2013 Pengutronix
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Markus Pargmann <mpa@pengutronix.de>
  *
  * Based on pinctrl-imx.c:

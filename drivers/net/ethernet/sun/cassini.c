@@ -1,6 +1,7 @@
 /* cassini.c: Sun Microsystems Cassini(+) ethernet driver.
  *
  * Copyright (C) 2004 Sun Microsystems Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2003 Adrian Sun (asun@darksunrising.com)
  *
  * This program is free software; you can redistribute it and/or

@@ -5,6 +5,7 @@
  *    http://wiki.laptop.org/go/Datasheets 
  *
  * Copyright © 2006 Red Hat, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright © 2006 David Woodhouse <dwmw2@infradead.org>
  */
 

@@ -2,6 +2,7 @@
  * File attributes for Mediated devices
  *
  * Copyright (c) 2016, NVIDIA CORPORATION. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *     Author: Neo Jia <cjia@nvidia.com>
  *             Kirti Wankhede <kwankhede@nvidia.com>
  *

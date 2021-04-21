@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2012  Bjørn Mork <bjorn@mork.no>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * The probing code is heavily inspired by cdc_ether, which is:
  * Copyright (C) 2003-2005 by David Brownell

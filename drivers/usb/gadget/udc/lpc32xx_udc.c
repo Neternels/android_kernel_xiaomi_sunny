@@ -7,6 +7,7 @@
  *    Roland Stigge <stigge@antcom.de>
  *
  * Copyright (C) 2006 Philips Semiconductors
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2009 NXP Semiconductors
  * Copyright (C) 2012 Roland Stigge
  *

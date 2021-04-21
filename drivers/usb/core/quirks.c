@@ -2,6 +2,7 @@
  * USB device quirk handling logic and table
  *
  * Copyright (c) 2007 Oliver Neukum
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2007 Greg Kroah-Hartman <gregkh@suse.de>
  *
  * This program is free software; you can redistribute it and/or modify it

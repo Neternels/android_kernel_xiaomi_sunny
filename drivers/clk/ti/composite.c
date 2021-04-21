@@ -2,6 +2,7 @@
  * TI composite clock support
  *
  * Copyright (C) 2013 Texas Instruments, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Tero Kristo <t-kristo@ti.com>
  *

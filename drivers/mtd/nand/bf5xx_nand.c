@@ -1,6 +1,7 @@
 /* linux/drivers/mtd/nand/bf5xx_nand.c
  *
  * Copyright 2006-2008 Analog Devices Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *	http://blackfin.uclinux.org/
  *	Bryan Wu <bryan.wu@analog.com>
  *

@@ -2,6 +2,7 @@
  * GPIO driver for AMD
  *
  * Copyright (c) 2014,2015 Ken Xue <Ken.Xue@amd.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *		Jeff Wu <Jeff.Wu@amd.com>
  *
  * This program is free software; you can redistribute it and/or modify it

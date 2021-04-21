@@ -2,6 +2,7 @@
  * drivers/spi/spi-fsl-dspi.c
  *
  * Copyright 2013 Freescale Semiconductor, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Freescale DSPI driver
  * This file contains a driver for the Freescale DSPI

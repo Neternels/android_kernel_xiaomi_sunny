@@ -9,6 +9,7 @@
  *  - Kvaser linux usbcanII driver (version 5.3)
  *
  * Copyright (C) 2002-2006 KVASER AB, Sweden. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2010 Matthias Fuchs <matthias.fuchs@esd.eu>, esd gmbh
  * Copyright (C) 2012 Olivier Sobrie <olivier@sobrie.be>
  * Copyright (C) 2015 Valeo S.A.

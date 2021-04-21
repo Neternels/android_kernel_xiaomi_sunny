@@ -2,6 +2,7 @@
  * Freescale Integrated Flash Controller NAND driver
  *
  * Copyright 2011-2012 Freescale Semiconductor, Inc
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Author: Dipen Dudhat <Dipen.Dudhat@freescale.com>
  *

@@ -1,6 +1,7 @@
 /*
  * QLogic iSCSI Offload Driver
  * Copyright (c) 2016 Cavium Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This software is available under the terms of the GNU General Public License
  * (GPL) Version 2, available from the file COPYING in the main directory of

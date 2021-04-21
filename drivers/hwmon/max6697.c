@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2012 Guenter Roeck <linux@roeck-us.net>
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * based on max1668.c
  * Copyright (c) 2011 David George <david.george@ska.ac.za>

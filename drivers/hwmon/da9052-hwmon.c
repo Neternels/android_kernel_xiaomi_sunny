@@ -2,6 +2,7 @@
  * HWMON Driver for Dialog DA9052
  *
  * Copyright(c) 2012 Dialog Semiconductor Ltd.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Author: David Dajun Chen <dchen@diasemi.com>
  *

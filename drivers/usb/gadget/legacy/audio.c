@@ -2,6 +2,7 @@
  * audio.c -- Audio gadget driver
  *
  * Copyright (C) 2008 Bryan Wu <cooloney@kernel.org>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2008 Analog Devices, Inc
  *
  * Enter bugs at http://blackfin.uclinux.org/

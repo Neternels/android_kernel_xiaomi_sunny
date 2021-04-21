@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2008 Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (c) 2009 Daniel Mack <daniel@caiaq.de>
  *
  * This program is free software; you can redistribute it and/or modify it

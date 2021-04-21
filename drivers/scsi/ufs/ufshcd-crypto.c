@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
  * Copyright 2019 Google LLC
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #include <linux/keyslot-manager.h>
@@ -335,10 +336,10 @@ int ufshcd_hba_init_crypto_spec(struct ufs_hba *hba,
 
 	ufshcd_clear_all_keyslots(hba);
 
-	hba->ksm = keyslot_manager_create(hba->dev, ufshcd_num_keyslots(hba),
-					  ksm_ops,
-					  BLK_CRYPTO_FEATURE_STANDARD_KEYS,
-					  crypto_modes_supported, hba);
+        hba->ksm = keyslot_manager_create(hba->dev, ufshcd_num_keyslots(hba),
+                                          ksm_ops,
+                                          BLK_CRYPTO_FEATURE_STANDARD_KEYS,
+                                          crypto_modes_supported, hba);
 
 	if (!hba->ksm) {
 		err = -ENOMEM;

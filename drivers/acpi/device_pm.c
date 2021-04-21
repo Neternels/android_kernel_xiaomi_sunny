@@ -2,6 +2,7 @@
  * drivers/acpi/device_pm.c - ACPI device power management routines.
  *
  * Copyright (C) 2012, Intel Corp.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

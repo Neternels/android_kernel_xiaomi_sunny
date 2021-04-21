@@ -2,6 +2,7 @@
  * talitos - Freescale Integrated Security Engine (SEC) device driver
  *
  * Copyright (c) 2008-2011 Freescale Semiconductor, Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Scatterlist Crypto API glue code copied from files with the following:
  * Copyright (c) 2006-2007 Herbert Xu <herbert@gondor.apana.org.au>
