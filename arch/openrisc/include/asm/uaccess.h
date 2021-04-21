@@ -7,6 +7,7 @@
  *
  * OpenRISC implementation:
  * Copyright (C) 2003 Matjaz Breskvar <phoenix@bsemi.com>
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2010-2011 Jonas Bonn <jonas@southpole.se>
  * et al.
  *

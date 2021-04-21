@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0 */
 /*
  * Copyright IBM Corp. 2008, 2009
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  *   Author(s): Heiko Carstens <heiko.carstens@de.ibm.com>,
  *

@@ -2,6 +2,7 @@
 /* ptrace.c: Sparc process tracing support.
  *
  * Copyright (C) 1996, 2008 David S. Miller (davem@davemloft.net)
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Based upon code written by Ross Biro, Linus Torvalds, Bob Manson,
  * and David Mosberger.

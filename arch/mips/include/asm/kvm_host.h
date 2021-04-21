@@ -4,6 +4,7 @@
 * for more details.
 *
 * Copyright (C) 2012  MIPS Technologies, Inc.  All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
 * Authors: Sanjay Lal <sanjayl@kymasys.com>
 */
 

@@ -2,6 +2,7 @@
  * PCI / PCI-X / PCI-Express support for 4xx parts
  *
  * Copyright 2007 Ben. Herrenschmidt <benh@kernel.crashing.org>, IBM Corp.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Most PCI Express code is coming from Stefan Roese implementation for
  * arch/ppc in the Denx tree, slightly reworked by me.

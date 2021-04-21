@@ -2,6 +2,7 @@
  * Device Tree Source for the r8a73a4 SoC
  *
  * Copyright (C) 2013 Renesas Solutions Corp.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2013 Magnus Damm
  *
  * This file is licensed under the terms of the GNU General Public License

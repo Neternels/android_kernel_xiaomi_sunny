@@ -4,6 +4,7 @@
  * for more details.
  *
  * Copyright (C) 1995 Linus Torvalds
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 1995 Waldorf Electronics
  * Copyright (C) 1994, 95, 96, 97, 98, 99, 2000, 01, 02, 03  Ralf Baechle
  * Copyright (C) 1996 Stoned Elipot

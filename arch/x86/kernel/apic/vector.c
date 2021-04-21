@@ -2,6 +2,7 @@
  * Local APIC related interfaces to support IOAPIC, MSI, HT_IRQ etc.
  *
  * Copyright (C) 1997, 1998, 1999, 2000, 2009 Ingo Molnar, Hajnalka Szabo
+ * Copyright (C) 2021 XiaoMi, Inc.
  *	Moved from arch/x86/kernel/apic/io_apic.c.
  * Jiang Liu <jiang.liu@linux.intel.com>
  *	Enable support of hierarchical irqdomains

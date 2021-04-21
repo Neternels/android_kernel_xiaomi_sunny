@@ -4,6 +4,7 @@
 
 /*
  * Copyright 1992, Linus Torvalds.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * Note: inlines with more than a single statement should be marked
  * __always_inline to avoid problems with older gcc's inlining heuristics.

@@ -6,6 +6,7 @@
  * SGI UV IRQ functions
  *
  * Copyright (C) 2008 Silicon Graphics, Inc. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  */
 
 #include <linux/export.h>

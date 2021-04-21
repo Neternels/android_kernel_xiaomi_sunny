@@ -1,5 +1,6 @@
 /*
  * Copyright 2001 MontaVista Software Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Jun Sun, jsun@mvista.com or jsun@junsun.net
  * Copyright (c) 2003, 2004  Maciej W. Rozycki
  *

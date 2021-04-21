@@ -5,6 +5,7 @@
  * edited by Linus Torvalds
  * ARM modifications Copyright (C) 2000 Russell King
  * Copyright (C) 2012 ARM Ltd.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as

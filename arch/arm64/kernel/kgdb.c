@@ -4,6 +4,7 @@
  * Based on arch/arm/kernel/kgdb.c
  *
  * Copyright (C) 2013 Cavium Inc.
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Author: Vijaya Kumar K <vijaya.kumar@caviumnetworks.com>
  *
  * This program is free software; you can redistribute it and/or modify

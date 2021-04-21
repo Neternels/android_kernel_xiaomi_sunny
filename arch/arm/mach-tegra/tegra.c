@@ -2,6 +2,7 @@
  * NVIDIA Tegra SoC device tree board support
  *
  * Copyright (C) 2011, 2013, NVIDIA Corporation
+ * Copyright (C) 2021 XiaoMi, Inc.
  * Copyright (C) 2010 Secret Lab Technologies, Ltd.
  * Copyright (C) 2010 Google, Inc.
  *
