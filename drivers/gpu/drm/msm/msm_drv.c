@@ -2107,15 +2107,14 @@ static int msm_pdev_remove(struct platform_device *pdev)
 static void msm_pdev_shutdown(struct platform_device *pdev)
 {
 	struct drm_device *ddev = platform_get_drvdata(pdev);
-	struct msm_drm_private *priv = NULL;
+	struct msm_drm_private *priv = ddev ? ddev->dev_private : NULL;
 
 	if (!ddev) {
 		DRM_ERROR("invalid drm device node\n");
 		return;
 	}
 
-	priv = ddev->dev_private;
-	if (!priv) {
+	if (!priv || !priv->kms) {
 		DRM_ERROR("invalid msm drm private node\n");
 		return;
 	}
