@@ -7773,7 +7773,9 @@ static inline int find_best_target(struct task_struct *p, int *backup_cpu,
 		if (!prefer_idle && !boosted &&
 			(target_cpu != -1 || best_idle_cpu != -1) &&
 			(fbt_env->placement_boost == SCHED_BOOST_NONE ||
+#ifdef CONFIG_SCHED_WALT
 			sched_boost() != FULL_THROTTLE_BOOST ||
+#endif
 			(fbt_env->placement_boost == SCHED_BOOST_ON_BIG &&
 				!next_group_higher_cap)))
 			break;
@@ -8189,6 +8191,17 @@ static int find_energy_efficient_cpu(struct sched_domain *sd,
 		 */
 		prefer_idle = sched_feat(EAS_PREFER_IDLE) ?
 				(schedtune_prefer_idle(p) > 0) : 0;
+
+		/*
+		 * when input boost is active, enable need_idle for
+		 * all tasks. we use need_idle instead of prefer_idle
+		 * to avoid tasks spilling on to the other cluster just
+		 * because this cluster did not have idle CPUs.
+		 */
+#ifdef CONFIG_SCHED_WALT
+		if (sched_prefer_idle_on_input)
+			need_idle = true;
+#endif
 
 		eenv->max_cpu_count = EAS_CPU_BKP + 1;
 
@@ -9370,9 +9383,11 @@ redo:
 
 		continue;
 next:
+#ifdef CONFIG_SCHED_WALT
 		trace_sched_load_balance_skip_tasks(env->src_cpu, env->dst_cpu,
 				env->src_grp_type, p->pid, load, task_util(p),
 				cpumask_bits(&p->cpus_allowed)[0]);
+#endif
 		list_move_tail(&p->se.group_node, tasks);
 	}
 
@@ -11166,7 +11181,9 @@ no_move:
 				busiest->active_balance = 1;
 				busiest->push_cpu = this_cpu;
 				active_balance = 1;
+#ifdef CONFIG_SCHED_WALT
 				mark_reserved(this_cpu);
+#endif
 			}
 			raw_spin_unlock_irqrestore(&busiest->lock, flags);
 
