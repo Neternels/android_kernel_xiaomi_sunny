@@ -48,7 +48,6 @@ static struct delayed_work prim_panel_work;
 static atomic_t prim_panel_is_on;
 static struct wakeup_source prim_panel_wakelock;
 
-struct msm_drm_notifier g_notify_data;
 extern char *saved_command_line;
 
 static void convert_to_dsi_mode(const struct drm_display_mode *drm_mode,
@@ -187,6 +186,7 @@ static void dsi_bridge_pre_enable(struct drm_bridge *bridge)
 	struct dsi_bridge *c_bridge = to_dsi_bridge(bridge);
 	struct drm_device *dev = bridge->dev;
 	int event = 0;
+        struct msm_drm_notifier g_notify_data;
 
 	/*add for thermal begin*/
 	if (dev->doze_state == MSM_DRM_BLANK_POWERDOWN) {
@@ -492,6 +492,7 @@ static void dsi_bridge_post_disable(struct drm_bridge *bridge)
 	struct dsi_bridge *c_bridge = to_dsi_bridge(bridge);
 	struct drm_device *dev = bridge->dev;
 	int event = 0;
+        struct msm_drm_notifier g_notify_data;
 
 	/*add for thermal begin*/
 	if (dev->doze_state == MSM_DRM_BLANK_UNBLANK) {
