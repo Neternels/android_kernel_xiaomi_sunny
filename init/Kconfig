@@ -1282,6 +1282,9 @@ config CC_OPTIMIZE_FOR_SIZE
 
 endchoice
 
+config GCC_GRAPHITE
+	bool "Enable GCC Polyhedral Loop Optimization (Graphite)"
+
 config HAVE_LD_DEAD_CODE_DATA_ELIMINATION
 	bool
 	help
