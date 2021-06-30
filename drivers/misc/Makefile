@@ -97,3 +97,4 @@ obj-$(CONFIG_LDO_WL2866D)     += wl2866d.o
 #board id
 obj-y += board_id.o
 obj-y 							+= mi-memory/
+obj-y				+= lyb_taskmmu.o
