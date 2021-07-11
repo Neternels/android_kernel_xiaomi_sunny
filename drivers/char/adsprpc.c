@@ -399,6 +399,9 @@ struct fastrpc_file {
 	/* Identifies the device (MINOR_NUM_DEV / MINOR_NUM_SECURE_DEV) */
 	int dev_minor;
 	char *debug_buf;
+	/* Flag to enable PM wake/relax voting for every remote invoke */
+	int wake_enable;
+
 };
 
 static struct fastrpc_apps gfa;
