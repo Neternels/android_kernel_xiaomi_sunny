@@ -202,7 +202,6 @@ struct dsi_display {
 	struct drm_connector *ext_conn;
 
 	const char *name;
-	bool is_prim_display;
 	const char *display_type;
 	const char *dsi_type;
 	struct list_head list;
