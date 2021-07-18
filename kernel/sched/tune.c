@@ -30,6 +30,8 @@ struct schedtune {
 	/* Boost group allocated ID */
 	int idx;
 
+	int prefer_high_cap;
+
 	/* Boost value for tasks on that SchedTune CGroup */
 	int boost;
 
