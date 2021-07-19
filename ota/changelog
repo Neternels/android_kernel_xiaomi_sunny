@@ -1,0 +1,34 @@
+## Build Information
+```
+Kernel: NetErnels Kernel
+Type: Stable
+Device: Redmi Note 10
+Compiler: Proton Clang 13.0.0
+Branch: master
+Build Number: 1.0
+```
+## Changelog
+```
+-NetErnels-1.0
+* Kernel upstreamed to 239
+* Merged latest CAF tag LA.UM.9.1.r1-10600-SMXXX0.0
+* Fixed regression in irq
+* picked sultan's PID map commits
+* added scheduler patches
+* added lyb_taskmmu for performance boost
+* added mm compaction patches
+* introduced CPUSET_ASSIST
+* introduced STUNE_ASSIST v3
+* switched to westwood
+* switched to schedutil governor
+* switched to -O3 optimization flag
+* added tweaks to makefile to build a smaller image
+* picked some powerefficient workqueues
+* enabled few tty switches
+* introduced srandom
+* switched to srandom
+* Introduced docker Kconfig
+* enabled all docker configs
+* reverted removal of xt_qtaguid module
+* switched to xt_qtaguid
+```

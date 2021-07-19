@@ -1,0 +1,13 @@
+{
+  "kernel": {
+    "name": "NetErnels Kernel",
+    "version": "NetErnels-1.0",
+    "link": "https://github.com/neternels/android_kernel_xiaomi_mojito/releases/download/NetErnels-1.0/NetErnels-mojito-4.14.239-base-signed.zip",
+    "changelog_url": "https://raw.githubusercontent.com/neternels/android_kernel_xiaomi_mojito/LA.UM.9.1/ota/changelog",
+    "date": "2021-07-19",
+    "sha1": "9a3873c0933b5abeee9f6a363a36ad348f10d261"
+  },
+  "support": {
+    "link": "https://t.me/neternels_chat"
+  }
+}
