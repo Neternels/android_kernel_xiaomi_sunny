@@ -31,4 +31,6 @@ Build Number: 1.0
 * enabled all docker configs
 * reverted removal of xt_qtaguid module
 * switched to xt_qtaguid
+* imported wireguard v1.0.20210606
+* added kcal display control
 ```
