@@ -16239,88 +16239,91 @@ static const struct snd_kcontrol_new tx_voice2_stub_mixer_controls[] = {
 	MSM_FRONTEND_DAI_VOICE2_STUB, 1, 0, msm_routing_get_voice_stub_mixer,
 	msm_routing_put_voice_stub_mixer),
 
-#ifndef CONFIG_AUXPCM_DISABLE
-	SOC_DOUBLE_EXT("AUX_PCM_UL_TX", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_AUXPCM_TX,
-	MSM_FRONTEND_DAI_VOICE2_STUB, 1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("SEC_AUX_PCM_UL_TX", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_SEC_AUXPCM_TX,
-	MSM_FRONTEND_DAI_VOICE2_STUB, 1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("TERT_AUXPCM_UL_TX", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_TERT_AUXPCM_TX,
-	MSM_FRONTEND_DAI_VOICE2_STUB, 1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("QUAT_AUXPCM_UL_TX", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_QUAT_AUXPCM_TX,
-	MSM_FRONTEND_DAI_VOICE2_STUB, 1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("QUIN_AUXPCM_UL_TX", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_QUIN_AUXPCM_TX,
-	MSM_FRONTEND_DAI_VOICE2_STUB, 1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-#endif
-	SOC_DOUBLE_EXT("SLIM_0_TX", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_SLIMBUS_0_TX,
-	MSM_FRONTEND_DAI_VOICE2_STUB, 1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("SLIM_3_TX", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_SLIMBUS_3_TX,
-	MSM_FRONTEND_DAI_VOICE2_STUB, 1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("AFE_PCM_TX", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_AFE_PCM_TX,
-	MSM_FRONTEND_DAI_VOICE2_STUB, 1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("PRI_MI2S_TX", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_PRI_MI2S_TX,
-	MSM_FRONTEND_DAI_VOICE2_STUB, 1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("QUAT_MI2S_TX", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_QUATERNARY_MI2S_TX,
-	MSM_FRONTEND_DAI_VOICE2_STUB, 1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("SLIM_7_TX", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_SLIMBUS_7_TX,
-	MSM_FRONTEND_DAI_VOICE2_STUB, 1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("SLIM_8_TX", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_SLIMBUS_8_TX,
-	MSM_FRONTEND_DAI_VOICE2_STUB, 1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("VA_CDC_DMA_TX_0", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_VA_CDC_DMA_TX_0, MSM_FRONTEND_DAI_VOICE2_STUB,
-	1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("VA_CDC_DMA_TX_1", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_VA_CDC_DMA_TX_1, MSM_FRONTEND_DAI_VOICE2_STUB,
-	1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("TX_CDC_DMA_TX_0", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_TX_CDC_DMA_TX_0, MSM_FRONTEND_DAI_VOICE2_STUB,
-	1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("TX_CDC_DMA_TX_1", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_TX_CDC_DMA_TX_1, MSM_FRONTEND_DAI_VOICE2_STUB,
-	1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("TX_CDC_DMA_TX_2", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_TX_CDC_DMA_TX_2, MSM_FRONTEND_DAI_VOICE2_STUB,
-	1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("TX_CDC_DMA_TX_3", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_TX_CDC_DMA_TX_3, MSM_FRONTEND_DAI_VOICE2_STUB,
-	1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("TX_CDC_DMA_TX_4", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_TX_CDC_DMA_TX_4, MSM_FRONTEND_DAI_VOICE2_STUB,
-	1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
-	SOC_DOUBLE_EXT("TX_CDC_DMA_TX_5", SND_SOC_NOPM,
-	MSM_BACKEND_DAI_TX_CDC_DMA_TX_5, MSM_FRONTEND_DAI_VOICE2_STUB,
-	1, 0, msm_routing_get_voice_stub_mixer,
-	msm_routing_put_voice_stub_mixer),
+	if ((is_custom_stereo_on && flag) || (!is_custom_stereo_on && !flag)) {
+		pr_err("%s: is_custom_stereo_on %d, flag %d\n",
+			__func__, is_custom_stereo_on, flag);
+		return 0;
+	}
+	is_custom_stereo_on = flag ? true : false;
+	pr_debug("%s:is_custom_stereo_on %d\n", __func__, is_custom_stereo_on);
+	for (be_index = 0; be_index < MSM_BACKEND_DAI_MAX; be_index++) {
+		port_id = msm_bedais[be_index].port_id;
+		if (!msm_bedais[be_index].active)
+			continue;
+		if ((port_id != SLIMBUS_0_RX) &&
+		     (port_id != RT_PROXY_PORT_001_RX) &&
+			(port_id != AFE_PORT_ID_PRIMARY_MI2S_RX) &&
+			(port_id != AFE_PORT_ID_INT4_MI2S_RX))
+			continue;
+
+		for_each_set_bit(i, &msm_bedais[be_index].fe_sessions[0],
+				MSM_FRONTEND_DAI_MM_SIZE) {
+			if (fe_dai_map[i][SESSION_TYPE_RX].perf_mode !=
+			    LEGACY_PCM_MODE)
+				goto skip_send_custom_stereo;
+			session_id =
+				fe_dai_map[i][SESSION_TYPE_RX].strm_id;
+			if (is_custom_stereo_on) {
+				op_FL_ip_FL_weight =
+					Q14_GAIN_ZERO_POINT_FIVE;
+				op_FL_ip_FR_weight =
+					Q14_GAIN_ZERO_POINT_FIVE;
+				op_FR_ip_FL_weight =
+					Q14_GAIN_ZERO_POINT_FIVE;
+				op_FR_ip_FR_weight =
+					Q14_GAIN_ZERO_POINT_FIVE;
+			} else {
+				op_FL_ip_FL_weight = Q14_GAIN_UNITY;
+				op_FL_ip_FR_weight = 0;
+				op_FR_ip_FL_weight = 0;
+				op_FR_ip_FR_weight = Q14_GAIN_UNITY;
+			}
+			for (idx = 0; idx < MAX_COPPS_PER_PORT; idx++) {
+				unsigned long copp =
+					session_copp_map[i]
+					[SESSION_TYPE_RX][be_index];
+				if (!test_bit(idx, &copp))
+					goto skip_send_custom_stereo;
+				topo_id = adm_get_topology_for_port_copp_idx(
+					msm_bedais[be_index].port_id, idx);
+				if (topo_id < 0) {
+					pr_debug("%s:Err:custom stereo topo %d",
+						 __func__, topo_id);
+					pr_debug("idx %d\n", idx);
+				}
+				if (topo_id == DS2_ADM_COPP_TOPOLOGY_ID) {
+					rc = msm_ds2_dap_set_custom_stereo_onoff
+						(msm_bedais[be_index].port_id,
+						idx, is_custom_stereo_on);
+				}
+				else if (topo_id == DOLBY_ADM_COPP_TOPOLOGY_ID) {
+					rc = dolby_dap_set_custom_stereo_onoff(
+						msm_bedais[be_index].port_id,
+						idx, is_custom_stereo_on);
+				}
+				else
+				rc = msm_qti_pp_send_stereo_to_custom_stereo_cmd
+						(msm_bedais[be_index].port_id,
+						idx, session_id,
+						op_FL_ip_FL_weight,
+						op_FL_ip_FR_weight,
+						op_FR_ip_FL_weight,
+						op_FR_ip_FR_weight);
+				if (rc < 0)
+skip_send_custom_stereo:
+					pr_err("%s: err setting custom stereo\n",
+						__func__);
+			}
+
+		}
+	}
+	return 0;
+}
+
+static const struct snd_kcontrol_new stereo_to_custom_stereo_controls[] = {
+	SOC_SINGLE_EXT("Set Custom Stereo OnOff", SND_SOC_NOPM, 0,
+	1, 0, msm_routing_get_stereo_to_custom_stereo_control,
+	msm_routing_put_stereo_to_custom_stereo_control),
 };
 
 static const struct snd_kcontrol_new tx_volte_stub_mixer_controls[] = {
