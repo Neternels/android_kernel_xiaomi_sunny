@@ -263,7 +263,7 @@ unsigned char aw87xxx_show_current_mode(int32_t channel)
 {
 	struct aw87xxx *aw87xxx;
 	struct list_head *pos;
-	uint8_t ret;
+	uint8_t ret = {0};
 
 	list_for_each(pos, &g_aw87xxx_device_list) {
 		aw87xxx = list_entry(pos, struct aw87xxx, list);
@@ -293,7 +293,7 @@ int aw87xxx_audio_scene_load(uint8_t mode, int32_t channel)
 	struct aw87xxx_scene_param *scene_param;
 	struct list_head *pos;
 	struct aw87xxx *aw87xxx;
-	int ret;
+	int ret = {0};
 
 	list_for_each(pos, &g_aw87xxx_device_list) {
 		aw87xxx = list_entry(pos, struct aw87xxx, list);
