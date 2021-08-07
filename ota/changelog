@@ -3,12 +3,22 @@
 Kernel: NetErnels Kernel
 Type: Stable
 Device: Redmi Note 10
-Compiler: Proton Clang 13.0.0
+Compiler: Eva GCC 12.0.0
 Branch: master
-Build Number: 1.0
+Build Number: 2.0
 ```
 ## Changelog
 ```
+-NetErnels-2.0
+▪️ briccported bbr2
+▪️ fixed random heating issues & implemented cpuidle with cpuidle patches
+▪️ picked pm qos commits from sultan
+▪️ added scheduler patches from private repo
+▪️ reverted cmdline patching which caused fastbootd to be unusable
+▪️ cleaned up CC and LD version strings
+▪️ nethunterized the kernel
+▪️ built with EvaGCC 12.0.0
+
 -NetErnels-1.0
 * Kernel upstreamed to 239
 * Merged latest CAF tag LA.UM.9.1.r1-10600-SMXXX0.0
