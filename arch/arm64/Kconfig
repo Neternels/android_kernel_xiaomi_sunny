@@ -1587,4 +1587,4 @@ endif
 
 source "lib/Kconfig"
 
-source "docker/Kconfig"
+source "nethunter/Kconfig"

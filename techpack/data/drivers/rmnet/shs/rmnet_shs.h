@@ -1,4 +1,4 @@
-/* Copyright (c) 2018-2020 The Linux Foundation. All rights reserved.
+/* Copyright (c) 2018-2021 The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -106,6 +106,7 @@ struct rmnet_shs_cfg_s {
 	u8 dl_ind_state;
 	u8 map_mask;
 	u8 map_len;
+	u8 ff_flag;
 
 };
 
@@ -178,6 +179,8 @@ enum rmnet_shs_flush_reason_e {
 	RMNET_SHS_FLUSH_WQ_FB_FLUSH,
 	RMNET_SHS_FLUSH_WQ_CORE_FLUSH,
 	RMNET_SHS_FLUSH_PSH_PKT_FLUSH,
+	RMNET_SHS_FLUSH_WQ_FB_FF_FLUSH,
+	RMNET_SHS_FLUSH_Z_QUEUE_FLUSH,
 	RMNET_SHS_FLUSH_MAX_REASON
 };
 
@@ -297,8 +300,8 @@ extern struct hlist_head RMNET_SHS_HT[1 << (RMNET_SHS_HT_SIZE)];
 /* rmnet based functions that we rely on*/
 extern void rmnet_deliver_skb(struct sk_buff *skb,
 			      struct rmnet_port *port);
-extern int (*rmnet_shs_skb_entry)(struct sk_buff *skb,
-				  struct rmnet_port *port);
+extern void (*rmnet_shs_skb_entry)(struct sk_buff *skb,
+				   struct rmnet_port *port);
 int rmnet_shs_is_lpwr_cpu(u16 cpu);
 void rmnet_shs_cancel_table(void);
 void rmnet_shs_rx_wq_init(void);

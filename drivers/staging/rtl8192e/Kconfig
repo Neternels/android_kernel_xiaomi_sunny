@@ -1,6 +1,6 @@
 config RTLLIB
 	tristate "Support for rtllib wireless devices"
-	depends on WLAN && m
+	depends on WLAN && y
 	default n
 	select LIB80211
 	---help---
@@ -13,7 +13,7 @@ if RTLLIB
 
 config RTLLIB_CRYPTO_CCMP
 	tristate "Support for rtllib CCMP crypto"
-	depends on RTLLIB
+	depends on RTLLIB && y
 	select CRYPTO_AES
 	default y
 	---help---
@@ -23,7 +23,7 @@ config RTLLIB_CRYPTO_CCMP
 
 config RTLLIB_CRYPTO_TKIP
 	tristate "Support for rtllib TKIP crypto"
-	depends on RTLLIB
+	depends on RTLLIB && n
 	select CRYPTO_ARC4
 	select CRYPTO_MICHAEL_MIC
 	default y
@@ -35,7 +35,7 @@ config RTLLIB_CRYPTO_TKIP
 config RTLLIB_CRYPTO_WEP
 	tristate "Support for rtllib WEP crypto"
 	select CRYPTO_ARC4
-	depends on RTLLIB
+	depends on RTLLIB && n
 	default y
 	---help---
 	  TKIP crypto driver for rtllib.
