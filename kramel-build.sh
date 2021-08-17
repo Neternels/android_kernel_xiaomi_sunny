@@ -290,6 +290,13 @@ build_kernel() {
 	msg "|| Started Compilation ||"
 	make -j"$PROCS" O=out \
 		"${MAKE[@]}" 2>&1 | tee error.log
+	make -j"$PROCS" O=out \
+		"${MAKE[@]}" modules_prepare
+	make -j"$PROCS" O=out \
+		"${MAKE[@]}" modules INSTALL_MOD_PATH="$KERNEL_DIR"/out/modules
+	make -j"$PROCS" O=out \
+		"${MAKE[@]}" modules_install INSTALL_MOD_PATH="$KERNEL_DIR"/out/modules
+	find "$KERNEL_DIR"/out/modules -type f -iname '*.ko' -exec cp {} AnyKernel3/modules/system/lib/modules/ \;
 
 		BUILD_END=$(date +"%s")
 		DIFF=$((BUILD_END - BUILD_START))
