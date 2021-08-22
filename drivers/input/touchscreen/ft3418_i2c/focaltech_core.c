@@ -2140,6 +2140,12 @@ static int fts_set_cur_value(int fts_mode, int fts_value)
 	uint8_t temp_value = 0;
 	uint8_t ret = 0;
 	uint8_t reg_value = 0;
+
+	if (fts_mode == Touch_Doubletap_Mode && fts_value >= 0) {
+		fts_data->gesture_mode = fts_value;
+		return 0;
+	}
+
 	if (fts_mode >= Touch_Mode_NUM && fts_mode < 0) {
 		FTS_ERROR("fts mode is error:%d", fts_mode);
 		return -EINVAL;
