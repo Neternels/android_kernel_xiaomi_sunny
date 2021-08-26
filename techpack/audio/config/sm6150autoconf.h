@@ -1,4 +1,5 @@
 /* Copyright (c) 2018, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -16,6 +17,7 @@
 #define CONFIG_SND_SOC_WCD9XXX_V2 1
 #define CONFIG_SND_SOC_WCD_MBHC 1
 #define CONFIG_SND_SOC_WSA881X 1
+#define CONFIG_SND_SOC_AW87XXX 1
 #define CONFIG_SND_SOC_WCD_DSP_MGR 1
 #define CONFIG_SND_SOC_WCD_SPI 1
 #define CONFIG_SND_SOC_WCD934X 1
