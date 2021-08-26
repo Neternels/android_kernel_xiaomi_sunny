@@ -124,6 +124,12 @@ ifdef CONFIG_SND_SOC_WSA881X
 	WSA881X_OBJS += wsa881x-temp-sensor.o
 endif
 
+ifdef CONFIG_SND_SOC_AW87XXX
+	AW87XXX_OBJS += aw87xxx/aw87xxx.o
+	AW87XXX_OBJS += aw87xxx/aw87xxx_monitor.o
+	AW87XXX_OBJS += aw87xxx/aw_bin_parse.o
+endif
+
 ifdef CONFIG_SND_SOC_WSA881X_ANALOG
 	WSA881X_ANALOG_OBJS += wsa881x-analog.o
 	WSA881X_ANALOG_OBJS += wsa881x-tables-analog.o
@@ -227,6 +233,9 @@ wcd9335_dlkm-y := $(WCD9335_OBJS)
 
 obj-$(CONFIG_SND_SOC_WSA881X) += wsa881x_dlkm.o
 wsa881x_dlkm-y := $(WSA881X_OBJS)
+
+obj-$(CONFIG_SND_SOC_AW87XXX) += aw87xxx_dlkm.o
+aw87xxx_dlkm-y := $(AW87XXX_OBJS)
 
 obj-$(CONFIG_SND_SOC_WSA881X_ANALOG) += wsa881x_analog_dlkm.o
 wsa881x_analog_dlkm-y := $(WSA881X_ANALOG_OBJS)
