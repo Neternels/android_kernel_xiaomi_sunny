@@ -1,4 +1,5 @@
 /* Copyright (c) 2012-2021, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2021 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -39,7 +40,8 @@
 #include <dsp/q6core.h>
 #include <dsp/q6common.h>
 #include <dsp/audio_cal_utils.h>
-
+#include <dsp/apr_elliptic.h>
+#include <elliptic/elliptic_mixer_controls.h>
 #include "msm-pcm-routing-v2.h"
 #include "msm-pcm-routing-devdep.h"
 #include "msm-qti-pp-config.h"
@@ -18731,6 +18733,10 @@ static const struct snd_soc_dapm_widget msm_qdsp6_widgets[] = {
 		0, 0, 0, 0),
 	SND_SOC_DAPM_AIF_OUT("CDC_DMA_UL_HL", "CDC_DMA_HOSTLESS Capture",
 		0, 0, 0, 0),
+	SND_SOC_DAPM_AIF_IN("CDC_DMA_2_DL_HL", "CDC_DMA_2_HOSTLESS Playback",
+		0, 0, 0, 0),
+	SND_SOC_DAPM_AIF_OUT("CDC_DMA_2_UL_HL", "CDC_DMA_2_HOSTLESS Capture",
+		0, 0, 0, 0),
 	SND_SOC_DAPM_AIF_OUT("TX3_CDC_DMA_UL_HL",
 		"TX3_CDC_DMA_HOSTLESS Capture", 0, 0, 0, 0),
 	SND_SOC_DAPM_AIF_OUT("CPE_LSM_UL_HL", "CPE LSM capture",
@@ -21160,6 +21166,8 @@ static const struct snd_soc_dapm_route intercon[] = {
 	{"CDC_DMA_UL_HL", NULL, "VA_CDC_DMA_TX_0"},
 	{"RX_CDC_DMA_RX_0_DL_HL", "Switch", "CDC_DMA_DL_HL"},
 	{"RX_CDC_DMA_RX_0", NULL, "RX_CDC_DMA_RX_0_DL_HL"},
+	{"RX_CDC_DMA_RX_1", NULL, "CDC_DMA_2_DL_HL"},
+	{"CDC_DMA_2_UL_HL", NULL, "TX_CDC_DMA_TX_4"},
 	{"TX3_CDC_DMA_UL_HL", NULL, "TX_CDC_DMA_TX_3"},
 	{"LSM1 Mixer", "SLIMBUS_0_TX", "SLIMBUS_0_TX"},
 	{"LSM1 Mixer", "SLIMBUS_1_TX", "SLIMBUS_1_TX"},
@@ -24639,7 +24647,7 @@ static int msm_routing_probe(struct snd_soc_platform *platform)
 	snd_soc_add_platform_controls(platform,
 			port_multi_channel_map_mixer_controls,
 			ARRAY_SIZE(port_multi_channel_map_mixer_controls));
-
+	elliptic_add_platform_controls(platform);
 	return 0;
 }
 
