@@ -64,6 +64,8 @@ $(shell rm -rf $(PRODUCT_OUT)/obj/vendor/qcom/opensource/audio-kernel/4.0/asoc/c
 include $(MY_LOCAL_PATH)/4.0/asoc/codecs/wcd937x/Android.mk
 $(shell rm -rf $(PRODUCT_OUT)/obj/vendor/qcom/opensource/audio-kernel/4.0/asoc/codecs/wcd938x/Module.symvers)
 include $(MY_LOCAL_PATH)/4.0/asoc/codecs/wcd938x/Android.mk
+$(shell rm -rf $(PRODUCT_OUT)/obj/vendor/qcom/opensource/audio-kernel/4.0/asoc/codecs/tas2562/Module.symvers)
+include $(MY_LOCAL_PATH)/4.0/asoc/codecs/tas2562/Android.mk
 endif
 
 ifeq ($(call is-board-platform-in-list,msm8953 sdm670 sdm660 qcs605),true)
