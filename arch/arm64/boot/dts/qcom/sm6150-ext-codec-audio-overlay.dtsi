@@ -32,10 +32,10 @@
 	status = "disabled";
 };
 
-&wsa_swr_gpios {
+/*&wsa_swr_gpios {
 	status = "disabled";
 };
-
+*/
 &rx_swr_gpios {
 	status = "disabled";
 };
@@ -44,14 +44,14 @@
 	status = "disabled";
 };
 
-&wsa_spkr_en1 {
+/*&wsa_spkr_en1 {
 	status = "disabled";
 };
 
 &wsa_spkr_en2 {
 	status = "disabled";
 };
-
+*/
 &wcd9xxx_intc {
 	status = "okay";
 };
