@@ -56,7 +56,7 @@
 			 0x1a4>; /* GSI_IF_STS */
 		qcom,gsi-disable-io-coherency;
 		qcom,dwc-usb3-msm-tx-fifo-size = <21288>;
-		qcom,pm-qos-latency = <62>;
+		qcom,pm-qos-latency = <67>; /* CPU6-WFI-LVL latency +1 */
 
 		qcom,msm-bus,name = "usb0";
 		qcom,msm-bus,num-cases = <4>;
@@ -174,8 +174,8 @@
 			    0x21 0x214 /* PWR_CTRL2 */
 			    0x08 0x220 /* IMP_CTRL1 */
 			    0x58 0x224 /* IMP_CTRL2 */
-			    0x45 0x240 /* TUNE1 */
-			    0x29 0x244 /* TUNE2 */
+			    0x77 0x240 /* TUNE1 */
+			    0x7C 0x244 /* TUNE2 */
 			    0xca 0x248 /* TUNE3 */
 			    0x04 0x24c /* TUNE4 */
 			    0x03 0x250 /* TUNE5 */
