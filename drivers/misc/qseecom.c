@@ -2999,6 +2999,14 @@ static int qseecom_unload_app(struct qseecom_dev_handle *data,
 			ptr_app->ref_cnt++;
 			return ret;
 		}
+#ifdef CONFIG_TARGET_PROJECT_J6
+		if(ret){
+			pr_warn("unload ta %d(%s) failed with ret=%d\n",
+				data->client.app_id, data->client.app_name, ret);
+			ptr_app->ref_cnt++;
+			return ret;
+		}
+#endif
 		spin_lock_irqsave(&qseecom.registered_app_list_lock, flags);
 		list_del(&ptr_app->list);
 		spin_unlock_irqrestore(&qseecom.registered_app_list_lock,
