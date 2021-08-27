@@ -1215,8 +1215,10 @@ static void uaudio_qmi_disconnect_work(struct work_struct *w)
 			snd_usb_enable_audio_stream(subs, -EINVAL, 0);
 		}
 		atomic_set(&uadev[idx].in_use, 0);
+		if(chip)
 		mutex_lock(&chip->dev_lock);
 		uaudio_dev_cleanup(&uadev[idx]);
+		if(chip)
 		mutex_unlock(&chip->dev_lock);
 	}
 }
