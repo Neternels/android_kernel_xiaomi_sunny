@@ -163,6 +163,7 @@
 	/delete-node/ pm6150l-bcl-lvl2;
 	/delete-node/ xo-therm;
 	/delete-node/ sdm-therm;
+	/delete-node/ charger-skin-therm;
 	/delete-node/ conn-therm;
 	/delete-node/ emmc_ufs-therm;
 	/delete-node/ rf_pa0_therm-therm;
