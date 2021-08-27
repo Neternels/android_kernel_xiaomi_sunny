@@ -2126,7 +2126,6 @@ static void kgsl_iommu_pagefault_resume(struct kgsl_mmu *mmu)
 		 * the barrier as we use writel_relaxed to write them.
 		 */
 		wmb();
-
 	}
 }
 

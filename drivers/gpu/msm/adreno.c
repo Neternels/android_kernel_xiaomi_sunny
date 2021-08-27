@@ -2445,8 +2445,7 @@ int adreno_reset(struct kgsl_device *device, int fault)
 					break;
 			}
 		}
-
-		device->pwrctrl.ctrl_flags = flags;
+			device->pwrctrl.ctrl_flags = flags;
 	}
 	if (ret)
 		return ret;

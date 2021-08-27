@@ -208,7 +208,10 @@ void dsi_phy_hw_v2_0_enable(struct dsi_phy_hw *phy,
 			DSI_W32(phy, DSIPHY_DLNX_CFG(i, j),
 				lanecfg->lane[i][j]);
 
-		DSI_W32(phy, DSIPHY_DLNX_TEST_STR(i), 0x88);
+		if (i == 0 || i ==3)	//Data0 Data3
+			DSI_W32(phy, DSIPHY_DLNX_TEST_STR(i), 0xCC);
+		else 	//Clk Data1 Data2
+			DSI_W32(phy, DSIPHY_DLNX_TEST_STR(i), 0x88);
 
 		for (j = 0; j < timing->count_per_lane; j++)
 			DSI_W32(phy, DSIPHY_DLNX_TIMING_CTRL(i, j),
