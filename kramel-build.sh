@@ -66,6 +66,9 @@ DEVICE="mojito"
 # your device or check source
 DEFCONFIG=neternels_defconfig
 
+# Build modules. 0 = NO | 1 = YES
+MODULES=1
+
 # Specify compiler. 
 # 'clang' or 'gcc'
 COMPILER=gcc
@@ -187,6 +190,11 @@ DATE=$(TZ=GMT-8 date +"%Y%m%d-%H%M")
 	git clone --depth 1 --no-single-branch https://github.com/NetErnels/AnyKernel3.git -b mojito
 	msg "|| Cloning libufdt ||"
 	git clone https://android.googlesource.com/platform/system/libufdt "$KERNEL_DIR"/scripts/ufdt/libufdt
+	if [ $MODULES = "1" ]
+	then
+	    msg "|| Cloning neternels-modules ||"
+	    git clone --depth 1 https://github.com/neternels/neternels-modules.git Mod
+	fi
 }
 
 ##------------------------------------------------------##
@@ -290,7 +298,17 @@ build_kernel() {
 
 	msg "|| Started Compilation ||"
 	make -j"$PROCS" O=out \
-		"${MAKE[@]}" 2>&1 | tee error.log
+	     "${MAKE[@]}" 2>&1 | tee error.log
+	if [ $MODULES = "1" ]
+	then
+	    make -j"$PROCS" O=out \
+		 "${MAKE[@]}" modules_prepare
+	    make -j"$PROCS" O=out \
+		 "${MAKE[@]}" modules INSTALL_MOD_PATH="$KERNEL_DIR"/out/modules
+	    make -j"$PROCS" O=out \
+		 "${MAKE[@]}" modules_install INSTALL_MOD_PATH="$KERNEL_DIR"/out/modules
+	    find "$KERNEL_DIR"/out/modules -type f -iname '*.ko' -exec cp {} Mod/system/lib/modules/ \;
+	fi
 
 		BUILD_END=$(date +"%s")
 		DIFF=$((BUILD_END - BUILD_START))
@@ -326,6 +344,14 @@ gen_zip() {
 	fi
 	cdir AnyKernel3
 	zip -r $ZIPNAME-$DEVICE-"$DATE" . -x ".git*" -x "README.md" -x "*.zip"
+	if [ $MODULES = "1" ]
+	then
+	    cdir ../Mod
+	    rm -rf system/lib/modules/placeholder
+	    zip -r $ZIPNAME-$DEVICE-modules-"$DATE" . -x ".git*" -x "LICENSE.md" -x "*.zip"
+	    MOD_NAME="$ZIPNAME-$DEVICE-modules-$DATE"
+	    cdir ../AnyKernel3
+	fi
 
 	## Prepare a final zip variable
 	ZIP_FINAL="$ZIPNAME-$DEVICE-$DATE"
@@ -345,7 +371,12 @@ gen_zip() {
 
 	if [ "$PTTG" = 1 ]
  	then
-		tg_post_build "$ZIP_FINAL.zip" "Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)"
+	    tg_post_build "$ZIP_FINAL.zip" "Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)"
+	    if [ $MODULES = "1" ]
+	    then
+		cdir ../Mod
+		tg_post_build "$MOD_NAME.zip" "Flash this in magisk for loadable kernel modules"
+	    fi
 	fi
 	cd ..
 }
