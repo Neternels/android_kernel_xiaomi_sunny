@@ -73,13 +73,13 @@ static __always_inline  unsigned long __xchg##sfx(unsigned long x,	\
 {									\
 	switch (size) {							\
 	case 1:								\
-		return __xchg_case##sfx##_8(x, ptr);			\
+		return __xchg_case##sfx##_1(x, ptr);			\
 	case 2:								\
-		return __xchg_case##sfx##_16(x, ptr);			\
+		return __xchg_case##sfx##_2(x, ptr);			\
 	case 4:								\
-		return __xchg_case##sfx##_32(x, ptr);			\
+		return __xchg_case##sfx##_4(x, ptr);			\
 	case 8:								\
-		return __xchg_case##sfx##_64(x, ptr);			\
+		return __xchg_case##sfx##_8(x, ptr);			\
 	default:							\
 		BUILD_BUG();						\
 	}								\
