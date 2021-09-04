@@ -67,7 +67,7 @@ DEVICE="mojito"
 DEFCONFIG=neternels_defconfig
 
 # Build modules. 0 = NO | 1 = YES
-MODULES=0
+MODULES=1
 
 # Specify compiler. 
 # 'clang' or 'gcc'
