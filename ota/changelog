@@ -5,19 +5,43 @@ Type: Stable
 Device: Redmi Note 10
 Compiler: Eva GCC 12.0.0
 Branch: master
-Build Number: 2.0
+Build Number: 3.0
 ```
 ## Changelog
 ```
+-NetErnels-3.0
+* fixed proximity sensor
+* added in-kernel dt2w
+* added uclamp
+* backported ntfs3 from paragon
+* added uclamp_assist
+* tuned uclamp values
+* Merged latest LA.UM.9.1.r1-10900-SMxxx0.0 treewide
+* Merged latest LA.UM.9.1.r1-11100-SMxxx0.0 treewide
+* Merged latest LA.UM.9.11.r1-04700-NICOBAR.0 treewide
+* Merged latest LA.UM.9.1.r1-10700-SMxxx0.QSSI12.0 for qcacld and techpack
+* Building rmnet extensions
+* added rtl drivers from aircrack
+* enabled ntfs support
+* nuked binderfs for vhci
+* enabled vhci & sdio
+* fix booting issue on user build roms
+* enabled LZ4 for ZRAM compression
+* upstreamed LZ4
+* enabled LSE_ATOMICS
+* added Dead Code Elimination(DCE)
+* switched to LLD
+* switched to -O3 for LLD
+
 -NetErnels-2.0
-▪️ briccported bbr2
-▪️ fixed random heating issues & implemented cpuidle with cpuidle patches
-▪️ picked pm qos commits from sultan
-▪️ added scheduler patches from private repo
-▪️ reverted cmdline patching which caused fastbootd to be unusable
-▪️ cleaned up CC and LD version strings
-▪️ nethunterized the kernel
-▪️ built with EvaGCC 12.0.0
+* briccported bbr2
+* fixed random heating issues & implemented cpuidle with cpuidle patches
+* picked pm qos commits from sultan
+* added scheduler patches from private repo
+* reverted cmdline patching which caused fastbootd to be unusable
+* cleaned up CC and LD version strings
+* nethunterized the kernel
+* built with EvaGCC 12.0.0
 
 -NetErnels-1.0
 * Kernel upstreamed to 239
