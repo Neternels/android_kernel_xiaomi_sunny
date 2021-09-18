@@ -141,7 +141,9 @@ static DEFINE_SPINLOCK(pci_reg_window_lock);
 #define FORCE_WAKE_DELAY_TIMEOUT_US		60000
 
 #define QCA6390_WLAON_QFPROM_PWR_CTRL_REG	0x1F8031C
-#define QCA6390_PCIE_SCRATCH_0_SOC_PCIE_REG	0x1E04040
+#define QCA6390_PCIE_SCRATCH_2_SOC_PCIE_REG	0x01E0405C
+#define PCIE_REG_FOR_QRTR_NODE_INSTANCE_ID	\
+	QCA6390_PCIE_SCRATCH_2_SOC_PCIE_REG
 
 #define POWER_ON_RETRY_MAX_TIMES		3
 #define POWER_ON_RETRY_DELAY_MS			200
@@ -1065,6 +1067,12 @@ static int cnss_qca6290_shutdown(struct cnss_pci_data *pci_priv)
 
 	cnss_power_off_device(plat_priv);
 
+	if (test_bit(CNSS_DRIVER_RECOVERY, &plat_priv->driver_state)) {
+		cnss_pr_dbg("recovery sleep start\n");
+		msleep(200);
+		cnss_pr_dbg("recovery sleep 200ms done\n");
+	}
+
 	pci_priv->remap_window = 0;
 
 	clear_bit(CNSS_FW_READY, &plat_priv->driver_state);
@@ -1711,7 +1719,7 @@ static int cnss_pci_resume(struct device *dev)
 	if (!plat_priv)
 		goto out;
 
-	if (pci_priv->pci_link_down_ind)
+	if (cnss_pci_check_link_status(pci_priv))
 		goto out;
 
 	if (pci_priv->pci_link_state == PCI_LINK_UP && !pci_priv->disable_pc) {
@@ -2321,6 +2329,34 @@ void cnss_pci_fw_boot_timeout_hdlr(struct cnss_pci_data *pci_priv)
 
 	cnss_schedule_recovery(&pci_priv->pci_dev->dev,
 			       CNSS_REASON_TIMEOUT);
+}
+
+int cnss_pci_get_iova(struct cnss_pci_data *pci_priv, u64 *addr, u64 *size)
+{
+	if (!pci_priv)
+		return -ENODEV;
+
+	if (!pci_priv->smmu_iova_len)
+		return -EINVAL;
+
+	*addr = pci_priv->smmu_iova_start;
+	*size = pci_priv->smmu_iova_len;
+
+	return 0;
+}
+
+int cnss_pci_get_iova_ipa(struct cnss_pci_data *pci_priv, u64 *addr, u64 *size)
+{
+	if (!pci_priv)
+		return -ENODEV;
+
+	if (!pci_priv->smmu_iova_ipa_len)
+		return -EINVAL;
+
+	*addr = pci_priv->smmu_iova_ipa_start;
+	*size = pci_priv->smmu_iova_ipa_len;
+
+	return 0;
 }
 
 struct dma_iommu_mapping *cnss_smmu_get_mapping(struct device *dev)
@@ -3380,20 +3416,20 @@ int cnss_pci_start_mhi(struct cnss_pci_data *pci_priv)
 	    plat_priv->qrtr_node_id) {
 		u32 val;
 
-		cnss_pr_dbg("write 0x%x to QCA6390_PCIE_SCRATCH_0_SOC_PCIE_REG\n",
+		cnss_pr_dbg("write 0x%x to PCIE_REG_FOR_QRTR_NODE_INSTANCE_ID\n",
 			    plat_priv->qrtr_node_id);
 		ret = cnss_pci_reg_write(pci_priv,
-					 QCA6390_PCIE_SCRATCH_0_SOC_PCIE_REG,
+					 PCIE_REG_FOR_QRTR_NODE_INSTANCE_ID,
 					 plat_priv->qrtr_node_id);
 		if (ret) {
 			cnss_pr_err("Failed to write register offset 0x%x, err = %d\n",
-				    QCA6390_PCIE_SCRATCH_0_SOC_PCIE_REG, ret);
+				    PCIE_REG_FOR_QRTR_NODE_INSTANCE_ID, ret);
 			goto out;
 		}
 		if (cnss_pci_reg_read(pci_priv,
-				      QCA6390_PCIE_SCRATCH_0_SOC_PCIE_REG,
+				      PCIE_REG_FOR_QRTR_NODE_INSTANCE_ID,
 				      &val))
-			cnss_pr_err("Failed to read QCA6390_PCIE_SCRATCH_0_SOC_PCIE_REG");
+			cnss_pr_err("Failed to read PCIE_REG_FOR_QRTR_NODE_INSTANCE_ID");
 
 		if (val != plat_priv->qrtr_node_id) {
 			cnss_pr_err("qrtr node id write to register doesn't match with readout value");

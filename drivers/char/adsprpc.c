@@ -3593,6 +3593,7 @@ static int fastrpc_set_process_info(struct fastrpc_file *fl)
 	if (debugfs_root) {
 		buf_size = strlen(cur_comm) + strlen("_")
 			+ strlen(strpid) + 1;
+
 		spin_lock(&fl->hlock);
 		if (fl->debug_buf_alloced_attempted) {
 			spin_unlock(&fl->hlock);
@@ -3730,7 +3731,7 @@ static int fastrpc_setmode(unsigned long ioctl_param,
 		fl->tgid |= (1 << SESSION_ID_INDEX);
 		break;
 	default:
-		err = -ENOTTY;
+		err = -EBADRQC;
 		break;
 	}
 	return err;
