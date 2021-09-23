@@ -262,7 +262,7 @@ static unsigned long calculate_vmpressure_win(void)
 	x = global_node_page_state(NR_FILE_PAGES) -
 			global_node_page_state(NR_SHMEM) -
 			total_swapcache_pages() +
-			global_page_state(NR_FREE_PAGES);
+			global_zone_page_state(NR_FREE_PAGES);
 	if (x < 1)
 		return 1;
 	/*
