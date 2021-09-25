@@ -359,6 +359,10 @@ static void *usbpd_ipc_log;
 #define ID_HDR_PRODUCT_AMA	5
 #define ID_HDR_PRODUCT_VPD	6
 
+/* params for usb_blocking_sync */
+#define STOP_USB_HOST       0
+#define START_USB_HOST      1
+
 #define PD_VBUS_MAX_VOLTAGE_LIMIT	9000000
 #define PD_VBUS_MAX	9500000
 #define PD_MAX_CURRENT_LIMIT		4000000
