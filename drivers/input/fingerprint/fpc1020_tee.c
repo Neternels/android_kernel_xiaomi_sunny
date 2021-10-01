@@ -42,6 +42,7 @@
 #include <linux/fb.h>
 #include <drm/drm_bridge.h>
 #include <linux/msm_drm_notify.h>
+#include <linux/kprofiles.h>
 
 
 #define FPC_TTW_HOLD_TIME 2000
@@ -686,7 +687,12 @@ static int fpc1020_probe(struct platform_device *pdev)
 
 	atomic_set(&fpc1020->wakeup_enabled, 0);
 
-	irqf = IRQF_TRIGGER_RISING | IRQF_ONESHOT;
+	/* Affine IRQ to big CPUs according to set kernel profile */
+	if (active_mode() > 1 || active_mode() == 0) {
+	  irqf = IRQF_TRIGGER_RISING | IRQF_ONESHOT | IRQF_PERF_AFFINE;
+	} else {
+	  irqf = IRQF_TRIGGER_RISING | IRQF_ONESHOT;
+	}
 	if (of_property_read_bool(dev->of_node, "fpc,enable-wakeup")) {
 		irqf |= IRQF_NO_SUSPEND;
 		device_init_wakeup(dev, 1);
