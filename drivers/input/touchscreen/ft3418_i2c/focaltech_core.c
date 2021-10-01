@@ -38,6 +38,7 @@
 #include <linux/of_device.h>
 #include <linux/of_gpio.h>
 #include <linux/of_irq.h>
+#include <linux/kprofiles.h>
 #if defined(CONFIG_FB)
 //#include <linux/notifier.h>
 //#include <linux/fb.h>
@@ -828,7 +829,13 @@ static int fts_irq_registration(struct fts_ts_data *ts_data)
     struct fts_ts_platform_data *pdata = ts_data->pdata;
 
     ts_data->irq = gpio_to_irq(pdata->irq_gpio);
-    pdata->irq_gpio_flags = IRQF_TRIGGER_FALLING | IRQF_ONESHOT;
+
+    /* Affine IRQ to big CPUs according to set kernel profile */
+    if (active_mode() > 1 || active_mode() == 0) {
+      pdata->irq_gpio_flags = IRQF_TRIGGER_FALLING | IRQF_ONESHOT | IRQF_PERF_AFFINE;
+    } else {
+      pdata->irq_gpio_flags = IRQF_TRIGGER_FALLING | IRQF_ONESHOT;
+    }
     FTS_INFO("irq:%d, flag:%x", ts_data->irq, pdata->irq_gpio_flags);
     ret = request_threaded_irq(ts_data->irq, NULL, fts_irq_handler,
                                pdata->irq_gpio_flags,
