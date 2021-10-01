@@ -103,6 +103,7 @@
 #include <asm/mmu_context.h>
 #include <asm/cacheflush.h>
 #include <asm/tlbflush.h>
+#include <linux/kprofiles.h>
 
 #include <trace/events/sched.h>
 
@@ -2234,9 +2235,14 @@ long _do_fork(unsigned long clone_flags,
 	int trace = 0;
 	long nr;
 
-	/* Boost DDR bus to the max for 50 ms when userspace launches an app */
-	if (task_is_zygote(current))
-		devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 50);
+	/* Boost DDR bus to the max when userspace launches an app according to set kernel profile */
+	if (task_is_zygote(current) && active_mode() == 2) {
+	  devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 25);
+	} else if (task_is_zygote(current) && active_mode() == 0 || active_mode() == 3) {
+	  devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 50);
+	} else if (task_is_zygote(current) && active_mode() == 1) {
+	  pr_info("Battery profile detected! Skipping DDR bus boost...\n");
+	} 
 
 	/*
 	 * Determine whether and which event to report to ptracer.  When
