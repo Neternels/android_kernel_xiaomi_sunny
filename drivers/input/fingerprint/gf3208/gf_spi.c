@@ -48,6 +48,7 @@
 #include <linux/delay.h>
 #include <drm/drm_bridge.h>
 #include <linux/msm_drm_notify.h>
+#include <linux/kprofiles.h>
 
 #if defined(USE_SPI_BUS)
 #include <linux/spi/spi.h>
@@ -374,9 +375,17 @@ static int irq_setup(struct gf_dev *gf_dev)
 	int status;
 
 	gf_dev->irq = gf_irq_num(gf_dev);
-	status = request_threaded_irq(gf_dev->irq, NULL, gf_irq,
-			IRQF_TRIGGER_RISING | IRQF_ONESHOT,
-			"gf", gf_dev);
+
+	/* Affine IRQ to big CPUs according to set kernel profile */
+	if (active_mode() > 1 || active_mode() == 0) {
+	  status = request_threaded_irq(gf_dev->irq, NULL, gf_irq,
+					IRQF_TRIGGER_RISING | IRQF_ONESHOT | IRQF_PERF_AFFINE,
+					"gf", gf_dev);
+	} else {
+	  status = request_threaded_irq(gf_dev->irq, NULL, gf_irq,
+					IRQF_TRIGGER_RISING | IRQF_ONESHOT,
+					"gf", gf_dev);
+	}
 
 	if (status) {
 		pr_err("failed to request IRQ:%d\n", gf_dev->irq);
