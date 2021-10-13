@@ -234,6 +234,18 @@ dtb-$(CONFIG_ARCH_SDMSHRIKE)	+= sdmshrike-rumi.dtb \
 	sa8195p-v2-adp-air-capture.dtb
 endif
 
+ifeq ($(CONFIG_ARCH_XIAOMI_SM6150),y)
+ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
+       dtbo-$(CONFIG_ARCH_SM6150) += \
+               sm6150-idp-overlay.dtbo
+
+sm6150-idp-overlay.dtbo-base := sm6150.dtb
+else
+dtb-$(CONFIG_ARCH_SM6150)      += sm6150-idp.dtb
+endif
+endif
+
+ifeq ($(CONFIG_ARCH_XIAOMI_SM6150),n)
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 	dtbo-$(CONFIG_ARCH_SM6150) += \
 		sm6150-rumi-overlay.dtbo \
@@ -308,6 +320,7 @@ dtb-$(CONFIG_ARCH_SM6150)	+= sm6150-rumi.dtb \
 	prairie-iot-cmd-mode-display-idp.dtb \
 	prairie-iot-usbc-minidp-idp.dtb
 
+endif
 endif
 
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
