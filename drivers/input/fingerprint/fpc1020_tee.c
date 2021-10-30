@@ -39,7 +39,6 @@
 //#include <linux/wakelock.h>
 #include <linux/proc_fs.h>
 #include <linux/notifier.h>
-#include <linux/fb.h>
 #include <drm/drm_bridge.h>
 #include <linux/msm_drm_notify.h>
 
@@ -74,7 +73,7 @@ struct vreg_config {
 	int ua_load;
 };
 
-static const struct vreg_config const vreg_conf[] = {
+static const struct vreg_config vreg_conf[] = {
 	{ "vdd_ana", 1800000UL, 1800000UL, 6000, },
 	{ "vcc_spi", 1800000UL, 1800000UL, 10, },
 	{ "vdd_io", 1800000UL, 1800000UL, 6000, },
@@ -94,13 +93,13 @@ struct fpc1020_data {
 	struct mutex lock; /* To set/get exported values in sysfs */
 	bool prepared;
 	atomic_t wakeup_enabled; /* Used both in ISR and non-ISR */
-	struct notifier_block fb_notifier;
-	bool fb_black;
+	struct notifier_block msm_drm_notifier;
+	bool msm_drm_black;
 	bool wait_finger_down;
 	struct work_struct work;
 };
 
-static int vreg_setup(struct fpc1020_data *fpc1020, const char *name,
+static inline int vreg_setup(struct fpc1020_data *fpc1020, const char *name,
 	bool enable)
 {
 	size_t i;
@@ -173,7 +172,7 @@ found:
  * backwards compatibility. Only prints a debug print that it is
  * disabled.
  */
-static ssize_t clk_enable_set(struct device *dev,
+static inline ssize_t clk_enable_set(struct device *dev,
 	struct device_attribute *attr,
 	const char *buf, size_t count)
 {
@@ -183,7 +182,7 @@ static ssize_t clk_enable_set(struct device *dev,
 	return count;
 }
 static DEVICE_ATTR(clk_enable, S_IWUSR, NULL, clk_enable_set);
-static ssize_t fingerdown_wait_set(struct device *dev,
+static inline ssize_t fingerdown_wait_set(struct device *dev,
 	struct device_attribute *attr,
 	const char *buf, size_t count)
  {
@@ -214,7 +213,7 @@ static DEVICE_ATTR(fingerdown_wait, S_IWUSR, NULL, fingerdown_wait_set);
  * @see pctl_names
  * @see fpc1020_probe
  */
-static int select_pin_ctl(struct fpc1020_data *fpc1020, const char *name)
+static inline int select_pin_ctl(struct fpc1020_data *fpc1020, const char *name)
 {
 	size_t i;
 	int rc;
@@ -241,7 +240,7 @@ exit:
 	return rc;
 }
 
-static ssize_t pinctl_set(struct device *dev,
+static inline ssize_t pinctl_set(struct device *dev,
 	struct device_attribute *attr, const char *buf, size_t count)
 {
 	struct fpc1020_data *fpc1020 = dev_get_drvdata(dev);
@@ -255,7 +254,7 @@ static ssize_t pinctl_set(struct device *dev,
 }
 static DEVICE_ATTR(pinctl_set, S_IWUSR, NULL, pinctl_set);
 
-static ssize_t regulator_enable_set(struct device *dev,
+static inline ssize_t regulator_enable_set(struct device *dev,
 	struct device_attribute *attr, const char *buf, size_t count)
 {
 	struct fpc1020_data *fpc1020 = dev_get_drvdata(dev);
@@ -281,7 +280,7 @@ static ssize_t regulator_enable_set(struct device *dev,
 }
 static DEVICE_ATTR(regulator_enable, S_IWUSR, NULL, regulator_enable_set);
 
-static ssize_t irq_enable_set(struct device *dev,
+static inline ssize_t irq_enable_set(struct device *dev,
 	struct device_attribute *attr,
 	const char *buf, size_t count)
 {
@@ -304,7 +303,7 @@ static ssize_t irq_enable_set(struct device *dev,
 }
 static DEVICE_ATTR(irq_enable, S_IWUSR | S_IRUSR | S_IRGRP | S_IWGRP , NULL, irq_enable_set);
 
-static int hw_reset(struct fpc1020_data *fpc1020)
+static inline int hw_reset(struct fpc1020_data *fpc1020)
 {
 	int irq_gpio;
 	struct device *dev = fpc1020->dev;
@@ -325,13 +324,13 @@ static int hw_reset(struct fpc1020_data *fpc1020)
 	usleep_range(RESET_HIGH_SLEEP2_MIN_US, RESET_HIGH_SLEEP2_MAX_US);
 
 	irq_gpio = gpio_get_value(fpc1020->irq_gpio);
-	dev_info(dev, "IRQ after reset %d=%d\n",fpc1020->irq_gpio, irq_gpio);
+	dev_dbg(dev, "IRQ after reset %d=%d\n",fpc1020->irq_gpio, irq_gpio);
 
 exit:
 	return rc;
 }
 
-static ssize_t hw_reset_set(struct device *dev,
+static inline ssize_t hw_reset_set(struct device *dev,
 	struct device_attribute *attr, const char *buf, size_t count)
 {
 	int rc;
@@ -361,7 +360,7 @@ static DEVICE_ATTR(hw_reset, S_IWUSR, NULL, hw_reset_set);
  * @note This function will not send any commands to the sensor it will only
  *       control it "electrically".
  */
-static int device_prepare(struct fpc1020_data *fpc1020, bool enable)
+static inline int device_prepare(struct fpc1020_data *fpc1020, bool enable)
 {
 	int rc;
 
@@ -416,7 +415,7 @@ exit:
  *
  * @see device_prepare
  */
-static ssize_t device_prepare_set(struct device *dev,
+static inline ssize_t device_prepare_set(struct device *dev,
 	struct device_attribute *attr, const char *buf, size_t count)
 {
 	int rc;
@@ -437,7 +436,7 @@ static DEVICE_ATTR(device_prepare, S_IWUSR, NULL, device_prepare_set);
  * sysfs node for controlling whether the driver is allowed
  * to wake up the platform on interrupt.
  */
-static ssize_t wakeup_enable_set(struct device *dev,
+static inline ssize_t wakeup_enable_set(struct device *dev,
 	struct device_attribute *attr, const char *buf, size_t count)
 {
 	struct fpc1020_data *fpc1020 = dev_get_drvdata(dev);
@@ -460,7 +459,7 @@ static DEVICE_ATTR(wakeup_enable, S_IWUSR, NULL, wakeup_enable_set);
  * sysf node to check the interrupt status of the sensor, the interrupt
  * handler should perform sysf_notify to allow userland to poll the node.
  */
-static ssize_t irq_get(struct device *dev,
+static inline ssize_t irq_get(struct device *dev,
 	struct device_attribute *attr,
 	char *buf)
 {
@@ -474,14 +473,14 @@ static ssize_t irq_get(struct device *dev,
  * writing to the irq node will just drop a log message
  * and return success, used for latency measurement.
  */
-static ssize_t irq_ack(struct device *dev,
+static inline ssize_t irq_ack(struct device *dev,
 	struct device_attribute *attr,
 	const char *buf, size_t count)
 {
 	struct fpc1020_data *fpc1020 = dev_get_drvdata(dev);
 
 	dev_dbg(fpc1020->dev, "%s\n", __func__);
-	//pr_info( "%s\n", __func__);
+	//pr_debug( "%s\n", __func__);
 
 	return count;
 }
@@ -504,13 +503,13 @@ static const struct attribute_group attribute_group = {
 	.attrs = attributes,
 };
 
-static void notification_work(struct work_struct *work)
+static inline void notification_work(struct work_struct *work)
 {
 	pr_debug("fpc %s:unblank\n", __func__);
 	dsi_bridge_interface_enable(FP_UNLOCK_REJECTION_TIMEOUT);
  }
 
-static irqreturn_t fpc1020_irq_handler(int irq, void *handle)
+static inline irqreturn_t fpc1020_irq_handler(int irq, void *handle)
 {
 	struct fpc1020_data *fpc1020 = handle;
 
@@ -523,15 +522,15 @@ static irqreturn_t fpc1020_irq_handler(int irq, void *handle)
 	}
 
 	sysfs_notify(&fpc1020->dev->kobj, NULL, dev_attr_irq.attr.name);
-	if (fpc1020->wait_finger_down && fpc1020->fb_black) {
-		pr_info("fpc schedule_work enter\n");
+	if (fpc1020->wait_finger_down && fpc1020->msm_drm_black) {
+		pr_debug("fpc schedule_work enter\n");
 		fpc1020->wait_finger_down = false;
 		schedule_work(&fpc1020->work);
 	}  
 	return IRQ_HANDLED;
 }
 
-static int fpc1020_request_named_gpio(struct fpc1020_data *fpc1020,
+static inline int fpc1020_request_named_gpio(struct fpc1020_data *fpc1020,
 	const char *label, int *gpio)
 {
 	struct device *dev = fpc1020->dev;
@@ -554,12 +553,12 @@ static int fpc1020_request_named_gpio(struct fpc1020_data *fpc1020,
 	return 0;
 }
 
-static int fpc_fb_notif_callback(struct notifier_block *nb,
+static inline int fpc_msm_drm_notif_callback(struct notifier_block *nb,
 		unsigned long val, void *data)
 {
 	struct fpc1020_data *fpc1020 = container_of(nb, struct fpc1020_data,
-			fb_notifier);
-	struct fb_event *evdata = data;
+			msm_drm_notifier);
+	struct msm_drm_notifier *evdata = data;
 	int *blank;
 
 	if (!fpc1020)
@@ -574,13 +573,13 @@ static int fpc_fb_notif_callback(struct notifier_block *nb,
     if (evdata && evdata->data && val == MSM_DRM_EVENT_BLANK) {
 		blank = evdata->data;
 		if (*blank == MSM_DRM_BLANK_UNBLANK) {
-			fpc1020->fb_black = false;
+			fpc1020->msm_drm_black = false;
 		}
 	}
 	else if (evdata && evdata->data && val == MSM_DRM_EARLY_EVENT_BLANK) {
 		blank = evdata->data;
 		if (*blank == MSM_DRM_BLANK_POWERDOWN) {
-			fpc1020->fb_black = true;
+			fpc1020->msm_drm_black = true;
 		}
 	}
 	return NOTIFY_OK;
@@ -588,18 +587,18 @@ static int fpc_fb_notif_callback(struct notifier_block *nb,
 
 
 static struct notifier_block fpc_notif_block = {
-	.notifier_call = fpc_fb_notif_callback,
+	.notifier_call = fpc_msm_drm_notif_callback,
 };
 
-static int proc_show_ver(struct seq_file *file,void *v)
+static inline int proc_show_ver(struct seq_file *file,void *v)
 {
 	seq_printf(file,"Fingerprint: FPC\n");
 	return 0;
 }
 
-static int proc_open(struct inode *inode,struct file *file)
+static inline int proc_open(struct inode *inode,struct file *file)
 {
-	pr_info("fpc proc_open\n");
+	pr_debug("fpc proc_open\n");
 	single_open(file,proc_show_ver,NULL);
 	return 0;
 }
@@ -611,7 +610,7 @@ static const struct file_operations proc_file_fpc_ops = {
 	.release = single_release,
 };
 
-static int fpc1020_probe(struct platform_device *pdev)
+static inline int fpc1020_probe(struct platform_device *pdev)
 {
 	struct device *dev = &pdev->dev;
 	int rc = 0;
@@ -654,7 +653,7 @@ static int fpc1020_probe(struct platform_device *pdev)
 	fpc1020->fingerprint_pinctrl = devm_pinctrl_get(dev);
 	if (IS_ERR(fpc1020->fingerprint_pinctrl)) {
 		if (PTR_ERR(fpc1020->fingerprint_pinctrl) == -EPROBE_DEFER) {
-			dev_info(dev, "pinctrl not ready\n");
+			dev_dbg(dev, "pinctrl not ready\n");
 			rc = -EPROBE_DEFER;
 			goto exit;
 		}
@@ -673,7 +672,7 @@ static int fpc1020_probe(struct platform_device *pdev)
 			rc = -EINVAL;
 			goto exit;
 		}
-		dev_info(dev, "found pin control %s\n", n);
+		dev_dbg(dev, "found pin control %s\n", n);
 		fpc1020->pinctrl_state[i] = state;
 	}
 
@@ -717,7 +716,7 @@ static int fpc1020_probe(struct platform_device *pdev)
 	}
 
 	if (of_property_read_bool(dev->of_node, "fpc,enable-on-boot")) {
-		dev_info(dev, "Enabling hardware\n");
+		dev_dbg(dev, "Enabling hardware\n");
 		(void)device_prepare(fpc1020, true);
 	}
 
@@ -732,21 +731,21 @@ static int fpc1020_probe(struct platform_device *pdev)
 	}
 
 
-	dev_info(dev, "%s: ok\n", __func__);
-	fpc1020->fb_black = false;
+	dev_dbg(dev, "%s: ok\n", __func__);
+	fpc1020->msm_drm_black = false;
 	fpc1020->wait_finger_down = false;
 	INIT_WORK(&fpc1020->work, notification_work);
-	fpc1020->fb_notifier = fpc_notif_block;
-	msm_drm_register_client(&fpc1020->fb_notifier);
+	fpc1020->msm_drm_notifier = fpc_notif_block;
+	msm_drm_register_client(&fpc1020->msm_drm_notifier);
 
 exit:
 	return rc;
 }
 
-static int fpc1020_remove(struct platform_device *pdev)
+static inline int fpc1020_remove(struct platform_device *pdev)
 {
 	struct fpc1020_data *fpc1020 = platform_get_drvdata(pdev);
-	msm_drm_unregister_client(&fpc1020->fb_notifier);
+	msm_drm_unregister_client(&fpc1020->msm_drm_notifier);
 	sysfs_remove_group(&pdev->dev.kobj, &attribute_group);
 	mutex_destroy(&fpc1020->lock);
 	//wake_lock_destroy(&fpc1020->ttw_wl);
@@ -755,7 +754,7 @@ static int fpc1020_remove(struct platform_device *pdev)
 	(void)vreg_setup(fpc1020, "vdd_io", false);
 	(void)vreg_setup(fpc1020, "vcc_spi", false);
 	remove_proc_entry(PROC_NAME,NULL);
-	dev_info(&pdev->dev, "%s\n", __func__);
+	dev_dbg(&pdev->dev, "%s\n", __func__);
 
 	return 0;
 }
@@ -776,21 +775,21 @@ static struct platform_driver fpc1020_driver = {
 	.remove	= fpc1020_remove,
 };
 
-static int __init fpc1020_init(void)
+static inline int __init fpc1020_init(void)
 {
 	int rc = platform_driver_register(&fpc1020_driver);
 
 	if (!rc)
-		pr_info("%s OK\n", __func__);
+		pr_debug("%s OK\n", __func__);
 	else
 		pr_err("%s %d\n", __func__, rc);
 
 	return rc;
 }
 
-static void __exit fpc1020_exit(void)
+static inline void __exit fpc1020_exit(void)
 {
-	pr_info("%s\n", __func__);
+	pr_debug("%s\n", __func__);
 	platform_driver_unregister(&fpc1020_driver);
 }
 
