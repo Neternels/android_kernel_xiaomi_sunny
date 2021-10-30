@@ -109,8 +109,8 @@ struct gf_ioc_chip_info {
 //#define GF_FASYNC   1	/*If support fasync mechanism.*/
 #define GF_NETLINK_ENABLE 1
 #define GF_NET_EVENT_IRQ 1
-#define GF_NET_EVENT_FB_BLACK 2
-#define GF_NET_EVENT_FB_UNBLACK 3
+#define GF_NET_EVENT_MSM_DRM_BLACK 2
+#define GF_NET_EVENT_MSM_DRM_UNBLACK 3
 #define NETLINK_TEST 25
 
 struct gf_dev {
@@ -138,7 +138,7 @@ struct gf_dev {
 #endif
 	struct notifier_block notifier;
 	char device_available;
-	char fb_black;
+	char msm_drm_black;
 	char wait_finger_down;
 	struct work_struct work;
 };
