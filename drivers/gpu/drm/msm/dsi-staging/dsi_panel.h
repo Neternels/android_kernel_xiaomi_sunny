@@ -240,6 +240,7 @@ struct dsi_panel {
 	bool in_aod; /* set  DISPPARAM_DOZE_BRIGHTNESS_HBM/LBM only in AOD */
 	bool nolp_command_set_backlight_enabled;
 	bool oled_panel_video_mode;
+        int hbm_mode;
 };
 
 static inline bool dsi_panel_ulps_feature_enabled(struct dsi_panel *panel)
@@ -381,5 +382,7 @@ ssize_t dsi_panel_mipi_reg_write(struct dsi_panel *panel,
 
 ssize_t dsi_panel_mipi_reg_read(struct dsi_panel *panel,
 				char *buf);
+
+int dsi_panel_apply_hbm_mode(struct dsi_panel *panel);
 
 #endif /* _DSI_PANEL_H_ */
