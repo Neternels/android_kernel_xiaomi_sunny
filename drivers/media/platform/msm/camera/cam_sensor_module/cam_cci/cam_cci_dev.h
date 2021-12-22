@@ -46,7 +46,11 @@
 #define CYCLES_PER_MICRO_SEC_DEFAULT 4915
 #define CCI_MAX_DELAY 1000000
 
+#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+#define CCI_TIMEOUT msecs_to_jiffies(2500)
+#else
 #define CCI_TIMEOUT msecs_to_jiffies(1500)
+#endif
 
 #define NUM_MASTERS 2
 #define NUM_QUEUES 2

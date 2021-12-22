@@ -959,6 +959,10 @@ int32_t cam_csiphy_core_cfg(void *phy_dev,
 			&ahb_vote, &axi_vote);
 		if (rc < 0) {
 			CAM_ERR(CAM_CSIPHY, "voting CPAS: %d", rc);
+#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+			if (rc == -EALREADY)
+				cam_cpas_stop(csiphy_dev->cpas_handle);
+#endif
 			goto release_mutex;
 		}
 
