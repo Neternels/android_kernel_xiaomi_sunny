@@ -882,7 +882,6 @@ static int pdphy_probe(struct platform_device *pdev)
 		__pdphy = NULL;
 		return PTR_ERR(pdphy->usbpd);
 	}
-
 	pdphy_create_debugfs_entries(pdphy);
 
 	return 0;

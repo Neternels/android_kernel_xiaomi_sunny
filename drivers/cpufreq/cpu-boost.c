@@ -63,7 +63,7 @@ static int set_input_boost_freq(const char *buf, const struct kernel_param *kp)
 		if (sscanf(buf, "%u\n", &val) != 1)
 			return -EINVAL;
 		for_each_possible_cpu(i)
-			per_cpu(sync_info, i).input_boost_freq = val;
+		  per_cpu(sync_info, i).input_boost_freq = val;
 		goto check_enable;
 	}
 
@@ -77,15 +77,14 @@ static int set_input_boost_freq(const char *buf, const struct kernel_param *kp)
 			return -EINVAL;
 		if (cpu >= num_possible_cpus())
 			return -EINVAL;
-
-		per_cpu(sync_info, cpu).input_boost_freq = val;
+ 		per_cpu(sync_info, cpu).input_boost_freq = val;
 		cp = strnchr(cp, PAGE_SIZE - (cp - buf), ' ');
 		cp++;
 	}
 
 check_enable:
 	for_each_possible_cpu(i) {
-		if (per_cpu(sync_info, i).input_boost_freq) {
+	        if (per_cpu(sync_info, i).input_boost_freq) {
 			enabled = true;
 			break;
 		}
