@@ -22,7 +22,6 @@
 #include <linux/irq.h>
 #include <linux/interrupt.h>
 #include <linux/irqdesc.h>
-
 #include "power.h"
 
 #ifndef CONFIG_SUSPEND
@@ -987,7 +986,6 @@ void pm_system_irq_wakeup(unsigned int irq_number)
 
 			pr_warn("%s: %d triggered %s\n", __func__,
 					irq_number, name);
-
 		}
 		pm_wakeup_irq = irq_number;
 		pm_system_wakeup();
@@ -1134,7 +1132,6 @@ static int print_wakeup_source_stats(struct seq_file *m,
 
 	return 0;
 }
-
 /**
  * wakeup_sources_stats_show - Print wakeup sources statistics information.
  * @m: seq_file to print the statistics into.
@@ -1152,8 +1149,6 @@ static int wakeup_sources_stats_show(struct seq_file *m, void *unused)
 	list_for_each_entry_rcu(ws, &wakeup_sources, entry)
 		print_wakeup_source_stats(m, ws);
 	srcu_read_unlock(&wakeup_srcu, srcuidx);
-
-	print_wakeup_source_stats(m, &deleted_ws);
 
 	return 0;
 }

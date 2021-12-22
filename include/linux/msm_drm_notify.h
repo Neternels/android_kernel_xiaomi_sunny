@@ -22,7 +22,7 @@
 
 #define		DRM_EARLY_EVENT_BLANK   0x01
 #define		DRM_EVENT_BLANK         0x02
-#ifdef		CONFIG_TARGET_PROJECT_J20C
+#ifdef		CONFIG_XIMI_MOJITO
 #define		DRM_R_EARLY_EVENT_BLANK 0x03
 #endif
 enum {

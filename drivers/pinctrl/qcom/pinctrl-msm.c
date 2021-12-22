@@ -44,7 +44,6 @@
 #ifdef CONFIG_HIBERNATION
 #include <linux/notifier.h>
 #endif
-
 #define MAX_NR_GPIO 300
 #define PS_HOLD_OFFSET 0x820
 
