@@ -33,9 +33,14 @@
 	static struct mutex mutexname = __MUTEX_INITIALIZER(mutexname)
 
 #define PROPERTY_MAXSIZE 32
-
+#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+#define MSM_EEPROM_MEMORY_MAP_MAX_SIZE         128
+#define MSM_EEPROM_MAX_MEM_MAP_CNT             64
+#else
 #define MSM_EEPROM_MEMORY_MAP_MAX_SIZE         80
 #define MSM_EEPROM_MAX_MEM_MAP_CNT             16
+#endif
+
 #define MSM_EEPROM_MEM_MAP_PROPERTIES_CNT      8
 
 enum cam_eeprom_state {
