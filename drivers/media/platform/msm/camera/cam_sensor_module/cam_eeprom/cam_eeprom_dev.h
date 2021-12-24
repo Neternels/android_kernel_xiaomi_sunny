@@ -33,7 +33,7 @@
 	static struct mutex mutexname = __MUTEX_INITIALIZER(mutexname)
 
 #define PROPERTY_MAXSIZE 32
-#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+#ifdef CONFIG_XIMI_MOJITO
 #define MSM_EEPROM_MEMORY_MAP_MAX_SIZE         128
 #define MSM_EEPROM_MAX_MEM_MAP_CNT             64
 #else
