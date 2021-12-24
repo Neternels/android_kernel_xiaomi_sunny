@@ -479,7 +479,7 @@ retry:
 		flushed_rcache = true;
 		for_each_online_cpu(cpu)
 			free_cpu_cached_iovas(cpu, iovad);
-#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+#ifdef CONFIG_XIMI_MOJITO
 		free_global_cached_iovas(iovad);
 #endif
 		goto retry;
@@ -830,12 +830,12 @@ error:
  */
 
 #define IOVA_MAG_SIZE 128
-#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+#ifdef CONFIG_XIMI_MOJITO
 #define IOVA_MAG_SIZE_LOW (IOVA_MAG_SIZE/2)
 #define CACHE_INDEX_LIMIT 3
 #endif
 
-#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+#ifdef CONFIG_XIMI_MOJITO
 struct iova_magazine {
 	unsigned long size;
 	unsigned long max_size;
@@ -854,7 +854,7 @@ struct iova_cpu_rcache {
 	struct iova_magazine *prev;
 };
 
-#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+#ifdef CONFIG_XIMI_MOJITO
 static struct iova_magazine *iova_magazine_alloc(unsigned long index,
 						 gfp_t flags)
 {
@@ -877,7 +877,7 @@ static struct iova_magazine *iova_magazine_alloc(gfp_t flags)
 #endif
 static void iova_magazine_free(struct iova_magazine *mag)
 {
-#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+#ifdef CONFIG_XIMI_MOJITO
 	kfree(mag->pfns);
 #endif
 	kfree(mag);
@@ -910,7 +910,7 @@ iova_magazine_free_pfns(struct iova_magazine *mag, struct iova_domain *iovad)
 
 static bool iova_magazine_full(struct iova_magazine *mag)
 {
-#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+#ifdef CONFIG_XIMI_MOJITO
 	return (mag && mag->size == mag->max_size);
 #else
 	return (mag && mag->size == IOVA_MAG_SIZE);
@@ -957,7 +957,7 @@ static void init_iova_rcaches(struct iova_domain *iovad)
 		for_each_possible_cpu(cpu) {
 			cpu_rcache = per_cpu_ptr(rcache->cpu_rcaches, cpu);
 			spin_lock_init(&cpu_rcache->lock);
-#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+#ifdef CONFIG_XIMI_MOJITO
 			cpu_rcache->loaded = iova_magazine_alloc(i, GFP_KERNEL);
 			cpu_rcache->prev = iova_magazine_alloc(i, GFP_KERNEL);
 #else
@@ -974,7 +974,7 @@ static void init_iova_rcaches(struct iova_domain *iovad)
  * space, and free_iova() (our only caller) will then return the IOVA
  * range to the rbtree instead.
  */
-#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+#ifdef CONFIG_XIMI_MOJITO
 static bool __iova_rcache_insert(struct iova_domain *iovad,
 				 struct iova_rcache *rcache,
 				 unsigned long iova_pfn,
@@ -1000,7 +1000,7 @@ static bool __iova_rcache_insert(struct iova_domain *iovad,
 		swap(cpu_rcache->prev, cpu_rcache->loaded);
 		can_insert = true;
 	} else {
-#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+#ifdef CONFIG_XIMI_MOJITO
         struct iova_magazine *new_mag =
 			iova_magazine_alloc(log_size, GFP_ATOMIC);
 #else
@@ -1041,7 +1041,7 @@ static bool iova_rcache_insert(struct iova_domain *iovad, unsigned long pfn,
 
 	if (log_size >= IOVA_RANGE_CACHE_MAX_SIZE)
 		return false;
-#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+#ifdef CONFIG_XIMI_MOJITO
 	return __iova_rcache_insert(iovad, &iovad->rcaches[log_size],
 			pfn, log_size);
 #else
@@ -1171,7 +1171,7 @@ void free_cpu_cached_iovas(unsigned int cpu, struct iova_domain *iovad)
 /*
  * free all the IOVA ranges of global cache
  */
-#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+#ifdef CONFIG_XIMI_MOJITO
 void free_global_cached_iovas(struct iova_domain *iovad)
 {
 	struct iova_rcache *rcache;

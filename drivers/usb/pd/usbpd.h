@@ -71,7 +71,7 @@ struct pd_phy_params {
 	u8		frame_filter_val;
 };
 
-#ifdef CONFIG_TARGET_PROJECT_J20C
+#ifdef CONFIG_XIMI_MOJITO
 struct usbpd_pdo {
 	bool pps;
 	int type;

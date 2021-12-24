@@ -35,7 +35,7 @@
 #define LC_NFC_CHECK
 #endif
 
-#ifdef CONFIG_TARGET_PROJECT_J20C
+#ifdef CONFIG_XIMI_MOJITO
 #define SKIP_NFCC_HW_CHECK
 #define CHECK_NFC_NONE_NFC 1
 #ifdef CHECK_NFC_NONE_NFC
@@ -1644,7 +1644,7 @@ static int nfcc_reboot(struct notifier_block *notifier, unsigned long val,
     gpio_set_value(disable_ctrl, 1);
     #endif
 
-    #ifdef CONFIG_TARGET_PROJECT_J20C
+    #ifdef CONFIG_XIMI_MOJITO
     gpio_set_value(disable_ctrl, 0);
     #endif
 
