@@ -4752,7 +4752,7 @@ static int dwc3_otg_start_peripheral(struct dwc3_msm *mdwc, int on)
 		atomic_read(&mdwc->dev->power.usage_count));
 
 	if (on) {
-	#ifdef CONFIG_TARGET_PROJECT_J20C
+	#ifdef CONFIG_XIMI_MOJITO
 		dev_err(mdwc->dev, "%s: turn on gadget %s\n",
 					__func__, dwc->gadget.name);
 	#else

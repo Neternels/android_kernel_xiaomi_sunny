@@ -381,7 +381,7 @@ struct device_node *of_batterydata_get_best_profile(
 	}
 
 	if (best_node == NULL) {
-#ifndef CONFIG_TARGET_PROJECT_J20C
+#ifndef CONFIG_XIMI_MOJITO
 		pr_info("sunxing detect No battery data configed,add default\n");
 		for_each_child_of_node(batterydata_container_node, node) {
 			rc = of_property_read_string(node, "qcom,battery-type", &battery_type);

@@ -32,7 +32,7 @@
 #include <linux/regmap.h>
 #include <linux/random.h>
 
-#ifdef CONFIG_TARGET_PROJECT_J20C
+#ifdef CONFIG_XIMI_MOJITO
 #define ds_info	pr_err
 #define ds_dbg	pr_err
 #define ds_err	pr_err
@@ -1521,7 +1521,7 @@ struct device_attribute *attr, char *buf)
 		}
 		Delay_us(1000);
 	}
-#ifdef CONFIG_TARGET_PROJECT_J20C
+#ifdef CONFIG_XIMI_MOJITO
 	/*ds_dbg("RomID = %02x,%02x,%02x,%02x,%02x,%02x,%02x,%02x\n",
 	RomID[0], RomID[1], RomID[2], RomID[3],
 	RomID[4], RomID[5], RomID[6], RomID[7]);
