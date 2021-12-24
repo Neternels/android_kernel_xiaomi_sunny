@@ -226,7 +226,7 @@ int dsi_display_set_backlight(struct drm_connector *connector,
 	if (strnstr(saved_command_line, "androidboot.mode=charger", strlen(saved_command_line)) != NULL) {
 		if (bl_temp == 2047)
 			bl_temp = 513;
-		pr_err("poweroff charging mode\n");
+		pr_debug("poweroff charging mode\n");
 	}
 
 	pr_debug("bl_scale = %u, bl_scale_ad = %u, bl_lvl = %u\n",
@@ -675,10 +675,10 @@ static int dsi_display_read_reg(struct dsi_display_ctrl *ctrl, char cmd0,
 	cmds->msg.rx_len = len;
 	rc = dsi_ctrl_cmd_transfer(ctrl->ctrl, &cmds->msg, flags);
 	if (rc <= 0) {
-		pr_err("rx cmd transfer failed rc=%d\n", rc);
+		pr_debug("rx cmd transfer failed rc=%d\n", rc);
 		return rc;
 	}
-	pr_info("xinj: rbuf[0]= %x,rbuf[1]= %x, rbuf[2] = %x, rbuf[3] =%x,rbuf[4]=%x,rbuf[5]=%x,rbuf[6]=%x,rbuf[7]=%x\n",
+	pr_debug("xinj: rbuf[0]= %x,rbuf[1]= %x, rbuf[2] = %x, rbuf[3] =%x,rbuf[4]=%x,rbuf[5]=%x,rbuf[6]=%x,rbuf[7]=%x\n",
 			rbuf[0] ,rbuf[1], rbuf[2],rbuf[3], rbuf[4],rbuf[5],rbuf[6],rbuf[7]);
 
 	return rc;
@@ -763,7 +763,7 @@ static int dsi_display_read_status(struct dsi_display_ctrl *ctrl,
 		cmds[i].msg.rx_len = config->status_cmds_rlen[i];
 		rc = dsi_ctrl_cmd_transfer(ctrl->ctrl, &cmds[i].msg, flags);
 		if (rc <= 0) {
-			pr_err("rx cmd transfer failed rc=%d\n", rc);
+			pr_debug("rx cmd transfer failed rc=%d\n", rc);
 			return rc;
 		}
 
@@ -818,13 +818,13 @@ static int dsi_display_status_reg_read(struct dsi_display *display)
 
 	rc = dsi_display_cmd_engine_enable(display);
 	if (rc) {
-		pr_err("cmd engine enable failed\n");
+		pr_debug("cmd engine enable failed\n");
 		return -EPERM;
 	}
 
 	rc = dsi_display_validate_status(m_ctrl, display->panel);
 	if (rc <= 0) {
-		pr_err("[%s] read status failed on master,rc=%d\n",
+		pr_debug("[%s] read status failed on master,rc=%d\n",
 		       display->name, rc);
 		goto exit;
 	}
@@ -839,7 +839,7 @@ static int dsi_display_status_reg_read(struct dsi_display *display)
 
 		rc = dsi_display_validate_status(ctrl, display->panel);
 		if (rc <= 0) {
-			pr_err("[%s] read status failed on slave,rc=%d\n",
+			pr_debug("[%s] read status failed on slave,rc=%d\n",
 			       display->name, rc);
 			goto exit;
 		}
@@ -1270,7 +1270,7 @@ int dsi_display_set_power(struct drm_connector *connector,
 
 	switch (power_mode) {
 	case SDE_MODE_DPMS_LP1:
-		pr_err("SDE_MODE_DPMS_LP1\n");
+		pr_debug("SDE_MODE_DPMS_LP1\n");
 		event = DRM_BLANK_POWERDOWN;
 		g_notify_data.data = &event;
 		drm_notifier_call_chain(DRM_EARLY_EVENT_BLANK, &g_notify_data);
@@ -1287,7 +1287,7 @@ int dsi_display_set_power(struct drm_connector *connector,
 	case SDE_MODE_DPMS_ON:
 		if (display->panel->power_mode == SDE_MODE_DPMS_LP1 ||
 			display->panel->power_mode == SDE_MODE_DPMS_LP2) {
-			pr_err("SDE_MODE_DPMS_ON\n");
+			pr_debug("SDE_MODE_DPMS_ON\n");
 			drm_notifier_call_chain(DRM_EARLY_EVENT_BLANK, &g_notify_data);
 			rc = dsi_panel_set_nolp(display->panel);
 			drm_notifier_call_chain(DRM_EVENT_BLANK, &g_notify_data);
@@ -2340,7 +2340,7 @@ static int dsi_display_ctrl_power_on(struct dsi_display *display)
 		rc = dsi_ctrl_set_power_state(ctrl->ctrl,
 					      DSI_CTRL_POWER_VREG_ON);
 		if (rc) {
-			pr_err("[%s] Failed to set power state, rc=%d\n",
+			pr_debug("[%s] Failed to set power state, rc=%d\n",
 			       ctrl->ctrl->name, rc);
 			goto error;
 		}
@@ -3101,7 +3101,7 @@ static ssize_t dsi_host_transfer(struct mipi_dsi_host *host,
 	if (display->tx_cmd_buf == NULL) {
 		rc = dsi_host_alloc_cmd_tx_buffer(display);
 		if (rc) {
-			pr_err("failed to allocate cmd tx buffer memory\n");
+			pr_debug("failed to allocate cmd tx buffer memory\n");
 			goto error_disable_cmd_engine;
 		}
 	}
@@ -5236,16 +5236,6 @@ static ssize_t dsi_display_get_whitepoint(struct device *dev,
 
 	ctrl = &display->ctrl[display->cmd_master_idx];
 
-	#ifdef CONFIG_TARGET_PROJECT_J6
-	if((strstr(g_lcd_id, "huaxing")!= NULL)) {
-		rc = dsi_display_write_reg_page(ctrl, 0x00, 0x60, buf, sizeof(buf));
-		rc = dsi_display_read_reg(ctrl, 0xf4, 0x00, buf, sizeof(buf));
-	} else {
-		rc = dsi_display_write_reg_page(ctrl, 0xff, 0x10, buf, sizeof(buf));
-		rc = dsi_display_read_reg(ctrl, 0xda, 0x00, buf, sizeof(buf));
-	}
-	#endif
-
 	#ifdef CONFIG_XIMI_MOJITO
 		rc = dsi_display_write_reg_page(ctrl, 0xFF, 0x10, buf, sizeof(buf));
 		rc = dsi_display_read_reg(ctrl, 0xA1, 0x00, buf, sizeof(buf));
@@ -5271,17 +5261,17 @@ static int dsi_display_whitepoint_create_sysfs(void){
         int ret;
         msm_whitepoint=kobject_create_and_add("android_whitepoint",NULL);
         if(msm_whitepoint==NULL){
-                pr_info("msm_whitepoint_create_sysfs_ failed\n");
+                pr_debug("msm_whitepoint_create_sysfs_ failed\n");
                 ret=-ENOMEM;
                 return ret;
         }
         ret=sysfs_create_file(msm_whitepoint,&dev_attr_whitepoint.attr);
         if(ret){
-                pr_err("xinj:%s failed \n",__func__);
+                pr_debug("xinj:%s failed \n",__func__);
                 kobject_del(msm_whitepoint);
                 return ret;
         }
-	pr_info("xinj:%s success\n",__func__);
+	pr_debug("xinj:%s success\n",__func__);
         return ret;
 }
 static DEVICE_ATTR(dynamic_dsi_clock, 0644,
@@ -5396,17 +5386,6 @@ int lct_tp_lockdown_info_callback(void)
 	}
 
 	ctrl = &display->ctrl[display->cmd_master_idx];
-
-	#ifdef CONFIG_TARGET_PROJECT_J6
-	if((strstr(g_lcd_id, "huaxing")!= NULL)){
-		rc = dsi_display_write_reg_page(ctrl, 0x00, 0x50, buf, sizeof(buf));
-		rc = dsi_display_read_reg(ctrl, 0xf4, 0x00, buf, sizeof(buf));
-	} else {
-		rc = dsi_display_write_reg_page(ctrl, 0xff, 0x21, buf, sizeof(buf));
-		rc = dsi_display_write_reg_page(ctrl, 0x00, 0x50, buf, sizeof(buf));
-		rc = dsi_display_read_reg(ctrl, 0xf1, 0x00, buf, sizeof(buf));
-	}
-	#endif
 
 	#ifdef CONFIG_XIMI_MOJITO
 		rc = dsi_display_write_reg_page(ctrl, 0xFF, 0x21, buf, sizeof(buf));
@@ -5655,8 +5634,6 @@ static int dsi_display_bind(struct device *dev,
 	dsi_display_register_te_irq(display);
 
 	dsi_display_whitepoint_create_sysfs();
-
-	//set_lct_tp_lockdown_info_callback(lct_tp_lockdown_info_callback);
 
 	goto error;
 
@@ -8206,14 +8183,14 @@ ssize_t dsi_display_mipi_reg_write(struct drm_connector *connector,
 	struct dsi_bridge *c_bridge = NULL;
 
 	if (!connector || !connector->encoder || !connector->encoder->bridge) {
-		pr_err("Invalid invalid connector/encoder/bridge ptr\n");
+		pr_debug("Invalid invalid connector/encoder/bridge ptr\n");
 		return -EINVAL;
 	}
 
 	c_bridge =  to_dsi_bridge(connector->encoder->bridge);
 	display = c_bridge->display;
 	if (!display || !display->panel) {
-		pr_err("Invalid display/panel ptr\n");
+		pr_debug("Invalid display/panel ptr\n");
 		return -EINVAL;
 	}
 
@@ -8227,14 +8204,14 @@ ssize_t dsi_display_mipi_reg_read(struct drm_connector *connector,
 	struct dsi_bridge *c_bridge = NULL;
 
 	if (!connector || !connector->encoder || !connector->encoder->bridge) {
-		pr_err("Invalid invalid connector/encoder/bridge ptr\n");
+		pr_debug("Invalid invalid connector/encoder/bridge ptr\n");
 		return -EINVAL;
 	}
 
 	c_bridge =  to_dsi_bridge(connector->encoder->bridge);
 	display = c_bridge->display;
 	if (!display || !display->panel) {
-		pr_err("Invalid display/panel ptr\n");
+		pr_debug("Invalid display/panel ptr\n");
 		return -EINVAL;
 	}
 

@@ -19,9 +19,7 @@
 #define WL2866D_ID1  0x55
 #define AW_I2C_RETRIES 2
 #define AW_I2C_RETRY_DELAY 2
-//#ifdef __XIAOMI_CAMERA__
 struct wl2866d_chip *camera_chip = NULL;
-//#endif
 //For 48M
 static const struct  wl2866d_map  wl2866d_on_config[] = {
 	{0x03, 0x64},//OUT_DVDD1 1.2V -> Front/UW
@@ -96,7 +94,6 @@ int wl2866d_camera_power_down_all()
     return ret;
 }
 
-//#ifdef __XIAOMI_CAMERA__
 //bit0:DVDD1, bit1:DVDD2, bit2:AVDD1, bit3:AVDD2
 //{0x03, 0x55}, OUT_DVDD1
 //{0x04, 0x55}, OUT_DVDD2
@@ -110,21 +107,9 @@ int wl2866d_camera_power_up(uint16_t camera_id)
 	unsigned char reg_val = 0;
 
 	if (0 == camera_id) {
-		//camera_id 0 --> OV64B/imx582 wide
 		pr_err("xyz wide:OV64B/imx582 camera_id=[%d] power up\n", camera_id);
 		ret = wl2866d_i2c_write(camera_chip, wl2866d_on_config[OUT_DVDD2].reg, 0x54);//bit1
 		ret = wl2866d_i2c_write(camera_chip, wl2866d_on_config[OUT_AVDD2].reg, 0x88);//bit3 TODO:use 0x84/2.85V for debug
-
-        //TODO:
-        /*
-        if ((hwid = 64M)) {
-            ret = wl2866d_i2c_write(camera_chip, wl2866d_on_config[OUT_DVDD2].reg, 0x54);//bit1
-            ret = wl2866d_i2c_write(camera_chip, wl2866d_on_config[OUT_AVDD2].reg, 0x80);//bit3 TODO:use 0x80/2.8V for debug
-        } else if (hwid == 48M) {
-            ret = wl2866d_i2c_write(camera_chip, wl2866d_on_config[OUT_DVDD2].reg, 0x54);//bit1
-            ret = wl2866d_i2c_write(camera_chip, wl2866d_on_config[OUT_AVDD2].reg, 0x88);//bit3 TODO:use 0x88/2.9V for debug
-        }
-        */
 
         if (ret < 0) {
 			pr_err("xyz wl2866d set avdd2/dvdd2 failed\n");
@@ -148,10 +133,6 @@ int wl2866d_camera_power_up(uint16_t camera_id)
 		}
 	}
 	if ((1 == camera_id) || (2 == camera_id) || (3 == camera_id) || (4 == camera_id)) {
-		//camera_id 1 --> ov02b1b/gc02m1b depth
-        //camera_id 2 --> ov13b10 front
-        //camera_id 3 --> imx355 ultra wide
-		//camera_id 4 --> gc02m1 macro
 		if (1 == camera_id) {
 			pr_err("xyz depth:ov02b1b/gc02m1b camera_id=[%d] power up\n", camera_id);
 		} else if(2 == camera_id) {
@@ -184,8 +165,6 @@ int wl2866d_camera_power_up(uint16_t camera_id)
 		}
 	}
 	if ((2 == camera_id) || (3 == camera_id)) {
-		//camera_id 5 --> hi847
-		//camera_id 3 --> hi1337
 		if (2 == camera_id) {
 			pr_err("xyz front:ov13b10 camera_id=[%d] power up\n", camera_id);
 		} else if(3 == camera_id) {
@@ -219,7 +198,6 @@ int wl2866d_camera_power_up(uint16_t camera_id)
 }
 EXPORT_SYMBOL(wl2866d_camera_power_up);
 
-//#ifdef __XIAOMI_CAMERA__
 //bit0:DVDD1, bit1:DVDD2, bit2:AVDD1, bit3:AVDD2
 //{0x03, 0x55}, OUT_DVDD1
 //{0x04, 0x55}, OUT_DVDD2
@@ -251,8 +229,6 @@ int wl2866d_camera_power_down(uint16_t camera_id)
 			return ret;
 		}
 	} else if ((2 == camera_id) || (3 == camera_id)) {
-        //camera_id 2 --> ov13b10 front
-        //camera_id 3 --> imx355 ultra wide
 		if (2 == camera_id) {
 			pr_err("xyz front:ov13b10 camera_id=[%d] power down AVDD1/DVDD1\n", camera_id);
 		} else if(3 == camera_id) {
@@ -274,8 +250,6 @@ int wl2866d_camera_power_down(uint16_t camera_id)
 			return ret;
 		}
 	} else if ((1 == camera_id) || (4 == camera_id)) {
-		//camera_id 1 --> ov02b1b/gc02m1b depth
-		//camera_id 4 --> gc02m1 macro
 		if (1 == camera_id) {
 			pr_err("xyz depth:ov02b1b/gc02m1b camera_id=[%d] power down AVDD1\n", camera_id);
 		} else if(4 == camera_id) {
@@ -304,7 +278,6 @@ int wl2866d_camera_power_down(uint16_t camera_id)
 	return ret;
 }
 EXPORT_SYMBOL(wl2866d_camera_power_down);
-//#endif
 
 static ssize_t wl2866d_vol_enable_show(struct device *dev,
 					struct device_attribute *attr,
@@ -517,25 +490,6 @@ static int set_init_voltage(struct wl2866d_chip *chip)
 			return ret;
 		}
 	}
-    /*
-    if (hwid == 48M) {
-        for (i = 0 ; i < (ARRAY_SIZE(wl2866d_on_config) - 1); i++)	{
-            ret = wl2866d_i2c_write(chip, wl2866d_on_config[i].reg, wl2866d_on_config[i].value);
-            if (ret < 0) {
-                pr_err("wl2866d init voltage failed\n");
-                return ret;
-            }
-        }
-    } else if (hwid == 64M) {
-        for (i = 0 ; i < (ARRAY_SIZE(wl2866d_on_config_64M) - 1); i++)	{
-            ret = wl2866d_i2c_write(chip, wl2866d_on_config_64M[i].reg, wl2866d_on_config_64M[i].value);
-            if (ret < 0) {
-            pr_err("wl2866d init voltage failed\n");
-            return ret;
-            }
-        }
-    }
-    */
 	return 0;
 }
 
@@ -589,18 +543,12 @@ static int wl2866d_init(struct  wl2866d_chip *chip)
 
 	pr_err("%s: en_gpio is %d\n", __func__, chip->en_gpio);
 	ret = gpio_request(chip->en_gpio, "wl2866d_en");
-	//ret = devm_gpio_request_one(chip->dev, chip->en_gpio,
-		//				  GPIOF_OUT_INIT_LOW,
-		//				  "wl2866d_en");
 	if (ret < 0) {
 			pr_err("wl2866d enable gpio request failed\n");
 			return ret;
 	}
 
 	gpio_direction_output(chip->en_gpio, 0);
-	//if (chip && gpio_is_valid(chip->en_gpio)) {
-	//		gpio_set_value_cansleep(chip->en_gpio, 1);
-	//}
 
 	msleep(10);
 
@@ -793,9 +741,7 @@ static int wl2866d_probe(struct i2c_client *client,
 			 __func__);
 		goto err_sysfs;
 	}
-//#ifdef __XIAOMI_CAMERA__
 	camera_chip = chip;
-//#endif
 
     wl2866d_i2c_read(chip, 0x10, &reg_val);
     pr_err("%s:ET5904/wl2866d ldo module info before is %d\n", __func__, reg_val);
@@ -864,19 +810,11 @@ static int wl2866d_resume(struct device *dev)
 {
 	struct i2c_client *client = to_i2c_client(dev);
 	struct wl2866d_chip *chip = i2c_get_clientdata(client);
-//#ifdef __XIAOMI_CAMERA__
-    //int ret = 0;
 
 	pr_err("%s\n", __func__);
 	wl2866d_enable_power(chip);
 	gpio_direction_output(chip->en_gpio, 0);
 
-	/*ret = wl2866d_i2c_write(chip, wl2866d_on_config[VOL_ENABLE].reg, wl2866d_on_config[VOL_ENABLE].value);
-	if (ret < 0) {
-		pr_err("wl2866d set enable failed\n");
-		return ret;
-	}*/
-//#endif
 	return 0;
 }
 #endif
@@ -917,7 +855,6 @@ static int __init wl2866d_i2c_init(void)
 	return i2c_add_driver(&wl2866d_driver);
 }
 subsys_initcall(wl2866d_i2c_init);
-//module_init(wl2866d_i2c_init);
 static void __exit wl2866d_i2c_exit(void)
 {
 	i2c_del_driver(&wl2866d_driver);

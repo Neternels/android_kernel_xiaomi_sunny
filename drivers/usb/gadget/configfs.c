@@ -1478,22 +1478,14 @@ static void android_work(struct work_struct *data)
 	if (status[0]) {
 		kobject_uevent_env(&gi->dev->kobj,
 					KOBJ_CHANGE, connected);
-	#ifdef CONFIG_XIMI_MOJITO
-		pr_err("%s: sent uevent %s\n", __func__, connected[0]);
-	#else
 		pr_info("%s: sent uevent %s\n", __func__, connected[0]);
-	#endif
 		uevent_sent = true;
 	}
 
 	if (status[1]) {
 		kobject_uevent_env(&gi->dev->kobj,
 					KOBJ_CHANGE, configured);
-	#ifdef CONFIG_XIMI_MOJITO
-		pr_err("%s: sent uevent %s\n", __func__, configured[0]);
-	#else
 		pr_info("%s: sent uevent %s\n", __func__, configured[0]);
-	#endif
 		smblib_canncel_recheck();
 		uevent_sent = true;
 	}
@@ -1501,22 +1493,13 @@ static void android_work(struct work_struct *data)
 	if (status[2]) {
 		kobject_uevent_env(&gi->dev->kobj,
 					KOBJ_CHANGE, disconnected);
-	#ifdef CONFIG_XIMI_MOJITO
-		pr_err("%s: sent uevent %s\n", __func__, disconnected[0]);
-	#else
 		pr_info("%s: sent uevent %s\n", __func__, disconnected[0]);
-	#endif
 		uevent_sent = true;
 	}
 
 	if (!uevent_sent) {
-	#ifdef CONFIG_XIMI_MOJITO
-		pr_err("%s: did not send uevent (%d %d %pK)\n", __func__,
-			gi->connected, gi->sw_connected, cdev->config);
-	#else
 		pr_info("%s: did not send uevent (%d %d %pK)\n", __func__,
                          gi->connected, gi->sw_connected, cdev->config);
-	#endif
 	}
 }
 #endif

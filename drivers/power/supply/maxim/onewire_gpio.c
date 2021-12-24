@@ -119,25 +119,16 @@ unsigned char read_bit(void)
 
 	ONE_WIRE_CONFIG_OUT;
 	ONE_WIRE_OUT_LOW;
-#ifdef CONFIG_XIMI_MOJITO
-	//Delay_us(1);////
-	//Delay_ns(400);
-#else
+#ifndef CONFIG_XIMI_MOJITO
 	Delay_us(1);
 #endif
 	ONE_WIRE_CONFIG_IN;
-#ifdef CONFIG_XIMI_MOJITO
-	//Delay_ns(500);//
-#else
+#ifndef CONFIG_XIMI_MOJITO
 	Delay_ns(500);
 #endif
 	vamm = readl_relaxed(g_onewire_data->gpio_in_out_reg); // Read
 #ifdef CONFIG_XIMI_MOJITO
 	Delay_us(15);
-	//ONE_WIRE_OUT_HIGH;
-	//ONE_WIRE_CONFIG_OUT;
-        //ONE_WIRE_OUT_HIGH;
-	//Delay_us(6);
 #else
 	Delay_us(5);
 	ONE_WIRE_OUT_HIGH;

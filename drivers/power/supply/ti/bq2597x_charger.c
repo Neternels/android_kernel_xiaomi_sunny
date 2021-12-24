@@ -37,7 +37,6 @@
 #include <linux/math64.h>
 
 #include "bq25970_reg.h"
-/*#include "bq2597x.h"*/
 
 enum {
 	ADC_IBUS,
@@ -1445,18 +1444,6 @@ static int bq2597x_parse_dt(struct bq2597x *bq, struct device *dev)
 		bq_err("failed to read bat-ovp-alarm-threshold\n");
 		return ret;
 	}
-	/*ret = of_property_read_u32(np, "ti,bq2597x,bat-ocp-threshold",
-			&bq->cfg->bat_ocp_th);
-	if (ret) {
-		bq_err("failed to read bat-ocp-threshold\n");
-		return ret;
-	}
-	ret = of_property_read_u32(np, "ti,bq2597x,bat-ocp-alarm-threshold",
-			&bq->cfg->bat_ocp_alm_th);
-	if (ret) {
-		bq_err("failed to read bat-ocp-alarm-threshold\n");
-		return ret;
-	}*/
 	ret = of_property_read_u32(np, "ti,bq2597x,bus-ovp-threshold",
 			&bq->cfg->bus_ovp_th);
 	if (ret) {
@@ -1481,12 +1468,6 @@ static int bq2597x_parse_dt(struct bq2597x *bq, struct device *dev)
 		bq_err("failed to read bus-ocp-alarm-threshold\n");
 		return ret;
 	}
-	/*ret = of_property_read_u32(np, "ti,bq2597x,bat-ucp-alarm-threshold",
-			&bq->cfg->bat_ucp_alm_th);
-	if (ret) {
-		bq_err("failed to read bat-ucp-alarm-threshold\n");
-		return ret;
-	}*/
 	ret = of_property_read_u32(np, "ti,bq2597x,bat-therm-threshold",
 			&bq->cfg->bat_therm_th);
 	if (ret) {
@@ -1512,14 +1493,6 @@ static int bq2597x_parse_dt(struct bq2597x *bq, struct device *dev)
 		bq_err("failed to read ac-ovp-threshold\n");
 		return ret;
 	}
-
-	/*ret = of_property_read_u32(np, "ti,bq2597x,sense-resistor-mohm",
-			&bq->cfg->sense_r_mohm);
-	if (ret) {
-		bq_err("failed to read sense-resistor-mohm\n");
-		return ret;
-	}*/
-
 
 	return 0;
 }
@@ -1639,7 +1612,6 @@ static int bq2597x_init_protection(struct bq2597x *bq)
 static int bq2597x_set_bus_protection(struct bq2597x *bq, int hvdcp3_type)
 {
 	/* just return now, to do later */
-	//return 0;
 
 	pr_err("hvdcp3_type: %d\n", hvdcp3_type);
 	if (hvdcp3_type == HVDCP3_CLASSA_18W) {
@@ -1707,14 +1679,12 @@ static int bq2597x_init_int_src(struct bq2597x *bq)
 		bq_err("failed to set alarm mask:%d\n", ret);
 		return ret;
 	}
-//#if 0
 	ret = bq2597x_set_fault_int_mask(bq,
 			TS_BUS_FAULT | TS_DIE_FAULT | TS_BAT_FAULT | BAT_OCP_FAULT);
 	if (ret) {
 		bq_err("failed to set fault mask:%d\n", ret);
 		return ret;
 	}
-//#endif
 	return ret;
 }
 
@@ -2273,7 +2243,6 @@ static struct of_device_id bq2597x_charger_match_table[] = {
 	},
 	{},
 };
-//MODULE_DEVICE_TABLE(of, bq2597x_charger_match_table);
 
 
 
@@ -2421,7 +2390,6 @@ static int bq2597x_charger_probe(struct i2c_client *client,
 	}
 
 	determine_initial_status(bq);
-	/* schedule_delayed_work(&bq->monitor_work, 60 * HZ); */
 	bq_info("bq2597x probe successfully, Part Num:%d\n!",
 				bq->part_no);
 
