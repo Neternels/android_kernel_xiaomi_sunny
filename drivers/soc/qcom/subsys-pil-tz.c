@@ -1461,7 +1461,7 @@ static int __init pil_tz_init(void)
 {
         last_ssr_reason_entry = proc_create("last_mcrash", S_IFREG | S_IRUGO, NULL, &last_ssr_reason_file_ops);
 	if (!last_ssr_reason_entry) {
-	    printk(KERN_ERR "pil: cannot create proc entry last_mcrash\n");
+	    pr_err("pil: cannot create proc entry last_mcrash\n");
 	}
 	return platform_driver_register(&pil_tz_driver);
 }

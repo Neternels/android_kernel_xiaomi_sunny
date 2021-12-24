@@ -4752,13 +4752,8 @@ static int dwc3_otg_start_peripheral(struct dwc3_msm *mdwc, int on)
 		atomic_read(&mdwc->dev->power.usage_count));
 
 	if (on) {
-	#ifdef CONFIG_XIMI_MOJITO
-		dev_err(mdwc->dev, "%s: turn on gadget %s\n",
-					__func__, dwc->gadget.name);
-	#else
 		dev_dbg(mdwc->dev, "%s: turn on gadget %s\n",
                                          __func__, dwc->gadget.name);
-	#endif
 		dwc3_override_vbus_status(mdwc, true);
 		usb_phy_notify_connect(mdwc->hs_phy, USB_SPEED_HIGH);
 		usb_phy_notify_connect(mdwc->ss_phy, USB_SPEED_SUPER);

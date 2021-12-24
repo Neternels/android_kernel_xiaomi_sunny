@@ -206,11 +206,6 @@ spidev_write(struct file *filp, const char __user *buf,
 	unsigned long		missing;
 
 	/* chipselect only toggles at start or end of operation */
-	/* 2020.07.09 longcheer xugui removed for buffer kmalloc size begin */
-	/*if (count > bufsiz)
-		return -EMSGSIZE;
-	*/
-	/* 2020.07.09 longcheer xugui removed for buffer kmalloc size end */
 
 	spidev = filp->private_data;
 
@@ -639,28 +634,6 @@ static int spidev_open(struct inode *inode, struct file *filp)
 		goto err_find_dev;
 	}
 
-/* 2020.07.09 longcheer xugui removed for buffer kmalloc size begin */
-/*
-	if (!spidev->tx_buffer) {
-		spidev->tx_buffer = kmalloc(bufsiz, GFP_KERNEL);
-		if (!spidev->tx_buffer) {
-			dev_dbg(&spidev->spi->dev, "open/ENOMEM\n");
-			status = -ENOMEM;
-			goto err_find_dev;
-		}
-	}
-
-	if (!spidev->rx_buffer) {
-		spidev->rx_buffer = kmalloc(bufsiz, GFP_KERNEL);
-		if (!spidev->rx_buffer) {
-			dev_dbg(&spidev->spi->dev, "open/ENOMEM\n");
-			status = -ENOMEM;
-			goto err_alloc_rx_buf;
-		}
-	}
-*/
-/* 2020.07.09 longcheer xugui removed for buffer kmalloc size end */
-
 	spidev->users++;
 	filp->private_data = spidev;
 	nonseekable_open(inode, filp);
@@ -668,13 +641,6 @@ static int spidev_open(struct inode *inode, struct file *filp)
 	mutex_unlock(&device_list_lock);
 	return 0;
 
-/* 2020.07.09 longcheer xugui removed for buffer kmalloc size begin */
-/*
-err_alloc_rx_buf:
-	kfree(spidev->tx_buffer);
-	spidev->tx_buffer = NULL;
-*/
-/* 2020.07.09 longcheer xugui removed for buffer kmalloc size end */
 err_find_dev:
 	mutex_unlock(&device_list_lock);
 	return status;
@@ -697,30 +663,20 @@ static int spidev_release(struct inode *inode, struct file *filp)
 	/* last close? */
 	spidev->users--;
 	if (!spidev->users) {
-
-/* 2020.07.09 longcheer xugui removed for buffer kmalloc size begin */
-/*
-		kfree(spidev->tx_buffer);
-		spidev->tx_buffer = NULL;
-
-		kfree(spidev->rx_buffer);
-		spidev->rx_buffer = NULL;
-*/
-/* 2020.07.09 longcheer xugui removed for buffer kmalloc size end */
-
-		if (dofree)
-			kfree(spidev);
-		else
-			spidev->speed_hz = spidev->spi->max_speed_hz;
-	}
+               if (dofree)
+                       kfree(spidev);
+               else
+                       spidev->speed_hz = spidev->spi->max_speed_hz;
+       }
 #ifdef CONFIG_SPI_SLAVE
-	if (!dofree)
-	spi_slave_abort(spidev->spi);
+       if (!dofree)
+       spi_slave_abort(spidev->spi);
 #endif
-	mutex_unlock(&device_list_lock);
+       mutex_unlock(&device_list_lock);
 
-	return 0;
+       return 0;
 }
+
 
 static const struct file_operations spidev_fops = {
 	.owner =	THIS_MODULE,

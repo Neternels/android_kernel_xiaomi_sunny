@@ -4714,25 +4714,21 @@ static DEVICE_ATTR(card_slot_status, S_IRUGO ,
 int32_t card_slot_init_device_name(void)
 {
 	int32_t error = 0;
-	//pr_err("xg-2\n");
 	if(card_slot_device != NULL){
 		pr_err("card_slot already created\n");
 		return 0;
 	}
 	card_slot_device = kobject_create_and_add("card_slot", NULL);
 	if (card_slot_device == NULL) {
-		//pr_err("xg-3,%d\n");
-		printk("%s: card_slot register failed\n", __func__);
+		pr_err("%s: card_slot register failed\n", __func__);
 		error = -ENOMEM;
 		return error ;
 	}
 	error = sysfs_create_file(card_slot_device, &dev_attr_card_slot_status.attr);
 	if (error) {
-		//pr_err("xg-4 %d\n",error);
-		printk("%s: card_slot card_slot_status_create_file failed\n", __func__);
+		pr_err("%s: card_slot card_slot_status_create_file failed\n", __func__);
 		kobject_del(card_slot_device);
 	}
-	// pr_err("xg-5\n");
 	return 0 ;
 }
 /* 2020.07.13 longcheer xugui add sdcard slot info for factory mode end */
@@ -5223,7 +5219,6 @@ static int sdhci_msm_probe(struct platform_device *pdev)
 			goto remove_max_bus_bw_file;
 	/* 2020.07.13 longcheer xugui add sdcard slot info for factory mode begin */
 	} else {
-		//pr_err("xg-1\n");
 		card_host = dev_get_drvdata(&pdev->dev);
 		card_slot_init_device_name();
 	/* 2020.07.13 longcheer xugui add sdcard slot info for factory mode end */

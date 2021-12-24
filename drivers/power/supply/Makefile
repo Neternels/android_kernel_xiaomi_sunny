@@ -85,5 +85,3 @@ obj-$(CONFIG_AXP288_CHARGER)	+= axp288_charger.o
 obj-$(CONFIG_ARCH_QCOM)		+= qcom/
 obj-$(CONFIG_ARCH_QCOM) 		+= ti/
 obj-$(CONFIG_ARCH_QCOM) 		+= maxim/
-# obj-$(CONFIG_ARCH_QCOM)         += sc8551_charger.o pd_policy_manager.o
-
