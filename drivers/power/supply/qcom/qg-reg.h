@@ -131,6 +131,7 @@
 #define QG_SDAM_ESR_DISCHARGE_SF_OFFSET		0x74 /* 2-byte 0x74-0x75 */
 #define QG_SDAM_BATT_AGE_LEVEL_OFFSET		0x76 /* 1-byte 0x76 */
 #define QG_SDAM_MAGIC_OFFSET			0x80 /* 4-byte 0x80-0x83 */
+#define QG_SDAM_PROFILE_VERSION_OFFSET	        0xA3 /* 1-byte 0xA3*/
 #define QG_SDAM_MAX_OFFSET			0xA4
 
 /* Below offset is used by PBS */
