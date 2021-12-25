@@ -1886,13 +1886,13 @@ static void esd_recovery(int irq, void *data)
 		sde_encoder_display_failure_notification(c_conn->encoder, false);
 	}
 
-	pr_info("esd check irq report panel_status = %d panel_name = %s\n",
+	pr_debug("esd check irq report panel_status = %d panel_name = %s\n",
 			panel_on, dsi_display->panel->name);
 }
 
 static irqreturn_t esd_err_irq_handle(int irq, void *data)
 {
-	pr_info("esd check irq report lcd_esd_irq = %d\n", lcd_esd_irq);
+	pr_debug("esd check irq report lcd_esd_irq = %d\n", lcd_esd_irq);
 	if (lcd_esd_irq)
 	return IRQ_HANDLED;
 
@@ -2345,11 +2345,11 @@ struct drm_connector *sde_connector_init(struct drm_device *dev,
 									  dsi_display->panel->esd_config.esd_err_irq_flags,
 									  "esd_err_irq", c_conn);
 			if (rc < 0) {
-				pr_err("%s: request esd irq %d failed\n",
+				pr_debug("%s: request esd irq %d failed\n",
 						__func__, dsi_display->panel->esd_config.esd_err_irq);
 				dsi_display->panel->esd_config.esd_err_irq = 0;
 			} else
-				pr_info("%s: Request esd irq succeed!\n", __func__);
+				pr_debug("%s: Request esd irq succeed!\n", __func__);
 		}
 
 	}
