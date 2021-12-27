@@ -657,8 +657,6 @@ static int usbpd_pm_fc2_charge_algo(struct usbpd_pm *pdpm)
 
 	static int ibus_limit;
 
-	//usbpd_set_new_fcc_voter(pdpm);
-
 	effective_fcc_val = usbpd_get_effective_fcc_val(pdpm);
 
 	if (effective_fcc_val > 0) {
@@ -668,7 +666,6 @@ static int usbpd_pm_fc2_charge_algo(struct usbpd_pm *pdpm)
 		 * bq25970 alone compensate 100mA,  bq25970 master ans slave  compensate 300mA,
 		 * for target curr_ibus_limit for bq adc accurancy is below standard and power suuply system current
 		 */
-		//curr_ibus_limit += pm_config.bus_curr_compensate;
 		/* curr_ibus_limit should compare with apdo_max_curr here*/
 		curr_ibus_limit = min(curr_ibus_limit, pdpm->apdo_max_curr);
 		curr_ibus_limit += 200;
@@ -724,7 +721,7 @@ static int usbpd_pm_fc2_charge_algo(struct usbpd_pm *pdpm)
 	pr_debug("pdpm->cp.vbat_reg:%d, pdpm->cp.ibat_reg:%d\n",
 			pdpm->cp.vbat_reg, pdpm->cp.ibat_reg);
 	/* hardware regulation loop*/
-	if (pdpm->cp.vbat_reg) /*|| pdpm->cp.ibat_reg*/
+	if (pdpm->cp.vbat_reg)
 		step_bat_reg = 3 * (-pm_config.fc2_steps);
 	else
 		step_bat_reg = pm_config.fc2_steps;
@@ -803,8 +800,6 @@ static int usbpd_pm_fc2_charge_algo(struct usbpd_pm *pdpm)
 	pr_debug("steps: %d, sw_ctrl_steps:%d, hw_ctrl_steps:%d\n", steps, sw_ctrl_steps, hw_ctrl_steps);
 	pdpm->request_voltage += steps * STEP_MV;
 
-		//pdpm->request_current = min(pdpm->apdo_max_curr, curr_ibus_limit);
-
 	pr_info("steps:%d sw_ctrl_steps:%d step_vbat:%d step_ibat:%d step_ibus:%d\n",
 			steps, sw_ctrl_steps, step_vbat, step_ibat, step_ibus);
 
@@ -813,10 +808,6 @@ static int usbpd_pm_fc2_charge_algo(struct usbpd_pm *pdpm)
 
 	if (pdpm->request_voltage > pdpm->apdo_max_volt)
 		pdpm->request_voltage = pdpm->apdo_max_volt;
-
-	/*if (pdpm->adapter_voltage > 0
-			&& pdpm->request_voltage > pdpm->adapter_voltage + 500)
-		pdpm->request_voltage = pdpm->adapter_voltage + 500; */
 
 	return PM_ALGO_RET_OK;
 }
@@ -843,7 +834,6 @@ static void usbpd_pm_move_state(struct usbpd_pm *pdpm, enum pm_state state)
 static int usbpd_pm_sm(struct usbpd_pm *pdpm)
 {
 	int ret;
-	//int rc = 0;
 	static int tune_vbus_retry;
 	static bool stop_sw;
 	static bool recover;
@@ -1047,7 +1037,6 @@ static int usbpd_pm_sm(struct usbpd_pm *pdpm)
 		else
 			usbpd_select_pdo(pdpm->pd, pdpm->apdo_selected_pdo,
 				6000000, pdpm->apdo_max_curr * 1000);
-		//usbpd_select_pdo(pdpm->pd, 1, 0, 0);
 		if (pdpm->fcc_votable)
 			vote(pdpm->fcc_votable, BQ_TAPER_FCC_VOTER,
 					false, 0);
@@ -1074,8 +1063,6 @@ static int usbpd_pm_sm(struct usbpd_pm *pdpm)
 
 		if (recover)
 			usbpd_pm_move_state(pdpm, PD_PM_STATE_ENTRY);
-		//else
-		//	rc = 1;
 		pr_err("longcheer,%s:stop_sw=%d,pdpm->sw.charge_enabled=%d, pdpm->sw.charge_limited=%d\n",__func__,stop_sw,pdpm->sw.charge_enabled,pdpm->sw.charge_limited);
 
 		break;
