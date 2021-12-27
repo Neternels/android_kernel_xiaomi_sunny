@@ -561,9 +561,6 @@ static struct device_attribute power_supply_attrs[] = {
 	POWER_SUPPLY_ATTR(serial_number),
 	POWER_SUPPLY_ATTR(battery_type),
 	POWER_SUPPLY_ATTR(cycle_counts),
-#ifdef CONFIG_TARGET_PROJECT_J6
-	POWER_SUPPLY_ATTR(cp_ovp_config),
-#endif
 };
 
 static struct attribute *
