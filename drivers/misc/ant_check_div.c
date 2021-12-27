@@ -56,8 +56,6 @@ static irqreturn_t ant_div_interrupt(int irq, void *data)
 			input_report_key(ant_div_info->ipdev, DIV_ANT_UNCONNECT, 0);
 			input_sync(ant_div_info->ipdev);
 	}
-	//enable_irq(irq);
-	//mutex_unlock(&ant_div_info->io_lock);
     return IRQ_HANDLED;
 }
 
@@ -165,14 +163,11 @@ static int ant_div_probe(struct platform_device *pdev)
 	ant_div_info->ipdev->name = "ant_div_check-input";
 	input_set_capability(ant_div_info->ipdev, EV_KEY, DIV_ANT_CONNECT);
 	input_set_capability(ant_div_info->ipdev, EV_KEY, DIV_ANT_UNCONNECT);
-	//set_bit(INPUT_PROP_NO_DUMMY_RELEASE, ant_div_info->ipdev->propbit);
 	rc = input_register_device(ant_div_info->ipdev);
 	if (rc) {
 		pr_err("ant_div_probe: input_register_device fail rc=%d\n", rc);
 		goto input_error;
 	}
-
-//	ant_power_on(&pdev->dev);
 	
 	
 /*interrupt config*/
