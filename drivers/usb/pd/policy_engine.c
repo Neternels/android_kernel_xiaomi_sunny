@@ -782,11 +782,7 @@ static int pd_send_msg(struct usbpd *pd, u8 msg_type, const u32 *data,
 	spin_lock_irqsave(&pd->rx_lock, flags);
 	if (!list_empty(&pd->rx_q)) {
 		spin_unlock_irqrestore(&pd->rx_lock, flags);
-	#ifdef CONFIG_XIMI_MOJITO
-		//usbpd_dbg(&pd->dev, "Abort send due to pending RX\n");
-	#else
 		usbpd_dbg(&pd->dev, "Abort send due to pending RX\n");
-	#endif
 		return -EBUSY;
 	}
 	spin_unlock_irqrestore(&pd->rx_lock, flags);
@@ -814,11 +810,7 @@ static int pd_send_ext_msg(struct usbpd *pd, u8 msg_type,
 	u8 num_objs;
 
 	if (data_len > PD_MAX_EXT_MSG_LEN) {
-	#ifdef CONFIG_XIMI_MOJITO
-		//usbpd_warn(&pd->dev, "Extended message length exceeds max, truncating...\n");
-	#else
 		usbpd_warn(&pd->dev, "Extended message length exceeds max, truncating...\n     ");
-	#endif
 		data_len = PD_MAX_EXT_MSG_LEN;
 	}
 
@@ -957,8 +949,6 @@ static int pd_select_pdo(struct usbpd *pd, int pdo_pos, int uv, int ua)
 	return 0;
 	#else
 		/* if limit_pd_vbus is enabled, pd request uv will less than pd vbus max */
-		//if (pd->limit_pd_vbus && uv > pd->pd_vbus_max_limit)
-			//uv = pd->pd_vbus_max_limit;
 		if (uv > PD_VBUS_MAX)
 			uv = PD_VBUS_MAX;
 
@@ -3227,10 +3217,6 @@ static void usbpd_sm(struct work_struct *w)
 			memcpy(&pd->received_pdos, rx_msg->payload,
 					min_t(size_t, rx_msg->data_len,
 						sizeof(pd->received_pdos)));
-		#ifdef CONFIG_XIMI_MOJITO
-			//for(i=0; i < 7; i++);
-			//	pr_err("PDO[%d]=%X\n", i, pd->received_pdos[i]);
-		#endif
 			pd->src_cap_id++;
 
 			usbpd_set_state(pd, PE_SNK_EVALUATE_CAPABILITY);
@@ -3762,7 +3748,6 @@ static int psy_changed(struct notifier_block *nb, unsigned long evt, void *ptr)
 	union extcon_property_value eval;
 	int ret;
 
-	//usbpd_err(&pd->dev, "psy_changed\n");
 	if (ptr != pd->usb_psy || evt != PSY_EVENT_PROP_CHANGED)
 		return 0;
 
@@ -5079,7 +5064,6 @@ static void usbpd_mi_connect_cb(struct usbpd_svid_handler *hdlr,
 	}
 
 	pr_debug("peer_usb_comm: %d\n", peer_usb_comm);
-//	pd->dp_usbpd.base.peer_usb_comm = peer_usb_comm;
 #endif
 	pd->uvdm_state = USBPD_UVDM_CONNECT;
 #ifdef CONFIG_XIMI_MOJITO
@@ -5156,7 +5140,7 @@ static void usbpd_mi_vdm_received_cb(struct usbpd_svid_handler *hdlr, u32 vdm_hd
 		usbpd_dbg(&pd->dev, "usb r_cable now:%dmohm\n", r_cable);
 		break;
 	case USBPD_UVDM_SESSION_SEED:
-	#if 0 // CONFIG_XIMI_MOJITO
+	#ifdef CONFIG_XIMI_MOJITO
 		for (i = 0; i < USBPD_UVDM_SS_LEN; i++) {
 			pd->vdm_data.s_secert[i] = vdos[i];
 			usbpd_dbg(&pd->dev, "usbpd s_secert vdos[%d]=0x%x", i, vdos[i]);
@@ -5171,7 +5155,7 @@ static void usbpd_mi_vdm_received_cb(struct usbpd_svid_handler *hdlr, u32 vdm_hd
 	#endif
 		break;
 	case USBPD_UVDM_AUTHENTICATION:
-	#if 0  //CONFIG_XIMI_MOJITO
+	#if CONFIG_XIMI_MOJITO
 		for (i = 0; i < USBPD_UVDM_SS_LEN; i++) {
 			pd->vdm_data.digest[i] = vdos[i];
 			usbpd_dbg(&pd->dev, "usbpd digest[%d]=0x%x", i, vdos[i]);
