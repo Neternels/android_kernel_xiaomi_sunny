@@ -225,10 +225,6 @@ source "drivers/sensors/Kconfig"
 
 source "drivers/esoc/Kconfig"
 
-config TARGET_PROJECT_J6
-	bool "Target Projet J6"
-	default n
-
 config XIMI_MOJITO
         bool "Xiaomi Mojito"
         default n
