@@ -162,6 +162,9 @@ void put_iova_domain(struct iova_domain *iovad);
 struct iova *split_and_remove_iova(struct iova_domain *iovad,
 	struct iova *iova, unsigned long pfn_lo, unsigned long pfn_hi);
 void free_cpu_cached_iovas(unsigned int cpu, struct iova_domain *iovad);
+#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+void free_global_cached_iovas(struct iova_domain *iovad);
+#endif
 #else
 static inline int iova_cache_get(void)
 {
@@ -269,6 +272,11 @@ static inline void free_cpu_cached_iovas(unsigned int cpu,
 					 struct iova_domain *iovad)
 {
 }
+#ifdef CONFIG_TARGET_PROJECT_K7_CAMERA
+static inline void free_global_cached_iovas(struct iova_domain *iovad)
+{
+}
+#endif
 #endif
 
 #endif
