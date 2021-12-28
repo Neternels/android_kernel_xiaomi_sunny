@@ -431,6 +431,9 @@ static inline void cpufreq_resume(void) {}
 #define CPUFREQ_NOTIFY			(1)
 #define CPUFREQ_INCOMPATIBLE	(6)
 
+/*add for thermal-k7*/
+#define CPUFREQ_THERMAL			(2)
+
 #ifdef CONFIG_CPU_FREQ
 int cpufreq_register_notifier(struct notifier_block *nb, unsigned int list);
 int cpufreq_unregister_notifier(struct notifier_block *nb, unsigned int list);
