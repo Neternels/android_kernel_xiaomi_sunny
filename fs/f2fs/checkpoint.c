@@ -1640,7 +1640,6 @@ stop:
 out:
 	if (cpc->reason != CP_RESIZE)
 		mutex_unlock(&sbi->cp_mutex);
-	mutex_unlock(&sbi->cp_mutex);
 	return err;
 }
 
