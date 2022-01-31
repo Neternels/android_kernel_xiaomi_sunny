@@ -458,7 +458,7 @@ static void packagelist_destroy(void)
 	hlist_for_each_entry_safe(hash_cur, h_t, &free_list, dlist)
 		free_hashtable_entry(hash_cur);
 	mutex_unlock(&sdcardfs_super_list_lock);
-	pr_info("sdcardfs: destroyed packagelist pkgld\n");
+	pr_debug_ratelimited("sdcardfs: destroyed packagelist pkgld\n");
 }
 
 #define SDCARDFS_CONFIGFS_ATTR(_pfx, _name)			\
@@ -575,7 +575,7 @@ static void package_details_release(struct config_item *item)
 {
 	struct package_details *package_details = to_package_details(item);
 
-	pr_info("sdcardfs: removing %s\n", package_details->name.name);
+	pr_debug_ratelimited("sdcardfs: removing %s\n", package_details->name.name);
 	remove_packagelist_entry(&package_details->name);
 	kfree(package_details->name.name);
 	kfree(package_details);
@@ -627,7 +627,7 @@ static void extension_details_release(struct config_item *item)
 {
 	struct extension_details *extension_details = to_extension_details(item);
 
-	pr_info("sdcardfs: No longer mapping %s files to gid %d\n",
+	pr_debug_ratelimited("sdcardfs: No longer mapping %s files to gid %d\n",
 			extension_details->name.name, extension_details->num);
 	remove_ext_gid_entry(&extension_details->name, extension_details->num);
 	kfree(extension_details->name.name);
@@ -706,7 +706,7 @@ static void extensions_drop_group(struct config_group *group, struct config_item
 {
 	struct extensions_value *value = to_extensions_value(item);
 
-	pr_info("sdcardfs: No longer mapping any files to gid %d\n", value->num);
+	pr_debug_ratelimited("sdcardfs: No longer mapping any files to gid %d\n", value->num);
 	kfree(value);
 }
 

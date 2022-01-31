@@ -261,7 +261,7 @@ retry_deleg:
 				goto retry_deleg;
 		}
 		if (error)
-			pr_debug("sdcardfs: Failed to touch up lower fs gid/uid for %s\n", name);
+			pr_debug_ratelimited("sdcardfs: Failed to touch up lower fs gid/uid for %s\n", name);
 	}
 	sdcardfs_put_lower_path(dentry, &path);
 }
@@ -469,7 +469,7 @@ int setup_obb_dentry(struct dentry *dentry, struct path *lower_path)
 		 * because the sdcard daemon also regards this case as
 		 * a lookup fail.
 		 */
-		pr_info("sdcardfs: the sbi->obbpath is not available\n");
+		pr_debug_ratelimited("sdcardfs: the sbi->obbpath is not available\n");
 	}
 	return err;
 }
