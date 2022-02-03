@@ -139,6 +139,7 @@ do {											\
 		printk(KERN_ERR "[bq2597x-STANDALONE]:%s:" fmt, __func__, ##__VA_ARGS__);\
 } while (0);
 
+#ifdef BQ_LOG
 #define bq_info(fmt, ...)								\
 do {											\
 	if (bq->mode == BQ25970_ROLE_MASTER)						\
@@ -148,6 +149,9 @@ do {											\
 	else										\
 		printk(KERN_INFO "[bq2597x-STANDALONE]:%s:" fmt, __func__, ##__VA_ARGS__);\
 } while (0);
+#else
+#define bq_info(fmt, ...) // no-ops
+#endif
 
 #define bq_dbg(fmt, ...)								\
 do {											\
