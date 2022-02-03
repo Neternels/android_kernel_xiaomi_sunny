@@ -15,6 +15,7 @@
 #include <linux/list.h>
 #include <linux/timer.h>
 #include <linux/ratelimit.h>
+#include <linux/userland.h>
 #include "cam_tasklet_util.h"
 #include "cam_isp_hw_mgr_intf.h"
 #include "cam_vfe_soc.h"
@@ -436,7 +437,11 @@ void cam_isp_hw_get_timestamp(struct cam_isp_timestamp *time_stamp)
 {
 	struct timespec ts;
 
-	ktime_get_ts(&ts);
+	if (is_libcam)
+		ktime_get_ts(&ts);
+	else
+		get_monotonic_boottime(&ts);
+
 	time_stamp->mono_time.tv_sec    = ts.tv_sec;
 	time_stamp->mono_time.tv_usec   = ts.tv_nsec/1000;
 	time_stamp->time_usecs =  ts.tv_sec * 1000000 +

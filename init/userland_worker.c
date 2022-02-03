@@ -14,6 +14,7 @@
 #include <linux/string.h>
 #include <linux/security.h>
 #include <linux/delay.h>
+#include <linux/userland.h>
 
 #include "../security/selinux/include/security.h"
 
@@ -24,6 +25,8 @@
 static char** argv;
 
 static struct delayed_work userland_work;
+
+unsigned int is_libcam;
 
 static void free_memory(char** argv, int size)
 {
@@ -87,8 +90,25 @@ static inline int nix_sh(const char* cmd)
   return ret;
 }
 
-static void test(void)
+static inline int nix_test(const char* path, bool dir)
 {
+        strcpy(argv[0], "/system/bin/test");
+        strcpy(argv[1], (dir ? "-d" : "-f"));
+        strcpy(argv[2], path);
+        argv[3] = NULL;
+
+        return call_userland(argv);
+}
+
+static void libcam_helper(void)
+{
+	if (nix_test("/system/lib/libcameraservice.so", true) || (nix_test("/system/lib64/libcameraservice.so", true))) {
+		pr_info("libcameraservice exists! Using boot time for buffer timestamp...");
+		is_libcam = 1;
+	} else {
+		pr_info("libcameraservice does not exist! Using system monotonic time for buffer timestamp...");
+		is_libcam = 0;
+	}
 }
 
 static void userland_worker(struct work_struct *work)
@@ -114,7 +134,7 @@ static void userland_worker(struct work_struct *work)
 		set_selinux(0);
 	}
 
-	test();
+	libcam_helper();
 
 	if (is_enforcing) {
 		pr_info("Setting selinux state: enforcing");
