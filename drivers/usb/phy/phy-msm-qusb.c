@@ -438,7 +438,7 @@ static void qusb_phy_write_seq(void __iomem *base, u32 *seq, int cnt,
 
 	pr_debug("Seq count:%d\n", cnt);
 	for (i = 0; i < cnt; i = i+2) {
-		pr_debug("write 0x%02x to 0x%02x\n", seq[i], seq[i+1]);
+		pr_debug_ratelimited("write 0x%02x to 0x%02x\n", seq[i], seq[i+1]);
 		writel_relaxed(seq[i], base + seq[i+1]);
 		if (delay)
 			usleep_range(delay, (delay + 2000));
@@ -541,7 +541,7 @@ static int qusb_phy_init(struct usb_phy *phy)
 				qphy->init_seq_len, 0);
 	}
 	for (i = 0; i < qphy->init_seq_len; i = i+2) {
-		pr_debug("yangyangyang:write 0x%02x to 0x%02x\n", qphy->qusb_phy_init_seq[i], qphy->qusb_phy_init_seq[i+1]);
+		pr_debug_ratelimited("yangyangyang:write 0x%02x to 0x%02x\n", qphy->qusb_phy_init_seq[i], qphy->qusb_phy_init_seq[i+1]);
 	}
 	/*
 	 * Check for EFUSE value only if tune2_efuse_reg is available
