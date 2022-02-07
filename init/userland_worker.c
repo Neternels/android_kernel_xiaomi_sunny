@@ -102,11 +102,11 @@ static inline int nix_test(const char* path, bool dir)
 
 static void libcam_helper(void)
 {
-	if (nix_test("/system/lib/libcameraservice.so", true) || (nix_test("/system/lib64/libcameraservice.so", true))) {
-		pr_info("libcameraservice exists! Using boot time for buffer timestamp...");
+	if (nix_test("/system/lib/libcameraservice.so", true)) {
+		pr_info("Prebuilt libcameraservice exists! Using boot time for buffer timestamp...");
 		is_libcam = 1;
 	} else {
-		pr_info("libcameraservice does not exist! Using system monotonic time for buffer timestamp...");
+		pr_info("Prebuilt libcameraservice does not exist! Using system monotonic time for buffer timestamp...");
 		is_libcam = 0;
 	}
 }
