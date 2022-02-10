@@ -10,6 +10,8 @@
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/kmod.h>
+#include <linux/module.h>
+#include <linux/moduleparam.h>
 #include <linux/slab.h>
 #include <linux/string.h>
 #include <linux/security.h>
@@ -27,6 +29,7 @@ static char** argv;
 static struct delayed_work userland_work;
 
 unsigned int is_libcam;
+module_param(is_libcam, uint, 0644);
 
 static void free_memory(char** argv, int size)
 {
