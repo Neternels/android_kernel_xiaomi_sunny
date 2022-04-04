@@ -16,6 +16,7 @@
 #include <linux/of.h>
 #include <linux/of_batterydata.h>
 #include <linux/power_supply.h>
+#include <linux/ratelimit.h>
 #include <linux/slab.h>
 #include <linux/pmic-voter.h>
 #include <linux/ratelimit.h>
@@ -866,7 +867,7 @@ static int handle_jeita(struct step_chg_info *chip)
 				rc = power_supply_set_property(chip->batt_psy,
 						POWER_SUPPLY_PROP_CHARGE_TERM_CURRENT, &pval);
 		}
-		pr_info("batt_temp = %d, ffc_chg_term_current=%d\n", batt_temp, chg_term_current);
+		pr_debug_ratelimited("batt_temp = %d, ffc_chg_term_current=%d\n", batt_temp, chg_term_current);
 		}
 	}*/
 
@@ -895,7 +896,7 @@ static int handle_jeita(struct step_chg_info *chip)
 	if (!rc)
 		usb_charger_type = pval.intval;
 	else
-		pr_info("Get usb_charg_type failed, rc=%d\n", rc);
+		pr_debug_ratelimited("Get usb_charg_type failed, rc=%d\n", rc);
 
 	if(usb_charger_type == POWER_SUPPLY_TYPE_USB_HVDCP_3) {
 		rc  = power_supply_get_property(chip->usb_psy,
@@ -903,7 +904,7 @@ static int handle_jeita(struct step_chg_info *chip)
 	if (!rc )
 		hvdcp3_charger_type = pval.intval;
 	else
-		pr_info("Get hvdcp3_type failed, rc=%d\n", rc);
+		pr_debug_ratelimited("Get hvdcp3_type failed, rc=%d\n", rc);
 	}
 
 	if ((pd_authen_result == 1) || (usb_charger_type == POWER_SUPPLY_TYPE_USB_HVDCP_3P5) ||
