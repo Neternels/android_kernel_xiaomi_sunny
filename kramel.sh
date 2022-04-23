@@ -59,6 +59,9 @@ export PROCS
 # Compiler to use for builds.
 export COMPILER=gcc
 
+# Module building support. Set 1 to enable. | Set 0 to disable.
+export MODULE=1
+
 # Requirements
 if [ "${ci}" != 1 ]; then
     if ! hash dialog make curl wget unzip find 2>/dev/null; then
@@ -124,6 +127,12 @@ elif [[ "${COMPILER}" = clang ]]; then
     )
 fi
 
+if [[ "${MODULE}" = 1 ]]; then
+    if [ ! -d "${KDIR}"/modules ]; then
+        git clone --depth=1 https://github.com/neternels/neternels-modules "${KDIR}"/modules
+    fi
+fi
+
 if [ ! -d "${KDIR}/anykernel3-mojito/" ]; then
     git clone --depth=1 https://github.com/neternels/anykernel3 -b mojito anykernel3-mojito
 fi
@@ -148,6 +157,9 @@ else
     export VERSION=$version
     kver=$KBUILD_BUILD_VERSION
     zipn=NetErnels-mojito-${VERSION}
+    if [[ "${MODULE}" = "1" ]]; then
+        modn="${zipn}-modules"
+    fi
 fi
 
 # A function to exit on SIGINT.
@@ -255,7 +267,10 @@ mod() {
     make "${MAKE[@]}" modules_prepare
     make -j"$PROCS" "${MAKE[@]}" modules INSTALL_MOD_PATH="${KDIR}"/out/modules
     make "${MAKE[@]}" modules_install INSTALL_MOD_PATH="${KDIR}"/out/modules
-    find "${KDIR}"/out/modules -type f -iname '*.ko' -exec cp {} "${KDIR}"/anykernel3-mojito/modules/system/lib/modules/ \;
+    find "${KDIR}"/out/modules -type f -iname '*.ko' -exec cp {} "${KDIR}"/modules/system/lib/modules/ \;
+    cd "${KDIR}"/modules || exit 1
+    zip -r9 "${modn}".zip . -x ".git*" -x "README.md" -x "LICENSE" -x "*.zip"
+    cd ../
     echo -e "\n\e[1;32m[✓] Built Modules! \e[0m"
 }
 
@@ -278,6 +293,10 @@ mkzip() {
     echo -e "\n\e[1;32m[✓] Built zip! \e[0m"
     if [[ "${TGI}" != "0" ]]; then
         tgs "${zipn}.zip" "*#${kver} ${KBUILD_COMPILER_STRING}*"
+    fi
+    if [[ "${MODULE}" = "1" ]]; then
+        cd ../modules || exit 1
+        tgs "${modn}.zip" "*#${kver} ${KBUILD_COMPILER_STRING}*"
     fi
 }
 
