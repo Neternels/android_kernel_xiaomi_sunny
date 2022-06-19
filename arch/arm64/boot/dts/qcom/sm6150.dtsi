@@ -457,6 +457,7 @@
 
 	chosen {
 		bootargs = "rcupdate.rcu_expedited=1 rcu_nocbs=0-7";
+		rng-seed = <0x12345678>;
 	};
 
 	soc: soc { };
