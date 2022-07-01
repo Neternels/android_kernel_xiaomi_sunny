@@ -214,6 +214,11 @@ mcfg() {
 # A function to build the kernel.
 img() {
     if [[ "${TGI}" != "0" ]]; then
+        if [[ "${PERSONAL}" = 1 ]]; then
+            wget https://raw.githubusercontent.com/cyberknight777/my-stuffs/main/img/net.jpg
+            curl -F photo=@net.jpg https://api.telegram.org/bot"${TOKEN}"/sendPhoto -F chat_id=-1001522330051
+            rm net.jpg
+        fi
         tg "
 *Build Number*: \`${kver}\`
 *Builder*: \`${BUILDER}\`
