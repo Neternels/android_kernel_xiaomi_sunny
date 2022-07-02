@@ -126,8 +126,8 @@
 		vcc_spi-supply  = <&pm6150l_l7>;
 		vdd_io-supply   = <&pm6150l_l7>;
 		vdd_ana-supply  = <&pm6150l_l7>;
-		/* fpc,enable-on-boot; */
-		/* fpc,enable-wakeup; */
+		fpc,enable-on-boot;
+		fpc,enable-wakeup;
 
 		pinctrl-names = "fpc1020_reset_reset",
 			"fpc1020_reset_active",
