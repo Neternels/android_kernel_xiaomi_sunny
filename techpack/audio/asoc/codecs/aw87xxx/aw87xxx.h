@@ -150,6 +150,7 @@ struct aw87xxx {
  * print information control
  *
  *******************************************/
+#ifdef CONFIG_DEBUG_KERNEL
 #define aw_dev_err(dev, format, ...) \
 			pr_err("[%s]" format, dev_name(dev), ##__VA_ARGS__)
 
@@ -159,6 +160,11 @@ struct aw87xxx {
 #define aw_dev_dbg(dev, format, ...) \
 			pr_debug("[%s]" format, dev_name(dev), ##__VA_ARGS__)
 
+#else
+#define aw_dev_err(dev, format, ...) no_printk("[%s]" format, dev_name(dev), ##__VA_ARGS__)
+#define aw_dev_info(dev, format, ...) no_printk("[%s]" format, dev_name(dev), ##__VA_ARGS__)
+#define aw_dev_dbg(dev, format, ...) no_printk("[%s]" format, dev_name(dev), ##__VA_ARGS__)
+#endif
 /******************************************************************
 * aw87xxx functions
 *******************************************************************/
