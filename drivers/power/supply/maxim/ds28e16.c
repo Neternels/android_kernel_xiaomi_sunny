@@ -32,18 +32,10 @@
 #include <linux/regmap.h>
 #include <linux/random.h>
 
-#ifdef CONFIG_XIMI_MOJITO
-#define ds_info	pr_err
-#define ds_dbg	pr_err
-#define ds_err	pr_err
-#define ds_log	pr_err
-#else
-#define ds_info	pr_debug
+#define ds_info pr_debug
 #define ds_dbg	pr_debug
 #define ds_err	pr_err
 #define ds_log	pr_debug
-#endif
-
 
 struct ds28e16_data {
 	struct platform_device *pdev;
@@ -900,7 +892,7 @@ unsigned char *Challenge, unsigned char *Secret_Seeds, unsigned char *S_Secret)
 	int msg_len = 0;
 	unsigned char flag = DS_FALSE;
 
-	if (mi_auth_result == DS_TRUE)
+	if (mi_auth_result == DS_TRUE) {
 		return mi_auth_result;
 
 		if (ds28el16_Read_RomID_retry(mi_romid) != DS_TRUE) {
@@ -914,6 +906,7 @@ unsigned char *Challenge, unsigned char *Secret_Seeds, unsigned char *S_Secret)
 			ow_reset();
 			return ERROR_R_STATUS;
 		}
+	}
 
 	// DS28E16 calculate its session secret
 	flag = DS28E16_cmd_computeS_Secret_retry(anon,
@@ -1248,7 +1241,7 @@ static int verify_psy_register(struct ds28e16_data *ds)
 }
 
 
-static void verify_psy_unregister(struct ds28e16_data *ds)
+static inline void verify_psy_unregister(struct ds28e16_data *ds)
 {
 	power_supply_unregister(ds->verify_psy);
 }
@@ -1327,7 +1320,7 @@ struct device_attribute *attr, char *buf)
 	RomID[4], RomID[5], RomID[6], RomID[7]);
 }
 
-static ssize_t ds28e16_ds_pagenumber_status_read(struct device *dev,
+static inline ssize_t ds28e16_ds_pagenumber_status_read(struct device *dev,
 struct device_attribute *attr, char *buf)
 {
 	return scnprintf(buf, PAGE_SIZE, "%02x\n", pagenumber);
@@ -1411,7 +1404,7 @@ const char *buf, size_t count)
 	return count;
 }
 
-static ssize_t ds28e16_ds_time_status_read(struct device *dev,
+static inline ssize_t ds28e16_ds_time_status_read(struct device *dev,
 struct device_attribute *attr, char *buf)
 {
 	return scnprintf(buf, PAGE_SIZE, "%d\n", attr_trytimes);
@@ -1538,13 +1531,13 @@ const char *buf, size_t count)
 	return count;
 }
 
-static ssize_t ds28e16_ds_auth_ANON_status_read(struct device *dev,
+static inline ssize_t ds28e16_ds_auth_ANON_status_read(struct device *dev,
 struct device_attribute *attr, char *buf)
 {
 	return scnprintf(buf, PAGE_SIZE, "%02x\n", auth_ANON);
 }
 
-static ssize_t ds28e16_ds_auth_ANON_store(struct device *dev,
+static inline ssize_t ds28e16_ds_auth_ANON_store(struct device *dev,
 struct device_attribute *attr,
 const char *buf, size_t count)
 {
@@ -1554,13 +1547,13 @@ const char *buf, size_t count)
 	return count;
 }
 
-static ssize_t ds28e16_ds_auth_BDCONST_status_read(struct device *dev,
+static inline ssize_t ds28e16_ds_auth_BDCONST_status_read(struct device *dev,
 struct device_attribute *attr, char *buf)
 {
 	return scnprintf(buf, PAGE_SIZE, "%02x\n", auth_BDCONST);
 }
 
-static ssize_t ds28e16_ds_auth_BDCONST_store(struct device *dev,
+static inline ssize_t ds28e16_ds_auth_BDCONST_store(struct device *dev,
 struct device_attribute *attr,
 const char *buf, size_t count)
 {
@@ -1570,7 +1563,7 @@ const char *buf, size_t count)
 	return count;
 }
 
-static ssize_t ds28e16_ds_readstatus_status_read(struct device *dev,
+static inline ssize_t ds28e16_ds_readstatus_status_read(struct device *dev,
 struct device_attribute *attr, char *buf)
 {
 	int result;
@@ -1754,7 +1747,7 @@ ds28e16_parse_dt_err:
 	return retval;
 }
 
-static int ds28e16_remove(struct platform_device *pdev)
+static inline int ds28e16_remove(struct platform_device *pdev)
 {
 	struct ds28e16_data *ds28e16_data = platform_get_drvdata(pdev);
 
@@ -1763,18 +1756,18 @@ static int ds28e16_remove(struct platform_device *pdev)
 	return 0;
 }
 
-static long ds28e16_dev_ioctl(struct file *file, unsigned int cmd,
+static inline long ds28e16_dev_ioctl(struct file *file, unsigned int cmd,
 						unsigned long arg)
 {
 	ds_log("%d, cmd: 0x%x\n", __LINE__, cmd);
 	return 0;
 }
-static int ds28e16_dev_open(struct inode *inode, struct file *file)
+static inline int ds28e16_dev_open(struct inode *inode, struct file *file)
 {
 	return 0;
 }
 
-static int ds28e16_dev_release(struct inode *inode, struct file *file)
+static inline int ds28e16_dev_release(struct inode *inode, struct file *file)
 {
 	return 0;
 }
@@ -1801,14 +1794,14 @@ static struct platform_driver ds28e16_driver = {
 	.remove = ds28e16_remove,
 };
 
-static int __init ds28e16_init(void)
+static inline int __init ds28e16_init(void)
 {
 	ds_log("%s entry.", __func__);
 
 	return platform_driver_register(&ds28e16_driver);
 }
 
-static void __exit ds28e16_exit(void)
+static inline void __exit ds28e16_exit(void)
 {
 	ds_log("%s entry.", __func__);
 	platform_driver_unregister(&ds28e16_driver);
