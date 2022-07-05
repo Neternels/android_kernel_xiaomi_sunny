@@ -2290,11 +2290,6 @@ CONFIG_RMI4_F30=y
 # CONFIG_RMI4_F55 is not set
 
 #
-# Fingerprint Drivers
-#
-# CONFIG_FINGERPRINT_FPC1020 is not set
-
-#
 # Hardware I/O ports
 #
 CONFIG_SERIO=y
