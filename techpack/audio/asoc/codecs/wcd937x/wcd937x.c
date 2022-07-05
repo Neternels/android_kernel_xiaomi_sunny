@@ -12,6 +12,8 @@
  * GNU General Public License for more details.
  */
 
+#define wcd_info pr_debug
+
 #include <linux/module.h>
 #include <linux/slab.h>
 #include <linux/platform_device.h>
@@ -1810,7 +1812,7 @@ int aw87xxx_rcv_pa(int enable, int mode)
 		set_mode = 0;
 	else
 		set_mode = mode;
-	pr_info("%s: aw87xxx_rcv_mode %d\n", __func__, set_mode);
+	wcd_info("%s: aw87xxx_rcv_mode %d\n", __func__, set_mode);
 
 	ret = aw87xxx_audio_scene_load(set_mode, 1);
 	if (ret < 0) {
@@ -1829,7 +1831,7 @@ int aw87xxx_spk_pa(int enable, int mode)
 		set_mode = 0;
 	else
 		set_mode = mode;
-	pr_info("%s: aw87xxx_spk_mode %d\n", __func__, set_mode);
+	wcd_info("%s: aw87xxx_spk_mode %d\n", __func__, set_mode);
 
 	ret = aw87xxx_audio_scene_load(set_mode, 0);
 	if (ret < 0) {

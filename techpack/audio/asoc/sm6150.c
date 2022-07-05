@@ -11,6 +11,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
+
+#define sm_info pr_debug
+
 #include <linux/clk.h>
 #include <linux/delay.h>
 #include <linux/gpio.h>
@@ -786,7 +789,7 @@ static int aw87559_mode_get(struct snd_kcontrol *kcontrol,
 	unsigned char current_mode;
 	current_mode = aw87xxx_show_current_mode(0);
 	ucontrol->value.integer.value[0] = current_mode;
-	pr_info("%s: get mode:%d\n", __func__, current_mode);
+	sm_info("%s: get mode:%d\n", __func__, current_mode);
 	return 0;
 }
 static int aw87559_mode_set(struct snd_kcontrol *kcontrol,
@@ -804,7 +807,7 @@ static int aw87559_mode_set(struct snd_kcontrol *kcontrol,
 		return -EPERM;
 	}
 #endif
-	pr_info("%s: set mode:%d success", __func__, set_mode);
+	sm_info("%s: set mode:%d success", __func__, set_mode);
 	return 0;
 }
 static int aw87389_mode_get(struct snd_kcontrol *kcontrol,
@@ -813,7 +816,7 @@ static int aw87389_mode_get(struct snd_kcontrol *kcontrol,
 	unsigned char current_mode;
 	current_mode = aw87xxx_show_current_mode(1);
 	ucontrol->value.integer.value[0] = current_mode;
-	pr_info("%s: get mode:%d\n", __func__, current_mode);
+	sm_info("%s: get mode:%d\n", __func__, current_mode);
 	return 0;
 }
 static int aw87389_mode_set(struct snd_kcontrol *kcontrol,
@@ -831,7 +834,7 @@ static int aw87389_mode_set(struct snd_kcontrol *kcontrol,
 		return -EPERM;
 	}
 #endif
-	pr_info("%s: set mode:%d success", __func__, set_mode);
+	sm_info("%s: set mode:%d success", __func__, set_mode);
 	return 0;
 }
 #endif
@@ -4854,7 +4857,7 @@ static int msm_audrx_tavil_init(struct snd_soc_pcm_runtime *rtd)
 					      134, 135, 136, 137, 138, 139,
 					      140, 141, 142, 143};
 
-	pr_info("%s: dev_name:%s\n", __func__, dev_name(cpu_dai->dev));
+	sm_info("%s: dev_name:%s\n", __func__, dev_name(cpu_dai->dev));
 
 	rtd->pmdown_time = 0;
 
@@ -4996,7 +4999,7 @@ static int msm_audrx_tasha_init(struct snd_soc_pcm_runtime *rtd)
 					     134, 135, 136, 137, 138, 139,
 					     140, 141, 142, 143};
 
-	pr_info("%s: dev_name:%s\n", __func__, dev_name(cpu_dai->dev));
+	sm_info("%s: dev_name:%s\n", __func__, dev_name(cpu_dai->dev));
 
 	rtd->pmdown_time = 0;
 
