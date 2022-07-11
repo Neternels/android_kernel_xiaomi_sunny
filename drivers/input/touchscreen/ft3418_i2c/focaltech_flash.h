@@ -213,5 +213,4 @@ int fts_fwupg_erase(u32 delay);
 int fts_fwupg_ecc_cal(u32 saddr, u32 len);
 int fts_flash_write_buf(u32 saddr, u8 *buf, u32 len, u32 delay);
 int fts_fwupg_upgrade(struct fts_upgrade *upg);
-int fts_fwupg_get_ver_in_tp_lct(void);
 #endif

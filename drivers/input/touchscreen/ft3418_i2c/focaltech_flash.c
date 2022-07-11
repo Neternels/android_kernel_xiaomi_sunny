@@ -43,10 +43,6 @@
 /* Example: focaltech_ts_fw_tianma.bin */
 #define FTS_FW_NAME_PREX_WITH_REQUEST               "focaltech_ts_fw_"
 
-#if LCT_TP_USB_PLUGIN
-extern touchscreen_usb_plugin_data_t g_touchscreen_usb_pulgin;
-#endif
-
 /*****************************************************************************
 * Global variable or extern global variabls/functions
 *****************************************************************************/
@@ -1723,7 +1719,6 @@ int fts_fwupg_upgrade(struct fts_upgrade *upg)
                 if (ret < 0) {
                     fts_fwupg_reset_in_boot();
                 } else {
-                    fts_fwupg_get_ver_in_tp_lct();
                     break;
                 }
             } else {
@@ -1847,23 +1842,6 @@ static int fts_fwupg_get_vendorid(struct fts_upgrade *upg, int *vid)
     return 0;
 }
 
-int lct_get_lockdown_info(void)
-{
-	int ret;
-	uint8_t tp_lockdown_info_buf[64] = {0};
-	u8 lockdown_values[8] = {0};
-	ret = fts_flash_read(0x1e000,lockdown_values,8);
-	if(ret)
-		FTS_ERROR("lockdown info read error");
-
-	snprintf(tp_lockdown_info_buf, PAGE_SIZE, "%02x%02x%02x%02x%02x%02x%02x%02x\n",
-			lockdown_values[0],lockdown_values[1],lockdown_values[2],lockdown_values[3],
-			lockdown_values[4],lockdown_values[5],lockdown_values[6],lockdown_values[7]);
-	update_lct_tp_info(NULL, tp_lockdown_info_buf);
-
-	return 0;
-}
-
 static int fts_fwupg_get_module_info(struct fts_upgrade *upg)
 {
     int ret = 0;
@@ -1874,9 +1852,6 @@ static int fts_fwupg_get_module_info(struct fts_upgrade *upg)
         FTS_ERROR("upg/ts_data is null");
         return -EINVAL;
     }
-
-	//read lockdown info
-	lct_get_lockdown_info();
 
     if (FTS_GET_MODULE_NUM > 1) {
         /* support multi modules, must read correct module id(vendor id) */
@@ -2066,14 +2041,6 @@ static void fts_fwupg_work(struct work_struct *work)
 #endif
     fts_irq_enable();
     upg->ts_data->fw_loading = 0;
-
-#if LCT_TP_USB_PLUGIN
-    if (!IS_ERR_OR_NULL(g_touchscreen_usb_pulgin.event_callback))
-        g_touchscreen_usb_pulgin.valid = true;
-    if (g_touchscreen_usb_pulgin.valid)
-        g_touchscreen_usb_pulgin.event_callback();
-#endif
-
 }
 
 int fts_fwupg_init(struct fts_ts_data *ts_data)

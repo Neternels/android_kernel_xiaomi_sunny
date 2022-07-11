@@ -71,12 +71,6 @@
 //new qcom platform use
 #define _MSM_DRM_NOTIFY_H_
 
-#if LCT_TP_USB_PLUGIN
-static void fts_ts_usb_plugin_work_func(struct work_struct *work);
-DECLARE_WORK(fts_usb_plugin_work, fts_ts_usb_plugin_work_func);
-extern touchscreen_usb_plugin_data_t g_touchscreen_usb_pulgin;
-#endif
-
 extern char *saved_command_line;
 
 /*****************************************************************************
@@ -85,43 +79,6 @@ extern char *saved_command_line;
 struct fts_ts_data *fts_data;
 
 int enter_palm_mode(struct fts_ts_data *data);
-
-int lct_fts_tp_gesture_callback(bool flag)
-{
-	struct fts_ts_data *ts_data = fts_data;
-	if (ts_data->suspended) {
-		//delay_gesture = true;
-		FTS_INFO("The gesture mode will be %s the next time you wakes up.", flag ? "enabled" : "disabled");
-		return -EPERM;
-	}
-	set_lct_tp_gesture_status(flag);
-	//set_lcd_reset_gpio_keep_high(flag);
-
-	if (flag)
-		ts_data->gesture_mode = ENABLE;
-	else
-		ts_data->gesture_mode = DISABLE;
-	return 0;
-}
-
-#if LCT_TP_USB_PLUGIN
-void fts_ts_usb_event_callback(void)
-{
-	schedule_work(&fts_usb_plugin_work);
-}
-
-static void fts_ts_usb_plugin_work_func(struct work_struct *work)
-{
-	struct fts_ts_data *ts_data = fts_data;
-	if (ts_data->suspended) {
-		FTS_ERROR("tp is suspend,can not be set\n");
-		return;
-	}
-	lct_fts_set_charger_mode(g_touchscreen_usb_pulgin.usb_plugged_in);
-	return;
-
-}
-#endif
 
 /*****************************************************************************
 * Static function prototypes
@@ -743,31 +700,6 @@ static int fts_read_parse_touchdata(struct fts_ts_data *data)
     return 0;
 }
 
-#if LCT_TP_PALM_EN
-int enter_palm_mode(struct fts_ts_data *data)
-{
-	u8 mode = 0;
-	if(fts_data->palm_changed == 0)
-		goto exit;
-	if (get_lct_tp_palm_status()) {
-		fts_read_reg(0x9B, &mode);
-		if (0x00 == mode)
-			return 0;
-		else if (0x01 == mode) {
-			FTS_FUNC_ENTER();
-			input_report_key(data->input_dev, KEY_SLEEP, 1);
-			input_sync(data->input_dev);
-			input_report_key(data->input_dev, KEY_SLEEP, 0);
-			input_sync(data->input_dev);
-		}
-	}
-	fts_data->palm_changed = 0;
-exit:
-	FTS_FUNC_EXIT();
-	return 0;
-}
-#endif
-
 static void fts_irq_read_report(void)
 {
     int ret = 0;
@@ -791,10 +723,6 @@ static void fts_irq_read_report(void)
 #endif
         mutex_unlock(&ts_data->report_mutex);
     }
-
-#if LCT_TP_PALM_EN
-		enter_palm_mode(ts_data);
-#endif
 
 #if FTS_ESDCHECK_EN
     fts_esdcheck_set_intr(0);
@@ -1583,25 +1511,6 @@ static void fts_ts_late_resume(struct early_suspend *handler)
 }
 #endif
 
-
-int fts_fwupg_get_ver_in_tp_lct(void)
-{
-    int ret = 0;
-	u8 ver = 0;
-	uint8_t tp_info_buf[64] = {0};
-
-    ret = fts_read_reg(FTS_REG_FW_VER, &ver);
-    if (ret < 0) {
-        FTS_ERROR("read fw ver from tp fail");
-        return ret;
-    }
-	FTS_INFO("fw version %02x", ver);
-	snprintf(tp_info_buf, PAGE_SIZE, "[Vendor]SAMSUNG,[FW]0x%02x,[IC]ft3418\n", ver);
-	update_lct_tp_info(tp_info_buf, NULL);
-
-    return 0;
-}
-
 static int fts_ts_probe_entry(struct fts_ts_data *ts_data)
 {
     int ret = 0;
@@ -1698,12 +1607,6 @@ static int fts_ts_probe_entry(struct fts_ts_data *ts_data)
         FTS_ERROR("create apk debug node fail");
     }
 
-	//longcheer touch procfs
-	ret = lct_create_procfs(ts_data);
-	if (ret < 0) {
-		FTS_ERROR("create procfs node fail");
-	}
-
     ret = fts_create_sysfs(ts_data);
     if (ret) {
         FTS_ERROR("create sysfs node fail");
@@ -1751,8 +1654,6 @@ static int fts_ts_probe_entry(struct fts_ts_data *ts_data)
         FTS_ERROR("init fw upgrade fail");
     }
 
-    fts_fwupg_get_ver_in_tp_lct();
-
     if (ts_data->ts_workqueue) {
         INIT_WORK(&ts_data->resume_work, fts_resume_work);
     }
@@ -1791,10 +1692,6 @@ static int fts_ts_probe_entry(struct fts_ts_data *ts_data)
     ts_data->early_suspend.suspend = fts_ts_early_suspend;
     ts_data->early_suspend.resume = fts_ts_late_resume;
     register_early_suspend(&ts_data->early_suspend);
-#endif
-
-#if LCT_TP_USB_PLUGIN
-	g_touchscreen_usb_pulgin.event_callback = fts_ts_usb_event_callback;
 #endif
 
 /* 2020.12.7 longcheer chenshiyang add (xiaomi game mode) start */
@@ -1863,9 +1760,6 @@ static int fts_ts_remove_entry(struct fts_ts_data *ts_data)
 #endif
 
     fts_release_apk_debug_channel(ts_data);
-
-	//remove longcheer procfs
-	lct_remove_procfs(ts_data);
 
     fts_remove_sysfs(ts_data);
     fts_ex_mode_exit(ts_data);
@@ -2026,49 +1920,9 @@ static int fts_ts_resume(struct device *dev)
 
     ts_data->suspended = false;
 
-#if LCT_TP_PALM_EN
-	if (!fts_data->palm_changed) {
-		FTS_INFO("reopen palm pocket mode");
-		lct_fts_tp_palm_callback(false);
-	}
-#endif
-
-#if LCT_TP_USB_PLUGIN
-	if (g_touchscreen_usb_pulgin.valid)
-		g_touchscreen_usb_pulgin.event_callback();
-#endif
-
     FTS_FUNC_EXIT();
     return 0;
 }
-
-#if LCT_TP_PALM_EN
-int lct_fts_tp_palm_callback(bool en)
-{
-	u8 val;
-	int ret = 0;
-	//msleep(500);
-	FTS_FUNC_ENTER();
-	if (fts_data->suspended || fts_data->fw_loading) {
-		FTS_ERROR("tp is suspended or flashing, can not to set\n");
-		if (!en)
-			fts_data->palm_changed = 0;
-		goto exit;
-	}
-	if (!en) {
-		val = 0x05;
-	} else {
-		val = 0;
-	}
-	ret = fts_write_reg(0x9A, val);
-	if (ret < 0)
-		set_lct_tp_palm_status(en);
-	FTS_INFO("%s PALM success", en ? "Disable" : "Enable");
-	fts_data->palm_changed = 1;
-exit:
-	return 0;
-}
-#endif
 
 /* 2020.12.7 longcheer chenshiyang add (xiaomi game mode ) start */
 #ifdef CONFIG_TOUCHSCREEN_XIAOMI_TOUCHFEATURE
