@@ -22,16 +22,10 @@
 #include <linux/device.h>
 #include <linux/spinlock.h>
 
-#ifdef CONFIG_XIMI_MOJITO
-#define ow_info	pr_err
-#define ow_dbg	pr_err
-#define ow_err	pr_err
-#else
-#define ow_info	pr_info
+#define ow_info	pr_debug
 #define ow_dbg	pr_debug
-#define ow_err	pr_debug
-#endif
-#define ow_log	pr_err
+#define ow_err	pr_err
+#define ow_log	pr_debug
 
 #define DRV_STRENGTH_16MA		(0x7 << 6)
 #define DRV_STRENGTH_12MA		(0x5 << 6)
@@ -81,18 +75,6 @@ static int onewire_major;
 static int onewire_gpio_detected;
 static struct onewire_gpio_data *g_onewire_data;
 
-void Delay_us(unsigned int T)
-{
-	udelay(T);
-}
-EXPORT_SYMBOL(Delay_us);
-
-void Delay_ns(unsigned int T)
-{
-	ndelay(T);
-}
-EXPORT_SYMBOL(Delay_ns);
-
 unsigned char ow_reset(void)
 {
 	unsigned char presence = 0xFF;
@@ -101,12 +83,12 @@ unsigned char ow_reset(void)
 	raw_spin_lock_irqsave(&g_onewire_data->lock, flags);
 	ONE_WIRE_CONFIG_OUT;
 	ONE_WIRE_OUT_LOW;
-	Delay_us(50);// 48
+	udelay(50);// 48
 	ONE_WIRE_OUT_HIGH;
 	ONE_WIRE_CONFIG_IN;
-	Delay_us(7);
+	udelay(7);
 	presence = (unsigned char)readl_relaxed(g_onewire_data->gpio_in_out_reg) & 0x01; // Read
-	Delay_us(50);
+	udelay(50);
 	raw_spin_unlock_irqrestore(&g_onewire_data->lock, flags);
 
 	return presence;
@@ -119,21 +101,10 @@ unsigned char read_bit(void)
 
 	ONE_WIRE_CONFIG_OUT;
 	ONE_WIRE_OUT_LOW;
-#ifndef CONFIG_XIMI_MOJITO
-	Delay_us(1);
-#endif
 	ONE_WIRE_CONFIG_IN;
-#ifndef CONFIG_XIMI_MOJITO
-	Delay_ns(500);
-#endif
 	vamm = readl_relaxed(g_onewire_data->gpio_in_out_reg); // Read
 #ifdef CONFIG_XIMI_MOJITO
-	Delay_us(15);
-#else
-	Delay_us(5);
-	ONE_WIRE_OUT_HIGH;
-	ONE_WIRE_CONFIG_OUT;
-	Delay_us(6);
+	udelay(15);
 #endif
 	return((unsigned char)vamm & 0x01);
 }
@@ -144,12 +115,12 @@ void write_bit(char bitval)
 	ONE_WIRE_CONFIG_OUT;
 #endif
 	ONE_WIRE_OUT_LOW;
-	Delay_us(1);//
+	udelay(1);//
 	if (bitval != 0)
 		ONE_WIRE_OUT_HIGH;
-	Delay_us(10);
+	udelay(10);
 	ONE_WIRE_OUT_HIGH;
-	Delay_us(6);
+	udelay(6);
 }
 
 unsigned char read_byte(void)
@@ -348,49 +319,49 @@ const char *buf, size_t count)
 		ONE_WIRE_OUT_HIGH;
 		ONE_WIRE_OUT_LOW;
 
-		Delay_us(1000);
+		mdelay(1);
 		ONE_WIRE_OUT_HIGH;
-		Delay_us(1);
+		udelay(1);
 		ONE_WIRE_OUT_LOW;
-		Delay_us(1);
+		udelay(1);
 		ONE_WIRE_OUT_HIGH;
-		Delay_us(1);
+		udelay(1);
 		ONE_WIRE_OUT_LOW;
-		Delay_us(1);
+		udelay(1);
 		ONE_WIRE_OUT_HIGH;
-		Delay_us(1);
+		udelay(1);
 		ONE_WIRE_OUT_LOW;
-		Delay_us(1);
+		udelay(1);
 		ONE_WIRE_OUT_HIGH;
-		Delay_us(1);
+		udelay(1);
 		ONE_WIRE_OUT_LOW;
-		Delay_us(1);
+		udelay(1);
 		ONE_WIRE_OUT_HIGH;
-		Delay_us(1);
+		udelay(1);
 		ONE_WIRE_OUT_LOW;
-		Delay_us(1);
+		udelay(1);
 
-		Delay_us(1000);
+		mdelay(1);
 		ONE_WIRE_OUT_HIGH;
-		Delay_us(5);
+		udelay(5);
 		ONE_WIRE_OUT_LOW;
-		Delay_us(5);
+		udelay(5);
 		ONE_WIRE_OUT_HIGH;
-		Delay_us(5);
+		udelay(5);
 		ONE_WIRE_OUT_LOW;
-		Delay_us(5);
+		udelay(5);
 		ONE_WIRE_OUT_HIGH;
-		Delay_us(5);
+		udelay(5);
 		ONE_WIRE_OUT_LOW;
-		Delay_us(5);
+		udelay(5);
 		ONE_WIRE_OUT_HIGH;
-		Delay_us(5);
+		udelay(5);
 		ONE_WIRE_OUT_LOW;
-		Delay_us(5);
+		udelay(5);
 		ONE_WIRE_OUT_HIGH;
-		Delay_us(5);
+		udelay(5);
 		ONE_WIRE_OUT_LOW;
-		Delay_us(5);
+		udelay(5);
 	}
 
 	return count;
