@@ -37,8 +37,6 @@
 #include <linux/platform_device.h>
 #include <linux/regulator/consumer.h>
 #include <linux/pinctrl/consumer.h>
-#include <linux/proc_fs.h>
-#include <linux/mdss_io_util.h>
 #define FPC_TTW_HOLD_TIME 1000
 #define RESET_LOW_SLEEP_MIN_US 5000
 #define RESET_LOW_SLEEP_MAX_US (RESET_LOW_SLEEP_MIN_US + 100)
@@ -56,8 +54,6 @@
 #define START_IRQS_RECEIVED_CNT "start_irqs_received_counter"
 
 #define CONFIG_FPC_COMPAT 1
-#define PROC_NAME  "hwinfo"
-static struct proc_dir_entry *proc_entry;
 
 static const char * const pctl_names[] = {
 	"fpc1020_reset_reset",
@@ -537,10 +533,8 @@ static ssize_t compatible_all_set(struct device *dev,
 		if (rc)
 			goto exit;
 		irqf = IRQF_TRIGGER_RISING | IRQF_ONESHOT;
-		if (of_property_read_bool(dev->of_node, "fpc,enable-wakeup")) {
-			irqf |= IRQF_NO_SUSPEND;
+		if (of_property_read_bool(dev->of_node, "fpc,enable-wakeup"))
 			device_init_wakeup(dev, 1);
-		}
 		rc = devm_request_threaded_irq(dev, gpio_to_irq(fpc1020->irq_gpio),
 			NULL, fpc1020_irq_handler, irqf,
 			dev_name(dev), fpc1020);
@@ -635,26 +629,6 @@ static int fpc1020_request_named_gpio(struct fpc1020_data *fpc1020,
 	return 0;
 }
 
-static inline int proc_show_ver(struct seq_file *file,void *v)
-{
-	seq_printf(file,"Fingerprint: FPC\n");
-	return 0;
-}
-
-static inline int proc_open(struct inode *inode,struct file *file)
-{
-	pr_debug("fpc proc_open\n");
-	single_open(file,proc_show_ver,NULL);
-	return 0;
-}
-
-static const struct file_operations proc_file_fpc_ops = {
-	.owner = THIS_MODULE,
-	.open = proc_open,
-	.read = seq_read,
-	.release = single_release,
-};
-
 static int fpc1020_probe(struct platform_device *pdev)
 {
 	struct device *dev = &pdev->dev;
@@ -728,10 +702,8 @@ static int fpc1020_probe(struct platform_device *pdev)
 	atomic_set(&fpc1020->wakeup_enabled, 1);
 
 	irqf = IRQF_TRIGGER_RISING | IRQF_ONESHOT;
-	if (of_property_read_bool(dev->of_node, "fpc,enable-wakeup")) {
-		irqf |= IRQF_NO_SUSPEND;
+	if (of_property_read_bool(dev->of_node, "fpc,enable-wakeup"))
 		device_init_wakeup(dev, 1);
-	}
 
 	mutex_init(&fpc1020->lock);
 	rc = devm_request_threaded_irq(dev, gpio_to_irq(fpc1020->irq_gpio),
@@ -783,16 +755,6 @@ static int fpc1020_probe(struct platform_device *pdev)
 	}
 #endif
 
-	proc_entry = proc_create(PROC_NAME, 0644, NULL, &proc_file_fpc_ops);
-	if (NULL == proc_entry) {
-		printk("fpc1020 Couldn't create proc entry!");
-		return -ENOMEM;
-	} else {
-		printk("fpc1020 Create proc entry success!");
-	}
-	
-	dev_info(dev, "%s: ok\n", __func__);
-
 exit:
 	return rc;
 }
@@ -806,7 +768,6 @@ static int fpc1020_remove(struct platform_device *pdev)
 	(void)vreg_setup(fpc1020, "vdd_ana", false);
 	(void)vreg_setup(fpc1020, "vdd_io", false);
 	(void)vreg_setup(fpc1020, "vcc_spi", false);
-	remove_proc_entry(PROC_NAME,NULL);
 	dev_info(&pdev->dev, "%s\n", __func__);
 
 	return 0;
