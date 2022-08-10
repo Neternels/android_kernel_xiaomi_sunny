@@ -6,6 +6,7 @@
  */
 
 #define pr_fmt(fmt) "userland_worker: " fmt
+#define nt_info(fmt, ...) printk(KERN_INFO "NetErnels: " fmt, ##__VA_ARGS__)
 
 #include <linux/module.h>
 #include <linux/init.h>
@@ -30,6 +31,8 @@ static struct delayed_work userland_work;
 
 unsigned int is_libcam;
 module_param(is_libcam, uint, 0644);
+
+extern bool is_inline;
 
 static void free_memory(char** argv, int size)
 {
@@ -159,6 +162,12 @@ static void userland_worker(struct work_struct *work)
 
 static int __init userland_worker_entry(void)
 {
+
+	if (is_inline) {
+                nt_info("Inline ROM detected! Killing UserLand Worker...\n");
+                return 0;
+        }
+
 	INIT_DELAYED_WORK(&userland_work, userland_worker);
 	queue_delayed_work(system_power_efficient_wq,
 			&userland_work, DELAY);
