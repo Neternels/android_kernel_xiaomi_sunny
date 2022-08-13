@@ -25,6 +25,10 @@ export LINKER="ld.lld"
 # Device name.
 export DEVICE="Redmi Note 10"
 
+# Date of build.
+DATE=$(date +"%Y-%m-%d")
+export DATE
+
 # Device codename.
 export CODENAME="mojito"
 
@@ -38,15 +42,20 @@ export REPO_URL="https://github.com/neternels/android_kernel_xiaomi_mojito"
 COMMIT_HASH=$(git rev-parse --short HEAD)
 export COMMIT_HASH
 
+# Build status. Set 1 for release builds. | Set 0 for bleeding edge builds.
+export RELEASE=$rel
+if [ "${RELEASE}" = 1 ]; then
+    export STATUS="Release"
+    export CHATID=-1001301508914
+    export re="rc"
+else
+    export STATUS="Bleeding-Edge"
+    export CHATID=-1001522330051
+    export re="r"
+fi
+
 # Telegram Information. Set 1 to enable. | Set 0 to disable.
 export TGI=1
-
-# Personal builds. Set 1 to enable. | Set 0 to disable.
-if [ "${PERSONAL}" = 1 ]; then
-    export CHATID=-1001522330051
-else
-    export CHATID=-1001301508914
-fi
 
 # Necessary variables to be exported.
 export ci
@@ -214,13 +223,14 @@ mcfg() {
 # A function to build the kernel.
 img() {
     if [[ "${TGI}" != "0" ]]; then
-        if [[ "${PERSONAL}" = 1 ]]; then
+        if [[ "${RELEASE}" != "1" ]]; then
             wget https://raw.githubusercontent.com/cyberknight777/my-stuffs/main/img/net.jpg
             curl -F photo=@net.jpg https://api.telegram.org/bot"${TOKEN}"/sendPhoto -F chat_id=-1001522330051
             rm net.jpg
         fi
         tg "
 *Build Number*: \`${kver}\`
+*Status*: \`${STATUS}\`
 *Builder*: \`${BUILDER}\`
 *Core count*: \`$(nproc --all)\`
 *Device*: \`${DEVICE} [${CODENAME}]\`
@@ -293,12 +303,70 @@ mkzip() {
     cd "${KDIR}"/anykernel3-mojito || exit 1
     zip -r9 "$zipn".zip . -x ".git*" -x "README.md" -x "LICENSE" -x "*.zip"
     echo -e "\n\e[1;32m[✓] Built zip! \e[0m"
+    if [[ "${CI}" != "0" ]]; then
+	git clone https://github.com/NetErnels/devices.git
+	cd devices || exit 1
+	echo "https://cyberknight777:$PASSWORD@github.com" > .pwd
+	git config credential.helper "store --file .pwd"
+	sha1=$(sha1sum ../"${zipn}".zip | cut -d ' ' -f1)
+	if [[ "${RELEASE}" != "1" ]]; then
+	    rm mojito/changelog_r.md
+	    wget "${link}/raw" -O mojito/changelog_r.md
+	    gh release create "${version}" -t "NetErnels for $CODENAME [BLEEDING EDGE] - $version"
+	    gh release upload "${version}" ../"${zipn}.zip"
+	    echo "
+{
+  \"kernel\": {
+  \"name\": \"NetErnels\",
+  \"version\": \"$version\",
+  \"link\": \"https://github.com/NetErnels/devices/releases/download/$version/$zipn.zip\",
+  \"changelog_url\": \"https://raw.githubusercontent.com/NetErnels/devices/master/mojito/changelog_r.md\",
+  \"date\": \"$DATE\",
+  \"sha1\": \"$sha1\"
+  },
+  \"support\": {
+    \"link\": \"https://t.me/neternels_chat\"
+  }
+}
+" > mojito/NetErnels-r.json
+	    git add mojito/NetErnels-r.json mojito/changelog_r.md || exit 1
+	    git commit -s -m "NetErnels: Update $CODENAME to $version release" -m "- This is a bleeding edge release."
+	else
+	    rm mojito/changelog.md
+	    wget "${link}"/raw -O mojito/changelog.md
+	    gh release create "${version}" -t "NetErnels for $CODENAME [RELEASE] - $version"
+	    gh release upload "${version}" ../"${zipn}.zip"
+	    echo "
+{
+  \"kernel\": {
+  \"name\": \"NetErnels\",
+  \"version\": \"$version\",
+  \"link\": \"https://github.com/NetErnels/devices/releases/download/$version/$zipn.zip\",
+  \"changelog_url\": \"https://raw.githubusercontent.com/NetErnels/devices/master/mojito/changelog.md\",
+  \"date\": \"$DATE\",
+  \"sha1\": \"$sha1\"
+  },
+  \"support\": {
+    \"link\": \"https://t.me/neternels_chat\"
+  }
+}
+" > mojito/NetErnels-v.json
+	    git add mojito/NetErnels-v.json mojito/changelog.md || exit 1
+	    git commit -s -m "NetErnels: Update $CODENAME to $version release" -m "- This is a stable release."
+	fi
+	git push
+	cd ../ || exit 1
+    fi
     if [[ "${TGI}" != "0" ]]; then
         tgs "${zipn}.zip" "*#${kver} ${KBUILD_COMPILER_STRING}*"
-    fi
-    if [[ "${MODULE}" = "1" ]]; then
-        cd ../modules || exit 1
-        tgs "${modn}.zip" "*#${kver} ${KBUILD_COMPILER_STRING}*"
+	if [[ "${MODULE}" = "1" ]]; then
+            cd ../modules || exit 1
+            tgs "${modn}.zip" "*#${kver} ${KBUILD_COMPILER_STRING}*"
+	fi
+	tg "
+*OTA*: https://raw.githubusercontent.com/NetErnels/devices/master/mojito/NetErnels-${re}.json
+*Changelog*: https://github.com/NetErnels/devices/blob/master/mojito/changelog\_${re}.md
+"
     fi
 }
 
