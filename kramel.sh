@@ -312,8 +312,6 @@ mkzip() {
 	if [[ "${RELEASE}" != "1" ]]; then
 	    rm mojito/changelog_r.md
 	    wget "${link}/raw" -O mojito/changelog_r.md
-	    gh release create "${version}" -t "NetErnels for $CODENAME [BLEEDING EDGE] - $version"
-	    gh release upload "${version}" ../"${zipn}.zip"
 	    echo "
 {
   \"kernel\": {
@@ -331,11 +329,11 @@ mkzip() {
 " > mojito/NetErnels-r.json
 	    git add mojito/NetErnels-r.json mojito/changelog_r.md || exit 1
 	    git commit -s -m "NetErnels: Update $CODENAME to $version release" -m "- This is a bleeding edge release."
+	    gh release create "${version}" -t "NetErnels for $CODENAME [BLEEDING EDGE] - $version"
+	    gh release upload "${version}" ../"${zipn}.zip"
 	else
 	    rm mojito/changelog.md
 	    wget "${link}"/raw -O mojito/changelog.md
-	    gh release create "${version}" -t "NetErnels for $CODENAME [RELEASE] - $version"
-	    gh release upload "${version}" ../"${zipn}.zip"
 	    echo "
 {
   \"kernel\": {
@@ -353,6 +351,8 @@ mkzip() {
 " > mojito/NetErnels-v.json
 	    git add mojito/NetErnels-v.json mojito/changelog.md || exit 1
 	    git commit -s -m "NetErnels: Update $CODENAME to $version release" -m "- This is a stable release."
+	    gh release create "${version}" -t "NetErnels for $CODENAME [RELEASE] - $version"
+	    gh release upload "${version}" ../"${zipn}.zip"
 	fi
 	git push
 	cd ../ || exit 1
