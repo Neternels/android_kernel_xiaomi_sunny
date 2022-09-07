@@ -230,6 +230,4 @@ config XIMI_MOJITO
         default n
 
 
-source "techpack/data/drivers/Kconfig"
-
 endmenu
