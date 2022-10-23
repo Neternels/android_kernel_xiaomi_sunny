@@ -303,7 +303,7 @@ mkzip() {
     cd "${KDIR}"/anykernel3-mojito || exit 1
     zip -r9 "$zipn".zip . -x ".git*" -x "README.md" -x "LICENSE" -x "*.zip"
     echo -e "\n\e[1;32m[✓] Built zip! \e[0m"
-    if [[ "${CI}" != "0" ]]; then
+    if [[ "${ci}" != "0" ]]; then
 	git clone https://github.com/NetErnels/devices.git
 	cd devices || exit 1
 	echo "https://cyberknight777:$PASSWORD@github.com" > .pwd
