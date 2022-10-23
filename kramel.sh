@@ -364,8 +364,9 @@ mkzip() {
             tgs "${modn}.zip" "*#${kver} ${KBUILD_COMPILER_STRING}*"
 	fi
 	tg "
-*OTA*: https://raw.githubusercontent.com/NetErnels/devices/master/mojito/NetErnels-${re}.json
+*Build*: https://github.com/NetErnels/devices/releases/download/$version/$zipn.zip
 *Changelog*: https://github.com/NetErnels/devices/blob/master/mojito/changelog\_${re}.md
+*OTA*: https://raw.githubusercontent.com/NetErnels/devices/master/mojito/NetErnels-${re}.json
 "
     fi
 }
