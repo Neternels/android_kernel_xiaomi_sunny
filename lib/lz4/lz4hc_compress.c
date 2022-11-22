@@ -616,13 +616,13 @@ EXPORT_SYMBOL(LZ4_compress_HC);
 /**************************************
  *	Streaming Functions
  **************************************/
-void LZ4_resetStreamHC(LZ4_streamHC_t *LZ4_streamHCPtr, int compressionLevel)
+static void LZ4_resetStreamHC(LZ4_streamHC_t *LZ4_streamHCPtr, int compressionLevel)
 {
 	LZ4_streamHCPtr->internal_donotuse.base = NULL;
 	LZ4_streamHCPtr->internal_donotuse.compressionLevel = (unsigned int)compressionLevel;
 }
 
-int LZ4_loadDictHC(LZ4_streamHC_t *LZ4_streamHCPtr,
+static int LZ4_loadDictHC(LZ4_streamHC_t *LZ4_streamHCPtr,
 	const char *dictionary,
 	int dictSize)
 {
@@ -713,7 +713,7 @@ static int LZ4_compressHC_continue_generic(
 		inputSize, maxOutputSize, ctxPtr->compressionLevel, limit);
 }
 
-int LZ4_compress_HC_continue(
+static int LZ4_compress_HC_continue(
 	LZ4_streamHC_t *LZ4_streamHCPtr,
 	const char *source,
 	char *dest,
@@ -730,7 +730,7 @@ int LZ4_compress_HC_continue(
 
 /* dictionary saving */
 
-int LZ4_saveDictHC(
+static int LZ4_saveDictHC(
 	LZ4_streamHC_t *LZ4_streamHCPtr,
 	char *safeBuffer,
 	int dictSize)
