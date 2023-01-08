@@ -2589,7 +2589,7 @@ static int cam_ife_mgr_config_hw(void *hw_mgr_priv,
 		if (cfg->init_packet) {
 			rc = wait_for_completion_timeout(
 				&ctx->config_done_complete,
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 				msecs_to_jiffies(60));
 #else
 				msecs_to_jiffies(30));

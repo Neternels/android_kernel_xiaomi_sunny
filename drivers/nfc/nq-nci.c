@@ -30,7 +30,7 @@
 #endif
 #include <linux/jiffies.h>
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 #define SKIP_NFCC_HW_CHECK
 #define CHECK_NFC_NONE_NFC 1
 #ifdef CHECK_NFC_NONE_NFC
@@ -1636,7 +1636,7 @@ static int nfcc_reboot(struct notifier_block *notifier, unsigned long val,
 			  void *v)
 {
 
-    #ifdef CONFIG_XIMI_MOJITO
+    #ifdef CONFIG_XIMI_SUNNY
     gpio_set_value(disable_ctrl, 0);
     #endif
 

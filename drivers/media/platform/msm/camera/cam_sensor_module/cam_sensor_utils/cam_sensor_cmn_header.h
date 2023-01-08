@@ -365,7 +365,7 @@ struct cam_sensor_board_info {
 	int32_t  subdev_intf[SUB_MODULE_MAX];
 	const char *misc_regulator;
 	struct cam_sensor_power_ctrl_t power_info;
-	#ifdef CONFIG_XIMI_MOJITO
+	#ifdef CONFIG_XIMI_SUNNY
 	uint16_t camera_id;
 	const char *sensorName;
 	#endif

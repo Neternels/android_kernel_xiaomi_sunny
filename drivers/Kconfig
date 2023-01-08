@@ -225,7 +225,7 @@ source "drivers/sensors/Kconfig"
 
 source "drivers/esoc/Kconfig"
 
-config XIMI_MOJITO
+config XIMI_SUNNY
         bool "Xiaomi Mojito"
         default n
 

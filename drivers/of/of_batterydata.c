@@ -379,7 +379,7 @@ struct device_node *of_batterydata_get_best_profile(
 	}
 
 	if (best_node == NULL) {
-#ifndef CONFIG_XIMI_MOJITO
+#ifndef CONFIG_XIMI_SUNNY
 		for_each_child_of_node(batterydata_container_node, node) {
 			rc = of_property_read_string(node, "qcom,battery-type", &battery_type);
 			if (!rc && strcmp(battery_type,"unknown-default") == 0) {

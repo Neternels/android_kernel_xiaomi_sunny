@@ -962,7 +962,7 @@ static int __cam_req_mgr_check_sync_req_is_ready(
 	int64_t req_id = 0, sync_req_id = 0;
 	int sync_slot_idx = 0, sync_rd_idx = 0, rc = 0;
 	int32_t sync_num_slots = 0;
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	int32_t max_idx_diff;
 	uint64_t sof_timestamp_delta = 0;
 	uint64_t master_slave_diff = 0;
@@ -1001,7 +1001,7 @@ static int __cam_req_mgr_check_sync_req_is_ready(
 	else
 		sync_frame_duration = DEFAULT_FRAME_DURATION;
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	sof_timestamp_delta =
 		link->sof_timestamp >= sync_link->sof_timestamp
 		? link->sof_timestamp - sync_link->sof_timestamp
@@ -1070,7 +1070,7 @@ static int __cam_req_mgr_check_sync_req_is_ready(
 		return -EAGAIN;
 	}
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	/*
 	 * When the status of sync rd slot is APPLIED,
 	 * the maximum diff between sync_slot_idx and
@@ -1085,7 +1085,7 @@ static int __cam_req_mgr_check_sync_req_is_ready(
 	if ((sync_link->req.in_q->slot[sync_slot_idx].status !=
 		CRM_SLOT_STATUS_REQ_APPLIED) &&
 		(((sync_slot_idx - sync_rd_idx + sync_num_slots) %
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 		sync_num_slots) > max_idx_diff)) {
 #else
 		sync_num_slots) >= 1) &&
@@ -1146,7 +1146,7 @@ static int __cam_req_mgr_check_sync_req_is_ready(
 	 * difference of two SOF timestamp less than
 	 * (sync_frame_duration / 5).
 	 */
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	master_slave_diff = sync_frame_duration;
 	do_div(master_slave_diff, 5);
 	if ((sync_link->sof_timestamp > 0) &&
@@ -1180,7 +1180,7 @@ static int __cam_req_mgr_check_sync_req_is_ready(
 				sync_link->link_hdl);
 			link->sync_link_sof_skip = true;
 		}
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 		else if (sync_link->req.in_q->slot[sync_slot_idx].status !=
 			CRM_SLOT_STATUS_REQ_APPLIED) {
 			CAM_DBG(CAM_CRM, "link %x other not applied", link->link_hdl);

@@ -5291,7 +5291,7 @@ static ssize_t dsi_display_get_whitepoint(struct device *dev,
 
 	ctrl = &display->ctrl[display->cmd_master_idx];
 
-	#ifdef CONFIG_XIMI_MOJITO
+	#ifdef CONFIG_XIMI_SUNNY
 		rc = dsi_display_write_reg_page(ctrl, 0xFF, 0x10, buf, sizeof(buf));
 		rc = dsi_display_read_reg(ctrl, 0xA1, 0x00, buf, sizeof(buf));
 	#endif

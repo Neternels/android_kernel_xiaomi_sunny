@@ -114,7 +114,7 @@ static ssize_t power_supply_show_property(struct device *dev,
 				dev_dbg(dev, "driver has no data for `%s' property\n",
 					attr->attr.name);
 			else if (ret != -ENODEV && ret != -EAGAIN)
-			#ifdef CONFIG_XIMI_MOJITO
+			#ifdef CONFIG_XIMI_SUNNY
 				dev_err(dev, "driver failed to report `%s' property: %zd\n",
 					attr->attr.name, ret);
 			#else
@@ -182,7 +182,7 @@ static ssize_t power_supply_show_property(struct device *dev,
 			value.arrayval[8], value.arrayval[9], value.arrayval[10], value.arrayval[11],
 			value.arrayval[12], value.arrayval[13], value.arrayval[14], value.arrayval[15]);
 	else if (off == POWER_SUPPLY_PROP_VERIFY_MODEL_NAME)
-	#ifdef CONFIG_XIMI_MOJITO
+	#ifdef CONFIG_XIMI_SUNNY
 		return snprintf(buf, PAGE_SIZE, "%s\n", value.strval);
 	#else
 		return sprintf(buf, "%s\n", value.strval);
@@ -367,7 +367,7 @@ static struct device_attribute power_supply_attrs[] = {
 	POWER_SUPPLY_ATTR(flash_trigger),
 	POWER_SUPPLY_ATTR(force_tlim),
 	POWER_SUPPLY_ATTR(dp_dm),
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	POWER_SUPPLY_ATTR(dp_dm_bq),
 #endif
 	POWER_SUPPLY_ATTR(input_current_limited),
@@ -387,7 +387,7 @@ static struct device_attribute power_supply_attrs[] = {
 	POWER_SUPPLY_ATTR(pd_allowed),
 	POWER_SUPPLY_ATTR(pd_active),
 	POWER_SUPPLY_ATTR(pd_authentication),
-#ifndef CONFIG_XIMI_MOJITO
+#ifndef CONFIG_XIMI_SUNNY
 	POWER_SUPPLY_ATTR(pd_remove_compensation),
 #endif
 	POWER_SUPPLY_ATTR(pd_in_hard_reset),
@@ -410,7 +410,7 @@ static struct device_attribute power_supply_attrs[] = {
 	POWER_SUPPLY_ATTR(cc_step),
 	POWER_SUPPLY_ATTR(cc_step_sel),
 	POWER_SUPPLY_ATTR(sw_jeita_enabled),
-#ifndef CONFIG_XIMI_MOJITO
+#ifndef CONFIG_XIMI_SUNNY
 	POWER_SUPPLY_ATTR(dynamic_fv_enabled),
 #endif
 	POWER_SUPPLY_ATTR(pd_voltage_max),
@@ -423,7 +423,7 @@ static struct device_attribute power_supply_attrs[] = {
 	POWER_SUPPLY_ATTR(moisture_detected),
 	POWER_SUPPLY_ATTR(batt_profile_version),
 	POWER_SUPPLY_ATTR(batt_full_current),
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	POWER_SUPPLY_ATTR(battery_charging_limited),
 	POWER_SUPPLY_ATTR(bq_input_suspend),
 #endif
@@ -458,7 +458,7 @@ static struct device_attribute power_supply_attrs[] = {
 	POWER_SUPPLY_ATTR(comp_clamp_level),
 	POWER_SUPPLY_ATTR(adapter_cc_mode),
 	POWER_SUPPLY_ATTR(skin_health),
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	POWER_SUPPLY_ATTR(apsd_rerun),
 	POWER_SUPPLY_ATTR(apsd_timeout),
 #endif
@@ -478,7 +478,7 @@ static struct device_attribute power_supply_attrs[] = {
 	POWER_SUPPLY_ATTR(irq_status),
 	POWER_SUPPLY_ATTR(parallel_output_mode),
 	POWER_SUPPLY_ATTR(ffc_chg_term_current),
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	/* Bq charge pump properties */
 	POWER_SUPPLY_ATTR(ti_battery_present),
 	POWER_SUPPLY_ATTR(ti_vbus_present),

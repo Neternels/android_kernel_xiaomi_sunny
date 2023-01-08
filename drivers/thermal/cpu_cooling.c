@@ -736,7 +736,7 @@ update_frequency:
 	return 0;
 }
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 void cpu_limits_set_level(unsigned int cpu, unsigned int requested)
 {
 	struct cpufreq_cooling_device *cpufreq_cdev;

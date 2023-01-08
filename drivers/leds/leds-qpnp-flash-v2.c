@@ -354,7 +354,7 @@ static int max_ires_curr_ma_table[MAX_IRES_LEVELS] = {
 	FLASH_LED_IRES7P5_MAX_CURR_MA, FLASH_LED_IRES5P0_MAX_CURR_MA
 };
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 struct flash_node_data *g_torch_0;
 struct flash_node_data *g_torch_1;
 struct flash_switch_data *g_switch_0;
@@ -1759,7 +1759,7 @@ static void qpnp_flash_led_brightness_set(struct led_classdev *led_cdev,
 		fnode = container_of(led_cdev, struct flash_node_data, cdev);
 		led = dev_get_drvdata(&fnode->pdev->dev);
 	}
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
     else if (!strncmp(led_cdev->name, "flashlight", strlen("flashlight"))) {
 		fnode = container_of(led_cdev, struct flash_node_data, cdev);
 		led = dev_get_drvdata(&fnode->pdev->dev);
@@ -1777,7 +1777,7 @@ static void qpnp_flash_led_brightness_set(struct led_classdev *led_cdev,
 		if (rc < 0)
 			pr_err("Failed to set flash LED switch rc=%d\n", rc);
 	} else if (fnode) {
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
         if (!strncmp(led_cdev->name, "flashlight", strlen("flashlight"))) {
             if (g_torch_0 && g_torch_1 && g_switch_0 && g_switch_1) {
                 pr_err("flash light fnode %d value %d", __LINE__, value);
@@ -2695,7 +2695,7 @@ static int qpnp_flash_led_probe(struct platform_device *pdev)
 	unsigned int base;
 	int rc, i = 0, j = 0;
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	struct flash_node_data *fnode;
 	struct flash_switch_data *snode;
 #endif
@@ -2792,7 +2792,7 @@ static int qpnp_flash_led_probe(struct platform_device *pdev)
 				goto error_led_register;
 			}
 
-			#ifdef CONFIG_XIMI_MOJITO
+			#ifdef CONFIG_XIMI_SUNNY
 			fnode = &led->fnode[i];
 			if (!strcmp("led:torch_0", fnode->cdev.name)) {
 				g_torch_0 = fnode;
@@ -2808,7 +2808,7 @@ static int qpnp_flash_led_probe(struct platform_device *pdev)
 			rc = qpnp_flash_led_parse_and_register_switch(led,
 					&led->snode[j], temp);
 
-			#ifdef CONFIG_XIMI_MOJITO
+			#ifdef CONFIG_XIMI_SUNNY
 			snode = &led->snode[j];
 			if (!strcmp("led:switch_0", snode->cdev.name)) {
 				g_switch_0 = snode;

@@ -19,7 +19,7 @@
 #include <linux/ion_kernel.h>
 #include <linux/dma-buf.h>
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 //xieqi add 2020-04-27
 #include <linux/syscalls.h>
 #endif
@@ -646,7 +646,7 @@ multi_map_fail:
 	else
 		// MI change i>0 to i>=0
 		// when i = 1 mean mmu_hdls[0] has map, and it need unmap
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 		for (--i; i >= 0; i--)
 #else
 
@@ -780,7 +780,7 @@ map_kernel_fail:
 map_hw_fail:
         cam_mem_put_slot(idx);
 slot_fail:
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 //xieqi add start 2020-04-27 for smmu_map_buffer Fail to avoid ion leak
 	sys_close(fd);
 //xieqi add end

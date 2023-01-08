@@ -19,7 +19,7 @@
 #include "cam_common_util.h"
 #include "cam_packet_util.h"
 
-#undef CONFIG_XIMI_MOJITO
+#undef CONFIG_XIMI_SUNNY
 
 extern int wl2866d_camera_power_up(uint16_t camera_id);
 extern int wl2866d_camera_power_down(uint16_t camera_id);
@@ -389,7 +389,7 @@ int32_t cam_sensor_update_slave_info(struct cam_cmd_probe *probe_info,
 
 //lugang add sensor node info
 	s_ctrl->sensordata->camera_id = probe_info->camera_id;
-	#ifdef CONFIG_XIMI_MOJITO
+	#ifdef CONFIG_XIMI_SUNNY
 	s_ctrl->sensordata->sensorName = probe_info->sensorName;
 	#endif 
 	s_ctrl->sensor_probe_addr_type =  probe_info->addr_type;
@@ -651,7 +651,7 @@ int cam_sensor_match_id(struct cam_sensor_ctrl_t *s_ctrl)
 			 slave_info);
 		return -EINVAL;
 	}
-	#ifdef CONFIG_XIMI_MOJITO
+	#ifdef CONFIG_XIMI_SUNNY
 	CAM_ERR(CAM_SENSOR, "xyz slaveaddr: 0x%x, sensor_id_reg_addr =0x%x",
 		slave_info->sensor_slave_addr,slave_info->sensor_id_reg_addr);
 	#endif
@@ -674,7 +674,7 @@ int cam_sensor_match_id(struct cam_sensor_ctrl_t *s_ctrl)
 
 
 // add sensor info for factory mode begin
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 static struct kobject *msm_sensor_device;
 static char module_info[240] = {0};
 #define CAM_BACK_MAIN 0
@@ -929,7 +929,7 @@ int32_t cam_sensor_driver_cmd(struct cam_sensor_ctrl_t *s_ctrl,
 		}
 
 		//lugang add sensor node info
-		#ifdef CONFIG_XIMI_MOJITO
+		#ifdef CONFIG_XIMI_SUNNY
 		msm_sensor_init_device_name();
 		msm_sensor_set_module_info(s_ctrl);
 		#endif

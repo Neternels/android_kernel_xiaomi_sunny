@@ -196,7 +196,7 @@ enum vdm_state {
 	DISCOVERED_MODES,
 	MODE_ENTERED,
 	MODE_EXITED,
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	VDM_NACK,
 #endif
 };
@@ -243,7 +243,7 @@ static void *usbpd_ipc_log;
 #define VDM_BUSY_TIME		50
 #define VCONN_ON_TIME		100
 #define SINK_TX_TIME		16
-#ifndef CONFIG_XIMI_MOJITO
+#ifndef CONFIG_XIMI_SUNNY
 #define DR_SWAP_RESPONSE_TIME	20
 #endif
 
@@ -375,7 +375,7 @@ module_param(check_vsafe0v, bool, 0600);
 static int min_sink_current = 900;
 module_param(min_sink_current, int, 0600);
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 static const u32 default_src_caps[] = { 0x3601912C };	/* VSafe5V @ 1.5A */
 #else
 static const u32 default_src_caps[] = { 0x36019096 };	/* VSafe5V @ 1.5A */
@@ -416,7 +416,7 @@ struct usbpd {
 	enum usbpd_state	current_state;
 	bool			hard_reset_recvd;
 	ktime_t			hard_reset_recvd_time;
-#ifndef CONFIG_XIMI_MOJITO
+#ifndef CONFIG_XIMI_SUNNY
 	ktime_t			dr_swap_recvd_time;
 #endif
 	struct list_head	rx_q;
@@ -477,7 +477,7 @@ struct usbpd {
 	bool			vconn_is_external;
 	u32			limit_curr;
 	u32			pd_max_curr_limit;
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	u32 			limit_pd_unverified_pps_vbus;
 	u32 			pd_unverified_pps_max_vbus_limit;
 #else
@@ -513,7 +513,7 @@ struct usbpd {
 	bool			verifed;
 	int			uvdm_state;
 	bool			pps_weak_limit;
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	/* non-qcom pps control */
 	bool		non_qcom_pps_ctr;
 #endif
@@ -901,7 +901,7 @@ static int pd_select_pdo(struct usbpd *pd, int pdo_pos, int uv, int ua)
 					uv, ua);
 			return -EINVAL;
 		}
-	#ifdef CONFIG_XIMI_MOJITO
+	#ifdef CONFIG_XIMI_SUNNY
 		/* use xiaomi pps control state machine */
 		if (pd->non_qcom_pps_ctr) {
 			usbpd_err(&pd->dev,
@@ -919,7 +919,7 @@ static int pd_select_pdo(struct usbpd *pd, int pdo_pos, int uv, int ua)
 		}
 
 		curr = ua / 1000;
-	#ifdef CONFIG_XIMI_MOJITO
+	#ifdef CONFIG_XIMI_SUNNY
 		/*
 		 * workaround for Zimi and similar non-compliant QC4+/PPS chargers:
 		 * if PPS power limit bit is set and QC4+ not compliant PPS chargers,
@@ -982,7 +982,7 @@ static int pd_select_pdo(struct usbpd *pd, int pdo_pos, int uv, int ua)
 	#endif
 }
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 static int pd_select_pdo_for_bq(struct usbpd *pd, int pdo_pos, int uv, int ua)
 {
 	int curr;
@@ -1162,7 +1162,7 @@ static void pd_send_hard_reset(struct usbpd *pd)
 	pd->hard_reset_count++;
 	pd_phy_signal(HARD_RESET_SIG);
 	pd->in_pr_swap = false;
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	pd->pd_connected = false; //exist on android R ?
 #endif
 	power_supply_set_property(pd->usb_psy, POWER_SUPPLY_PROP_PR_SWAP, &val);
@@ -1425,7 +1425,7 @@ static void phy_msg_received(struct usbpd *pd, enum pd_sop_type sop,
 		return;
 	}
 
-#ifndef CONFIG_XIMI_MOJITO
+#ifndef CONFIG_XIMI_SUNNY
 	if (IS_CTRL(rx_msg, MSG_DR_SWAP))
 		pd->dr_swap_recvd_time = ktime_get();
 #endif
@@ -2461,7 +2461,7 @@ static void handle_vdm_tx(struct usbpd *pd, enum pd_sop_type sop_type)
 		if (pd->vdm_tx_retry) {
 			usbpd_dbg(&pd->dev, "Previous Discover VDM command %d not ACKed/NAKed\n",
 				SVDM_HDR_CMD(pd->vdm_tx_retry->data[0]));
-		#ifdef CONFIG_XIMI_MOJITO
+		#ifdef CONFIG_XIMI_SUNNY
 			if (SVDM_HDR_CMD(pd->vdm_tx_retry->data[0]) == USBPD_SVDM_DISCOVER_IDENTITY)
 				pd->vdm_state = VDM_NACK;
 		#endif
@@ -2757,7 +2757,7 @@ static void usbpd_sm(struct work_struct *w)
 	int ret, ms;
 	struct rx_msg *rx_msg = NULL;
 	unsigned long flags;
-#ifndef CONFIG_XIMI_MOJITO
+#ifndef CONFIG_XIMI_SUNNY
 	s64 dr_swap_delta;
 #endif
 
@@ -2792,7 +2792,7 @@ static void usbpd_sm(struct work_struct *w)
 			pd->pd_phy_opened = false;
 		}
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 		pd->current_pr = PR_NONE;
 		pd->send_dr_swap = false;
 #endif
@@ -2987,7 +2987,7 @@ static void usbpd_sm(struct work_struct *w)
 		ret = pd_send_msg(pd, MSG_SOURCE_CAPABILITIES, default_src_caps,
 				ARRAY_SIZE(default_src_caps), SOP_MSG);
 		if (ret) {
-		#ifndef CONFIG_XIMI_MOJITO
+		#ifndef CONFIG_XIMI_SUNNY
 			if (pd->pd_connected) {
 				usbpd_set_state(pd, PE_SEND_SOFT_RESET);
 				break;
@@ -3058,7 +3058,7 @@ static void usbpd_sm(struct work_struct *w)
 				break;
 			}
 
-		#ifndef CONFIG_XIMI_MOJITO
+		#ifndef CONFIG_XIMI_SUNNY
 			dr_swap_delta = ktime_ms_delta(ktime_get(),
 						pd->dr_swap_recvd_time);
 			if (dr_swap_delta > DR_SWAP_RESPONSE_TIME) {
@@ -3348,7 +3348,7 @@ static void usbpd_sm(struct work_struct *w)
 				usbpd_set_state(pd, PE_SNK_HARD_RESET);
 				break;
 			}
-		#ifndef CONFIG_XIMI_MOJITO
+		#ifndef CONFIG_XIMI_SUNNY
 			dr_swap_delta = ktime_ms_delta(ktime_get(),
 						pd->dr_swap_recvd_time);
 			if (dr_swap_delta > DR_SWAP_RESPONSE_TIME) {
@@ -3782,7 +3782,7 @@ static int psy_changed(struct notifier_block *nb, unsigned long evt, void *ptr)
 		if (val.intval == POWER_SUPPLY_TYPE_USB ||
 			val.intval == POWER_SUPPLY_TYPE_USB_CDP ||
 			val.intval == POWER_SUPPLY_TYPE_USB_FLOAT) {
-		#ifdef CONFIG_XIMI_MOJITO
+		#ifdef CONFIG_XIMI_SUNNY
 			usbpd_err(&pd->dev, "typec mode:%d type:%d\n",
 				typec_mode, val.intval);
 		#else
@@ -4860,7 +4860,7 @@ static int usbpd_request_vdm_cmd(struct usbpd *pd, enum uvdm_state cmd, unsigned
 		break;
 	case USBPD_UVDM_VERIFIED:
 	case USBPD_UVDM_REMOVE_COMPENSATION:
-	#ifdef CONFIG_XIMI_MOJITO
+	#ifdef CONFIG_XIMI_SUNNY
 		if (pd->non_qcom_pps_ctr) {
 			if (cmd == USBPD_UVDM_REMOVE_COMPENSATION)
 				break;
@@ -5057,7 +5057,7 @@ static void usbpd_mi_connect_cb(struct usbpd_svid_handler *hdlr,
 	struct usbpd *pd;
 
 	pd = container_of(hdlr, struct usbpd, svid_handler);
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	if(!pd) {
 		pr_err("get_usbpd phandle failed\n");
 		return;
@@ -5066,7 +5066,7 @@ static void usbpd_mi_connect_cb(struct usbpd_svid_handler *hdlr,
 	pr_debug("peer_usb_comm: %d\n", peer_usb_comm);
 #endif
 	pd->uvdm_state = USBPD_UVDM_CONNECT;
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	usbpd_info(&pd->dev, "hdlr->svid:%x has connect\n", hdlr->svid);
 #else
 	usbpd_info(&pd->dev, "hdlr->svid:%x has connect, support peer_usb_comm = %d\n", hdlr->svid, peer_usb_comm);
@@ -5140,7 +5140,7 @@ static void usbpd_mi_vdm_received_cb(struct usbpd_svid_handler *hdlr, u32 vdm_hd
 		usbpd_dbg(&pd->dev, "usb r_cable now:%dmohm\n", r_cable);
 		break;
 	case USBPD_UVDM_SESSION_SEED:
-	#ifdef CONFIG_XIMI_MOJITO
+	#ifdef CONFIG_XIMI_SUNNY
 		for (i = 0; i < USBPD_UVDM_SS_LEN; i++) {
 			pd->vdm_data.s_secert[i] = vdos[i];
 			usbpd_dbg(&pd->dev, "usbpd s_secert vdos[%d]=0x%x", i, vdos[i]);
@@ -5155,7 +5155,7 @@ static void usbpd_mi_vdm_received_cb(struct usbpd_svid_handler *hdlr, u32 vdm_hd
 	#endif
 		break;
 	case USBPD_UVDM_AUTHENTICATION:
-	#if CONFIG_XIMI_MOJITO
+	#if CONFIG_XIMI_SUNNY
 		for (i = 0; i < USBPD_UVDM_SS_LEN; i++) {
 			pd->vdm_data.digest[i] = vdos[i];
 			usbpd_dbg(&pd->dev, "usbpd digest[%d]=0x%x", i, vdos[i]);
@@ -5175,7 +5175,7 @@ static void usbpd_mi_vdm_received_cb(struct usbpd_svid_handler *hdlr, u32 vdm_hd
 	pd->uvdm_state = cmd;
 }
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 int usbpd_get_pps_status(struct usbpd *pd, u32 *pps_status)
 {
 	int ret;
@@ -5327,7 +5327,7 @@ static int num_pd_instances;
  *
  * Return: struct usbpd pointer, or an ERR_PTR value
  */
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 static struct usbpd *g_pd;
 struct usbpd *smb_get_g_pd(void)
 {
@@ -5389,7 +5389,7 @@ struct usbpd *usbpd_create(struct device *parent)
 		ret = -EPROBE_DEFER;
 		goto destroy_wq;
 	}
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	usbpd_info(&pd->dev, "usbpd_create\n");
 #endif
 	if (!pd->bat_psy)
@@ -5463,7 +5463,7 @@ struct usbpd *usbpd_create(struct device *parent)
 		}
 	}
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	ret = of_property_read_u32(parent->of_node, "mi,limit_pd_unverified_pps_vbus",
 			&pd->limit_pd_unverified_pps_vbus);
 	if (ret) {
@@ -5602,7 +5602,7 @@ struct usbpd *usbpd_create(struct device *parent)
 
 	/* force read initial power_supply values */
 	psy_changed(&pd->psy_nb, PSY_EVENT_PROP_CHANGED, pd->usb_psy);
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	g_pd = pd;
 	pr_err("usbpd_create successfully:pd=%x,g_pd=%x\n", pd, g_pd);
 #endif
@@ -5619,7 +5619,7 @@ del_pd:
 free_pd:
 	num_pd_instances--;
 	put_device(&pd->dev);
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	pr_err("usbpd_create error\n");
 #endif
 	return ERR_PTR(ret);

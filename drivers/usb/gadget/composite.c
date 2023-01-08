@@ -2480,7 +2480,7 @@ void composite_suspend(struct usb_gadget *gadget)
 	spin_unlock_irqrestore(&cdev->lock, flags);
 	
 	usb_gadget_set_selfpowered(gadget);
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	usb_gadget_vbus_draw(gadget, 500);    //qcom KBA-171218012414,liwei6 modify,20200730
 #else
 	usb_gadget_vbus_draw(gadget, 2);

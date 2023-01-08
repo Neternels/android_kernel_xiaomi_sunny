@@ -19,7 +19,7 @@
 #include "cam_debug_util.h"
 #include "cam_common_util.h"
 #include "cam_packet_util.h"
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 extern int wl2866d_camera_power_up_eeprom(void);
 extern int wl2866d_camera_power_down_eeprom(void);
 #endif
@@ -162,7 +162,7 @@ static int cam_eeprom_power_up(struct cam_eeprom_ctrl_t *e_ctrl,
 	int32_t                 rc = 0;
 	struct cam_hw_soc_info *soc_info =
 		&e_ctrl->soc_info;
-	#ifdef CONFIG_XIMI_MOJITO
+	#ifdef CONFIG_XIMI_SUNNY
 	CAM_DBG(CAM_EEPROM, "xyz eeprom %s %d", __func__, __LINE__);
 	#endif
 	/* Parse and fill vreg params for power up settings */
@@ -222,7 +222,7 @@ static int cam_eeprom_power_down(struct cam_eeprom_ctrl_t *e_ctrl)
 		CAM_ERR(CAM_EEPROM, "failed: e_ctrl %pK", e_ctrl);
 		return -EINVAL;
 	}
-	#ifdef CONFIG_XIMI_MOJITO
+	#ifdef CONFIG_XIMI_SUNNY
 	CAM_DBG(CAM_EEPROM, "xyz eeprom %s %d", __func__, __LINE__);
 	#endif
 	soc_private =
@@ -871,7 +871,7 @@ static int32_t cam_eeprom_pkt_parse(struct cam_eeprom_ctrl_t *e_ctrl, void *arg)
 			CAM_ERR(CAM_EEPROM, "failed");
 			goto error;
 		}
-		#ifdef CONFIG_XIMI_MOJITO
+		#ifdef CONFIG_XIMI_SUNNY
 		CAM_DBG(CAM_EEPROM, "xyz eeprom power_up %s %d", __func__, __LINE__);
 		rc = wl2866d_camera_power_up_eeprom();
 		if (rc < 0) {
@@ -901,12 +901,12 @@ static int32_t cam_eeprom_pkt_parse(struct cam_eeprom_ctrl_t *e_ctrl, void *arg)
                 /*cuixiaojie@xiaomi.com add diff eeprom module compatible 2019-11-12 end*/
 			goto power_down;
 		}
-		#ifdef CONFIG_XIMI_MOJITO
+		#ifdef CONFIG_XIMI_SUNNY
 		CAM_DBG(CAM_EEPROM, "xyz eeprom power_down %s %d", __func__, __LINE__);
 		#endif
 		rc = cam_eeprom_get_cal_data(e_ctrl, csl_packet);
 		rc = cam_eeprom_power_down(e_ctrl);
-		#ifdef CONFIG_XIMI_MOJITO
+		#ifdef CONFIG_XIMI_SUNNY
 		rc = wl2866d_camera_power_down_eeprom();
 		if (rc < 0) {
 			CAM_ERR(CAM_EEPROM, "xyz wl2866d_camera_power_down_eeprom failed, rc=%d", rc);
@@ -972,7 +972,7 @@ void cam_eeprom_shutdown(struct cam_eeprom_ctrl_t *e_ctrl)
 	struct cam_eeprom_soc_private  *soc_private =
 		(struct cam_eeprom_soc_private *)e_ctrl->soc_info.soc_private;
 	struct cam_sensor_power_ctrl_t *power_info = &soc_private->power_info;
-	#ifdef CONFIG_XIMI_MOJITO
+	#ifdef CONFIG_XIMI_SUNNY
 	CAM_DBG(CAM_EEPROM, "xyz eeprom %s %d", __func__, __LINE__);
 	#endif
 	if (e_ctrl->cam_eeprom_state == CAM_EEPROM_INIT)

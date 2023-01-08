@@ -403,7 +403,7 @@ static const struct attribute *breath_attrs[] = {
 	NULL
 };
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 static int qpnp_tri_white_led_register(struct qpnp_tri_led_chip *chip)
 {
   struct qpnp_led_dev *led;
@@ -469,7 +469,7 @@ static int qpnp_tri_led_register(struct qpnp_tri_led_chip *chip)
 			}
 		}
 	}
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	qpnp_tri_white_led_register(chip);
 #endif
 	return 0;

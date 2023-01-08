@@ -30,13 +30,13 @@ DATE=$(date +"%Y-%m-%d")
 export DATE
 
 # Device codename.
-export CODENAME="mojito"
+export CODENAME="sunny"
 
 # Builder name.
 export BUILDER="cyberknight777"
 
 # Kernel repository URL.
-export REPO_URL="https://github.com/neternels/android_kernel_xiaomi_mojito"
+export REPO_URL="https://github.com/neternels/android_kernel_xiaomi_sunny"
 
 # Commit hash of HEAD.
 COMMIT_HASH=$(git rev-parse --short HEAD)
@@ -142,8 +142,8 @@ if [[ "${MODULE}" = 1 ]]; then
     fi
 fi
 
-if [ ! -d "${KDIR}/anykernel3-mojito/" ]; then
-    git clone --depth=1 https://github.com/neternels/anykernel3 -b mojito anykernel3-mojito
+if [ ! -d "${KDIR}/anykernel3-sunny/" ]; then
+    git clone --depth=1 https://github.com/neternels/anykernel3 -b sunny anykernel3-sunny
 fi
 
 if [ "${ci}" != 1 ]; then
@@ -165,7 +165,7 @@ else
     export KBUILD_BUILD_USER=$BUILDER
     export VERSION=$version
     kver=$KBUILD_BUILD_VERSION
-    zipn=NetErnels-mojito-${VERSION}
+    zipn=NetErnels-sunny-${VERSION}
     if [[ "${MODULE}" = "1" ]]; then
         modn="${zipn}-modules"
     fi
@@ -296,11 +296,11 @@ mkzip() {
         tg "*Building zip!*"
     fi
     echo -e "\n\e[1;93m[*] Building zip! \e[0m"
-    mkdir -p "${KDIR}"/anykernel3-mojito/dtbs
-    mv "${KDIR}"/out/arch/arm64/boot/dtbo.img "${KDIR}"/anykernel3-mojito
-    cat "${KDIR}"/out/arch/arm64/boot/dts/qcom/sm6150.dtb > "${KDIR}"/anykernel3-mojito/dtb
-    mv "${KDIR}"/out/arch/arm64/boot/Image "${KDIR}"/anykernel3-mojito
-    cd "${KDIR}"/anykernel3-mojito || exit 1
+    mkdir -p "${KDIR}"/anykernel3-sunny/dtbs
+    mv "${KDIR}"/out/arch/arm64/boot/dtbo.img "${KDIR}"/anykernel3-sunny
+    cat "${KDIR}"/out/arch/arm64/boot/dts/qcom/sm6150.dtb > "${KDIR}"/anykernel3-sunny/dtb
+    mv "${KDIR}"/out/arch/arm64/boot/Image "${KDIR}"/anykernel3-sunny
+    cd "${KDIR}"/anykernel3-sunny || exit 1
     zip -r9 "$zipn".zip . -x ".git*" -x "README.md" -x "LICENSE" -x "*.zip"
     echo -e "\n\e[1;32m[✓] Built zip! \e[0m"
     if [[ "${ci}" == "1" ]]; then
@@ -310,15 +310,15 @@ mkzip() {
 	git config credential.helper "store --file .pwd"
 	sha1=$(sha1sum ../"${zipn}".zip | cut -d ' ' -f1)
 	if [[ "${RELEASE}" != "1" ]]; then
-	    rm mojito/changelog_r.md
-	    wget "${link}/raw" -O mojito/changelog_r.md
+	    rm sunny/changelog_r.md
+	    wget "${link}/raw" -O sunny/changelog_r.md
 	    echo "
 {
   \"kernel\": {
   \"name\": \"NetErnels\",
   \"version\": \"$version\",
   \"link\": \"https://github.com/NetErnels/devices/releases/download/$version/$zipn.zip\",
-  \"changelog_url\": \"https://raw.githubusercontent.com/NetErnels/devices/master/mojito/changelog_r.md\",
+  \"changelog_url\": \"https://raw.githubusercontent.com/NetErnels/devices/master/sunny/changelog_r.md\",
   \"date\": \"$DATE\",
   \"sha1\": \"$sha1\"
   },
@@ -326,23 +326,23 @@ mkzip() {
     \"link\": \"https://t.me/neternels_chat\"
   }
 }
-" > mojito/NetErnels-r.json
-	    git add mojito/NetErnels-r.json mojito/changelog_r.md || exit 1
+" > sunny/NetErnels-r.json
+	    git add sunny/NetErnels-r.json sunny/changelog_r.md || exit 1
 	    git commit -s -m "NetErnels: Update $CODENAME to $version release" -m "- This is a bleeding edge release."
 	    git commit --amend --reset-author --no-edit
 	    git push
 	    gh release create "${version}" -t "NetErnels for $CODENAME [BLEEDING EDGE] - $version"
 	    gh release upload "${version}" ../"${zipn}.zip"
 	else
-	    rm mojito/changelog.md
-	    wget "${link}"/raw -O mojito/changelog.md
+	    rm sunny/changelog.md
+	    wget "${link}"/raw -O sunny/changelog.md
 	    echo "
 {
   \"kernel\": {
   \"name\": \"NetErnels\",
   \"version\": \"$version\",
   \"link\": \"https://github.com/NetErnels/devices/releases/download/$version/$zipn.zip\",
-  \"changelog_url\": \"https://raw.githubusercontent.com/NetErnels/devices/master/mojito/changelog.md\",
+  \"changelog_url\": \"https://raw.githubusercontent.com/NetErnels/devices/master/sunny/changelog.md\",
   \"date\": \"$DATE\",
   \"sha1\": \"$sha1\"
   },
@@ -350,8 +350,8 @@ mkzip() {
     \"link\": \"https://t.me/neternels_chat\"
   }
 }
-" > mojito/NetErnels-v.json
-	    git add mojito/NetErnels-v.json mojito/changelog.md || exit 1
+" > sunny/NetErnels-v.json
+	    git add sunny/NetErnels-v.json sunny/changelog.md || exit 1
 	    git commit -s -m "NetErnels: Update $CODENAME to $version release" -m "- This is a stable release."
 	    git commit --amend --reset-author --no-edit
 	    git push
@@ -368,8 +368,8 @@ mkzip() {
 	fi
 	tg "
 *Build*: https://github.com/NetErnels/devices/releases/download/$version/$zipn.zip
-*Changelog*: https://github.com/NetErnels/devices/blob/master/mojito/changelog\_${re}.md
-*OTA*: https://raw.githubusercontent.com/NetErnels/devices/master/mojito/NetErnels-${re}.json
+*Changelog*: https://github.com/NetErnels/devices/blob/master/sunny/changelog\_${re}.md
+*OTA*: https://raw.githubusercontent.com/NetErnels/devices/master/sunny/NetErnels-${re}.json
 "
     fi
 }

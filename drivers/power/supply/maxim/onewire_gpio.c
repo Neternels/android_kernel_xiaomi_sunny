@@ -103,7 +103,7 @@ unsigned char read_bit(void)
 	ONE_WIRE_OUT_LOW;
 	ONE_WIRE_CONFIG_IN;
 	vamm = readl_relaxed(g_onewire_data->gpio_in_out_reg); // Read
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	udelay(15);
 #endif
 	return((unsigned char)vamm & 0x01);
@@ -111,7 +111,7 @@ unsigned char read_bit(void)
 
 void write_bit(char bitval)
 {
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	ONE_WIRE_CONFIG_OUT;
 #endif
 	ONE_WIRE_OUT_LOW;

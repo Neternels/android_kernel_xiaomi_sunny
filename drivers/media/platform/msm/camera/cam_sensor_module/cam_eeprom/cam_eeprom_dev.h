@@ -33,7 +33,7 @@
 	static struct mutex mutexname = __MUTEX_INITIALIZER(mutexname)
 
 #define PROPERTY_MAXSIZE 32
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 #define MSM_EEPROM_MEMORY_MAP_MAX_SIZE         128
 #define MSM_EEPROM_MAX_MEM_MAP_CNT             64
 #else

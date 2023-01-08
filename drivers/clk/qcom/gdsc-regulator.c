@@ -88,7 +88,7 @@ struct gdsc {
 	int			reset_count;
 	int			root_clk_idx;
 	u32			gds_timeout;
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	bool			skip_disable_before_enable;
 #endif
 };
@@ -169,7 +169,7 @@ static int gdsc_is_enabled(struct regulator_dev *rdev)
 	if (!sc->toggle_logic)
 		return !sc->resets_asserted;
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	if (sc->skip_disable_before_enable)
 		return false;
 #endif
@@ -265,7 +265,7 @@ static int gdsc_enable(struct regulator_dev *rdev)
 	uint32_t regval, hw_ctrl_regval = 0x0;
 	int i, ret = 0;
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	if (sc->skip_disable_before_enable)
 		return 0;
 #endif
@@ -434,7 +434,7 @@ end:
 		sc->is_bus_enabled = false;
 	}
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	sc->skip_disable_before_enable = false;
 #endif
 	if (ret && sc->parent_regulator)
@@ -1010,7 +1010,7 @@ static int gdsc_probe(struct platform_device *pdev)
 			clk_set_flags(sc->clocks[i], CLKFLAG_NORETAIN_PERIPH);
 	}
 
-#ifdef CONFIG_XIMI_MOJITO
+#ifdef CONFIG_XIMI_SUNNY
 	sc->skip_disable_before_enable = of_property_read_bool(
 		pdev->dev.of_node, "qcom,skip-disable-before-sw-enable");
 #endif
