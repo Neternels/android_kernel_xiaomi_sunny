@@ -344,7 +344,7 @@ int fts_gesture_readdata(struct fts_ts_data *ts_data, u8 *data)
     struct input_dev *input_dev = ts_data->input_dev;
     struct fts_gesture_st *gesture = &fts_gesture_data;
 
-    if (!ts_data->suspended ||(!ts_data->gesture_mode && !ts_data->aod_changed)) {
+    if (!ts_data->suspended) {
         return 1;
     }
 
