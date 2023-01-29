@@ -41,7 +41,7 @@
 /******************************************************************************
 * Private constant and macro definitions using #define
 *****************************************************************************/
-#define KEY_GESTURE_U                           KEY_WAKEUP
+#define KEY_GESTURE_DOUBLECLICK                 KEY_WAKEUP
 #define KEY_GESTURE_UP                          KEY_UP
 #define KEY_GESTURE_DOWN                        KEY_DOWN
 #define KEY_GESTURE_LEFT                        KEY_LEFT
@@ -55,7 +55,7 @@
 #define KEY_GESTURE_V                           KEY_V
 #define KEY_GESTURE_C                           KEY_C
 #define KEY_GESTURE_Z                           KEY_Z
-#define KEY_GESTURE_AOD                         KEY_GOTO
+#define KEY_GESTURE_SINGLECLICK                 KEY_GOTO
 
 #define GESTURE_LEFT                            0x20
 #define GESTURE_RIGHT                           0x21
@@ -71,7 +71,7 @@
 #define GESTURE_V                               0x54
 #define GESTURE_Z                               0x41
 #define GESTURE_C                               0x34
-#define GESTURE_AOD                             0x25
+#define GESTURE_SINGLECLICK                     0x25
 
 /*****************************************************************************
 * Private enumerations, structures and unions using typedef
@@ -303,8 +303,8 @@ static void fts_gesture_report(struct input_dev *input_dev, int gesture_id)
     case GESTURE_C:
         gesture = KEY_GESTURE_C;
         break;
-    case GESTURE_AOD:
-        gesture = KEY_GESTURE_AOD;
+    case GESTURE_SINGLECLICK:
+        gesture = KEY_GESTURE_SINGLECLICK;
         break;
     default:
         gesture = -1;
@@ -489,7 +489,6 @@ int fts_gesture_init(struct fts_ts_data *ts_data)
 	input_set_capability(input_dev, EV_KEY, KEY_GOTO);
 	input_set_capability(input_dev, EV_KEY, KEY_SLEEP);
     input_set_capability(input_dev, EV_KEY, KEY_POWER);
-    input_set_capability(input_dev, EV_KEY, KEY_GESTURE_U);
     input_set_capability(input_dev, EV_KEY, KEY_GESTURE_UP);
     input_set_capability(input_dev, EV_KEY, KEY_GESTURE_DOWN);
     input_set_capability(input_dev, EV_KEY, KEY_GESTURE_LEFT);
@@ -510,7 +509,6 @@ int fts_gesture_init(struct fts_ts_data *ts_data)
     __set_bit(KEY_GESTURE_LEFT, input_dev->keybit);
     __set_bit(KEY_GESTURE_UP, input_dev->keybit);
     __set_bit(KEY_GESTURE_DOWN, input_dev->keybit);
-    __set_bit(KEY_GESTURE_U, input_dev->keybit);
     __set_bit(KEY_GESTURE_O, input_dev->keybit);
     __set_bit(KEY_GESTURE_E, input_dev->keybit);
     __set_bit(KEY_GESTURE_M, input_dev->keybit);
