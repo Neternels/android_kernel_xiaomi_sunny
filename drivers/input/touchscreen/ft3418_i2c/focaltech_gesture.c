@@ -300,10 +300,10 @@ static void fts_gesture_report(struct input_dev *input_dev, int gesture_id)
     case GESTURE_Z:
         gesture = KEY_GESTURE_Z;
         break;
-    case  GESTURE_C:
+    case GESTURE_C:
         gesture = KEY_GESTURE_C;
         break;
-	case  GESTURE_AOD:
+    case GESTURE_AOD:
         gesture = KEY_GESTURE_AOD;
         break;
     default:
