@@ -5290,7 +5290,7 @@ int dsi_panel_apply_hbm_mode(struct dsi_panel *panel)
 {
 	static const enum dsi_cmd_set_type type_map[] = {
 		DSI_CMD_SET_DISP_HBM_OFF,
-		DSI_CMD_SET_DISP_HBM_ON
+		DSI_CMD_SET_HBM2_ON
 	};
 
 	enum dsi_cmd_set_type type;
