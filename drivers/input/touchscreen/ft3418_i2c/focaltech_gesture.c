@@ -73,6 +73,8 @@
 #define GESTURE_C                               0x34
 #define GESTURE_SINGLECLICK                     0x25
 
+#define nt_info(fmt, ...) printk(KERN_INFO "NetErnels: " fmt, ##__VA_ARGS__)
+
 /*****************************************************************************
 * Private enumerations, structures and unions using typedef
 *****************************************************************************/
@@ -101,6 +103,7 @@ static struct fts_gesture_st fts_gesture_data;
 /*****************************************************************************
 * Global variable or extern global variabls/functions
 *****************************************************************************/
+extern bool is_dt2w_sensor;
 
 /*****************************************************************************
 * Static function prototypes
@@ -272,6 +275,10 @@ static void fts_gesture_report(struct input_dev *input_dev, int gesture_id)
         break;
     case GESTURE_UP:
         gesture = KEY_GESTURE_UP;
+        break;
+    case GESTURE_DOUBLECLICK:
+        if (!is_dt2w_sensor)
+            gesture = KEY_GESTURE_DOUBLECLICK;
         break;
     case GESTURE_DOWN:
         gesture = KEY_GESTURE_DOWN;
@@ -489,6 +496,10 @@ int fts_gesture_init(struct fts_ts_data *ts_data)
 	input_set_capability(input_dev, EV_KEY, KEY_GOTO);
 	input_set_capability(input_dev, EV_KEY, KEY_SLEEP);
     input_set_capability(input_dev, EV_KEY, KEY_POWER);
+    if (!is_dt2w_sensor) {
+        nt_info("Legacy DT2W detected! Setting capability for it...");
+        input_set_capability(input_dev, EV_KEY, KEY_GESTURE_DOUBLECLICK);
+    }
     input_set_capability(input_dev, EV_KEY, KEY_GESTURE_UP);
     input_set_capability(input_dev, EV_KEY, KEY_GESTURE_DOWN);
     input_set_capability(input_dev, EV_KEY, KEY_GESTURE_LEFT);
@@ -509,6 +520,10 @@ int fts_gesture_init(struct fts_ts_data *ts_data)
     __set_bit(KEY_GESTURE_LEFT, input_dev->keybit);
     __set_bit(KEY_GESTURE_UP, input_dev->keybit);
     __set_bit(KEY_GESTURE_DOWN, input_dev->keybit);
+    if (!is_dt2w_sensor) {
+        nt_info("Legacy DT2W detected! Setting key bit for it...");
+        __set_bit(KEY_GESTURE_DOUBLECLICK, input_dev->keybit);
+    }
     __set_bit(KEY_GESTURE_O, input_dev->keybit);
     __set_bit(KEY_GESTURE_E, input_dev->keybit);
     __set_bit(KEY_GESTURE_M, input_dev->keybit);
