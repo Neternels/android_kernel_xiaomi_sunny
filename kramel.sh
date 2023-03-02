@@ -166,9 +166,10 @@ else
     export VERSION=$version
     kver=$KBUILD_BUILD_VERSION
     zipn=NetErnels-sunny-${VERSION}
-    if [[ "${MODULE}" = "1" ]]; then
-        modn="${zipn}-modules"
-    fi
+fi
+
+if [[ "${MODULE}" = "1" ]]; then
+    modn="${zipn}-modules"
 fi
 
 # A function to exit on SIGINT.
