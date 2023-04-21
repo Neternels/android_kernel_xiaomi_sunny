@@ -104,6 +104,7 @@ static struct fts_gesture_st fts_gesture_data;
 * Global variable or extern global variabls/functions
 *****************************************************************************/
 extern bool is_dt2w_sensor;
+extern bool is_st2w_sensor;
 
 /*****************************************************************************
 * Static function prototypes
@@ -284,8 +285,10 @@ static void fts_gesture_report(struct input_dev *input_dev, int gesture_id)
         sysfs_notify(&fts_data->client->dev.kobj, NULL, "double_tap_pressed");
     }
 
-    fts_data->single_tap_pressed = (gesture_id == GESTURE_SINGLECLICK) ? 1 : 0;
-    sysfs_notify(&fts_data->client->dev.kobj, NULL, "single_tap_pressed");
+    if (is_st2w_sensor) {
+      fts_data->single_tap_pressed = (gesture_id == GESTURE_SINGLECLICK) ? 1 : 0;
+      sysfs_notify(&fts_data->client->dev.kobj, NULL, "single_tap_pressed");
+    }
 
     FTS_INFO("gesture_id:0x%x", gesture_id);
     switch (gesture_id) {
@@ -333,7 +336,8 @@ static void fts_gesture_report(struct input_dev *input_dev, int gesture_id)
         gesture = KEY_GESTURE_C;
         break;
     case GESTURE_SINGLECLICK:
-        gesture = KEY_GESTURE_SINGLECLICK;
+        if (!is_st2w_sensor)
+	  gesture = KEY_GESTURE_SINGLECLICK;
         break;
     default:
         gesture = -1;
@@ -515,7 +519,10 @@ int fts_gesture_init(struct fts_ts_data *ts_data)
 
 	input_dev->event = fts_gesture_switch;
 
-	input_set_capability(input_dev, EV_KEY, KEY_GOTO);
+    if (!is_st2w_sensor) {
+        nt_info("Legacy ST2W detected! Setting capability for it...");
+        input_set_capability(input_dev, EV_KEY, KEY_GOTO);
+    }
 	input_set_capability(input_dev, EV_KEY, KEY_SLEEP);
     input_set_capability(input_dev, EV_KEY, KEY_POWER);
     if (!is_dt2w_sensor) {
@@ -536,7 +543,10 @@ int fts_gesture_init(struct fts_ts_data *ts_data)
     input_set_capability(input_dev, EV_KEY, KEY_GESTURE_Z);
     input_set_capability(input_dev, EV_KEY, KEY_GESTURE_C);
 
-	__set_bit(KEY_GOTO, input_dev->keybit);
+    if (!is_st2w_sensor) {
+      nt_info("Legacy ST2W detected! Setting key bit for it...");
+      __set_bit(KEY_GOTO, input_dev->keybit);
+    }
 	__set_bit(KEY_SLEEP, input_dev->keybit);
     __set_bit(KEY_GESTURE_RIGHT, input_dev->keybit);
     __set_bit(KEY_GESTURE_LEFT, input_dev->keybit);
