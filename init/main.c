@@ -123,6 +123,16 @@ static int __init read_is_dt2w_sensor(char *s)
 }
 __setup("init.is_dt2w_sensor=", read_is_dt2w_sensor);
 
+bool is_st2w_sensor = false;
+EXPORT_SYMBOL(is_st2w_sensor);
+
+static int __init read_is_st2w_sensor(char *s)
+{
+    strtobool(s, &is_st2w_sensor);
+    return 1;
+}
+__setup("init.is_st2w_sensor=", read_is_st2w_sensor);
+
 /*
  * Debug helper: via this flag we know that we are in 'early bootup code'
  * where only the boot processor is running with IRQ disabled.  This means
