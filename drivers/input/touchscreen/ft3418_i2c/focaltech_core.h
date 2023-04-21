@@ -223,6 +223,7 @@ struct fts_ts_data {
 #endif
     struct notifier_block drm_notif;
     int double_tap_pressed;
+    int single_tap_pressed;
 
 #ifdef CONFIG_TOUCHSCREEN_XIAOMI_TOUCHFEATURE
     u8 palm_sensor_switch;

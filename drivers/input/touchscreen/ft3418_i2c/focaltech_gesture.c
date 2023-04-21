@@ -215,6 +215,14 @@ static inline ssize_t double_tap_pressed_get(struct device *device,
        return scnprintf(buffer, PAGE_SIZE, "%i\n", ts->double_tap_pressed);
 }
 
+static inline ssize_t single_tap_pressed_get(struct device *device,
+                               struct device_attribute *attribute,
+                               char *buffer)
+{
+       struct fts_ts_data *ts = dev_get_drvdata(device);
+       return scnprintf(buffer, PAGE_SIZE, "%i\n", ts->single_tap_pressed);
+}
+
 /* sysfs gesture node
  *   read example: cat  fts_gesture_mode       ---read gesture mode
  *   write example:echo 1 > fts_gesture_mode   --- write gesture mode to 1
@@ -234,10 +242,18 @@ static DEVICE_ATTR(fts_gesture_buf, S_IRUGO | S_IWUSR,
 static DEVICE_ATTR(double_tap_pressed, S_IRUGO,
                    double_tap_pressed_get, NULL);
 
+/* sysfs single tap pressed node
+ *   read example: cat single_tap_pressed        --- read single tap pressed state
+ */
+static DEVICE_ATTR(single_tap_pressed, S_IRUGO,
+                   single_tap_pressed_get, NULL);
+
+
 static struct attribute *fts_gesture_mode_attrs[] = {
     &dev_attr_fts_gesture_mode.attr,
     &dev_attr_fts_gesture_buf.attr,
     &dev_attr_double_tap_pressed.attr,
+    &dev_attr_single_tap_pressed.attr,
     NULL,
 };
 
@@ -267,6 +283,9 @@ static void fts_gesture_report(struct input_dev *input_dev, int gesture_id)
         fts_data->double_tap_pressed = (gesture_id == GESTURE_DOUBLECLICK) ? 1 : 0;
         sysfs_notify(&fts_data->client->dev.kobj, NULL, "double_tap_pressed");
     }
+
+    fts_data->single_tap_pressed = (gesture_id == GESTURE_SINGLECLICK) ? 1 : 0;
+    sysfs_notify(&fts_data->client->dev.kobj, NULL, "single_tap_pressed");
 
     FTS_INFO("gesture_id:0x%x", gesture_id);
     switch (gesture_id) {
