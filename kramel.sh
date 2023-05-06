@@ -20,7 +20,7 @@ KDIR=$(pwd)
 export KDIR
 
 # Default linker to use for builds.
-export LINKER="ld.lld"
+export LINKER="ld"
 
 # Device name.
 export DEVICE="Redmi Note 10"
@@ -99,15 +99,11 @@ if [[ "${COMPILER}" == gcc ]]; then
         CROSS_COMPILE=aarch64-elf-
         CROSS_COMPILE_ARM32=arm-eabi-
         LD="${KDIR}"/gcc64/bin/aarch64-elf-"${LINKER}"
-        AR=llvm-ar
-        NM=llvm-nm
-        OBJDUMP=llvm-objdump
-        OBJCOPY=llvm-objcopy
-        OBJSIZE=llvm-objsize
-        STRIP=llvm-strip
-        HOSTAR=llvm-ar
-        HOSTCC=gcc
-        HOSTCXX=aarch64-elf-g++
+        AR=aarch64-elf-ar
+        AS=aarch64-elf-as
+        NM=aarch64-elf-nm
+        OBJDUMP=aarch64-elf-objdump
+        OBJCOPY=aarch64-elf-objcopy
         CC=aarch64-elf-gcc
     )
 
