@@ -1058,7 +1058,7 @@ static ssize_t fts_log_level_store(
 	return count;
 }
 
-#ifdef CONFIG_FTS_TRUSTED_TOUCH
+#ifdef CONFIG_FOCALTECH_TRUSTED_TOUCH
 
 static ssize_t trusted_touch_enable_show(struct device *dev,
 				struct device_attribute *attr, char *buf)
@@ -1198,7 +1198,7 @@ static DEVICE_ATTR(fts_irq, S_IRUGO | S_IWUSR, fts_irq_show, fts_irq_store);
 static DEVICE_ATTR(fts_boot_mode, S_IRUGO | S_IWUSR, fts_bootmode_show, fts_bootmode_store);
 static DEVICE_ATTR(fts_touch_point, S_IRUGO | S_IWUSR, fts_tpbuf_show, fts_tpbuf_store);
 static DEVICE_ATTR(fts_log_level, S_IRUGO | S_IWUSR, fts_log_level_show, fts_log_level_store);
-#ifdef CONFIG_FTS_TRUSTED_TOUCH
+#ifdef CONFIG_FOCALTECH_TRUSTED_TOUCH
 static DEVICE_ATTR_RW(trusted_touch_enable);
 static DEVICE_ATTR_RW(trusted_touch_event);
 #endif
@@ -1214,7 +1214,7 @@ static struct attribute *fts_attributes[] = {
 	&dev_attr_fts_boot_mode.attr,
 	&dev_attr_fts_touch_point.attr,
 	&dev_attr_fts_log_level.attr,
-#ifdef CONFIG_FTS_TRUSTED_TOUCH
+#ifdef CONFIG_FOCALTECH_TRUSTED_TOUCH
 	&dev_attr_trusted_touch_enable.attr,
 	&dev_attr_trusted_touch_event.attr,
 #endif

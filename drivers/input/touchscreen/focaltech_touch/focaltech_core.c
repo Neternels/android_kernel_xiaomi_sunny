@@ -51,7 +51,7 @@
 #endif
 #include "focaltech_core.h"
 
-#if defined(CONFIG_FTS_TRUSTED_TOUCH)
+#if defined(CONFIG_FOCALTECH_TRUSTED_TOUCH)
 #include <linux/atomic.h>
 #include <linux/clk.h>
 #include <linux/pm_runtime.h>
@@ -98,7 +98,7 @@ static int fts_ts_resume(struct device *dev);
 static irqreturn_t fts_irq_handler(int irq, void *data);
 static int fts_ts_probe_delayed(struct fts_ts_data *fts_data);
 
-#ifdef CONFIG_FTS_TRUSTED_TOUCH
+#ifdef CONFIG_FOCALTECH_TRUSTED_TOUCH
 
 static void fts_ts_trusted_touch_abort_handler(struct fts_ts_data *fts_data,
 						int error);
@@ -2575,7 +2575,7 @@ static int fts_ts_probe_delayed(struct fts_ts_data *fts_data)
 	int ret = 0;
 
 /* Avoid setting up hardware for TVM during probe */
-#ifdef CONFIG_FTS_TRUSTED_TOUCH
+#ifdef CONFIG_FOCALTECH_TRUSTED_TOUCH
 #ifdef CONFIG_ARCH_QTI_VM
 	if (!atomic_read(&fts_data->delayed_vm_probe_pending)) {
 		atomic_set(&fts_data->delayed_vm_probe_pending, 1);
@@ -2732,7 +2732,7 @@ static int fts_ts_probe_entry(struct fts_ts_data *ts_data)
 	}
 #endif
 
-#ifdef CONFIG_FTS_TRUSTED_TOUCH
+#ifdef CONFIG_FOCALTECH_TRUSTED_TOUCH
 	fts_ts_trusted_touch_init(ts_data);
 	mutex_init(&(ts_data->fts_clk_io_ctrl_mutex));
 #endif
@@ -2866,7 +2866,7 @@ static int fts_ts_suspend(struct device *dev)
 		FTS_INFO("fw upgrade in process, can't suspend");
 		return 0;
 	}
-#ifdef CONFIG_FTS_TRUSTED_TOUCH
+#ifdef CONFIG_FOCALTECH_TRUSTED_TOUCH
 	if (atomic_read(&fts_data->trusted_touch_enabled))
 		wait_for_completion_interruptible(
 			&fts_data->trusted_touch_powerdown);

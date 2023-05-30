@@ -186,7 +186,7 @@ enum trusted_touch_tvm_states {
 #define	TRUSTED_TOUCH_EVENT_RECLAIM_FAILURE -6
 #define	TRUSTED_TOUCH_EVENT_NOTIFICATIONS_PENDING 5
 
-#ifdef CONFIG_FTS_TRUSTED_TOUCH
+#ifdef CONFIG_FOCALTECH_TRUSTED_TOUCH
 #define TRUSTED_TOUCH_MEM_LABEL 0x7
 
 enum trusted_touch_pvm_states {
@@ -223,7 +223,7 @@ enum trusted_touch_tvm_states {
 	TRUSTED_TOUCH_TVM_STATE_MAX
 };
 
-#ifdef CONFIG_FTS_TRUSTED_TOUCH
+#ifdef CONFIG_FOCALTECH_TRUSTED_TOUCH
 #define TRUSTED_TOUCH_MEM_LABEL 0x7
 
 #define TOUCH_RESET_GPIO_BASE 0xF116000
@@ -315,7 +315,7 @@ struct fts_ts_data {
 	struct early_suspend early_suspend;
 #endif
 
-#ifdef CONFIG_FTS_TRUSTED_TOUCH
+#ifdef CONFIG_FOCALTECH_TRUSTED_TOUCH
 	struct trusted_touch_vm_info *vm_info;
 	struct mutex fts_clk_io_ctrl_mutex;
 	const char *touch_environment;
@@ -399,7 +399,7 @@ void fts_irq_disable(void);
 void fts_irq_enable(void);
 int fts_ts_handle_trusted_touch_pvm(struct fts_ts_data *ts_data, int value);
 int fts_ts_handle_trusted_touch_tvm(struct fts_ts_data *ts_data, int value);
-#ifdef CONFIG_FTS_TRUSTED_TOUCH
+#ifdef CONFIG_FOCALTECH_TRUSTED_TOUCH
 #ifdef CONFIG_ARCH_QTI_VM
 void fts_ts_trusted_touch_tvm_i2c_failure_report(struct fts_ts_data *fts_data);
 #endif
