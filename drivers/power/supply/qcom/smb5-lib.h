@@ -8,6 +8,8 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
+ *
+ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #ifndef __SMB5_CHARGER_H
@@ -104,6 +106,7 @@ enum print_reason {
 #define CC_UN_COMPLIANT_VOTER		"CC_UN_COMPLIANT_VOTER"
 
 #define JEITA_VOTER                     "JEITA_VOTER"
+#define GPIO_DCIN_VOTER			"GPIO_DCIN_VOTER"
 
 #define BOOST_BACK_STORM_COUNT	3
 #define WEAK_CHG_STORM_COUNT	8
@@ -590,6 +593,7 @@ struct smb_charger {
 #ifdef CONFIG_BATT_VERIFY_BY_DS28E16
 	struct delayed_work     charger_soc_decimal;
 #endif
+	struct delayed_work	micro_usb_switch_work;
 
 	struct alarm		lpd_recheck_timer;
 	struct alarm		moisture_protection_alarm;
@@ -791,6 +795,16 @@ struct smb_charger {
 #endif
 	bool   is_float_recheck;
 	int   disable_suspend_on_collapse;
+        /* GPIO DCIN Supply */
+	int			micro_usb_gpio;
+	int			micro_usb_irq;
+	int			dc_9v_gpio;
+	int			dc_9v_irq;
+	int			usb_switch_gpio;
+	int			usb_hub_33v_en_gpio;
+	int			micro_usb_pre_state;
+	bool			dcin_uusb_over_gpio_en;
+	bool			aicl_disable;
 };
 enum quick_charge_type {
 	QUICK_CHARGE_NORMAL = 0,
@@ -862,6 +876,7 @@ irqreturn_t typec_or_rid_detection_change_irq_handler(int irq, void *data);
 irqreturn_t temp_change_irq_handler(int irq, void *data);
 irqreturn_t usbin_ov_irq_handler(int irq, void *data);
 irqreturn_t sdam_sts_change_irq_handler(int irq, void *data);
+irqreturn_t smb_micro_usb_irq_handler(int irq, void *data);
 int smblib_get_prop_input_suspend(struct smb_charger *chg,
 				union power_supply_propval *val);
 int smblib_get_prop_batt_present(struct smb_charger *chg,
