@@ -3696,15 +3696,18 @@ static ssize_t mdss_fb_set_ea_enable(struct device *dev,
 	u32 anti_flicker;
 
 	if (!screen_on)
-		return len;
+		goto exit;
 
 	if (sscanf(buf, "%d", &anti_flicker) != 1) {
 		pr_err("sccanf buf error!\n");
-		return len;
+		goto exit;
 	}
 
 	ea_panel_mode_ctrl(set_panel, anti_flicker != 0);
 
+	goto exit;
+
+exit:
 	return len;
 }
 
