@@ -26,6 +26,8 @@
 #include "dsi_parser.h"
 
 #ifdef CONFIG_EXPOSURE_ADJUSTMENT
+#include <linux/module.h>
+#include <linux/msm_drm_notify.h>
 #include "exposure_adjustment.h"
 #endif
 
@@ -57,6 +59,10 @@ extern void lcd_esd_enable(bool on);
 char g_lcd_id[128];
 static int panel_disp_param_send_lock(struct dsi_panel *panel, int param);
 int dsi_display_read_panel(struct dsi_panel *panel, struct dsi_read_config *read_config);
+
+#ifdef CONFIG_EXPOSURE_ADJUSTMENT
+static bool screen_on = true;
+#endif
 
 enum dsi_dsc_ratio_type {
 	DSC_8BPC_8BPP,
@@ -3689,6 +3695,9 @@ static ssize_t mdss_fb_set_ea_enable(struct device *dev,
 {
 	u32 anti_flicker;
 
+	if (!screen_on)
+		return len;
+
 	if (sscanf(buf, "%d", &anti_flicker) != 1) {
 		pr_err("sccanf buf error!\n");
 		return len;
@@ -5366,3 +5375,61 @@ int dsi_panel_apply_hbm_mode(struct dsi_panel *panel)
 
 	return rc;
 }
+
+#ifdef CONFIG_EXPOSURE_ADJUSTMENT
+static int dsi_panel_dc_dim_notifier_callback(struct notifier_block *self, unsigned long event, void *data)
+{
+	struct msm_drm_notifier *evdata = data;
+	unsigned int blank;
+
+	if (event != MSM_DRM_EVENT_BLANK)
+		return 0;
+
+	if (evdata && evdata->data) {
+		blank = *(int *)(evdata->data);
+		switch (blank) {
+		case MSM_DRM_BLANK_POWERDOWN:
+			if (!screen_on)
+				break;
+			screen_on = false;
+			break;
+		case MSM_DRM_BLANK_UNBLANK:
+			if (screen_on)
+				break;
+			screen_on = true;
+			break;
+		default:
+			break;
+		}
+	}
+
+	return NOTIFY_OK;
+}
+
+static struct notifier_block dsi_panel_dc_dim_notifier = {
+	.notifier_call = dsi_panel_dc_dim_notifier_callback,
+};
+
+static int __init dsi_panel_dc_dim_init(void)
+{
+
+	int ret = 0;
+
+	// Register the driver module as a client of the MSM DRM event notifier
+	ret = msm_drm_register_client(&dsi_panel_dc_dim_notifier);
+
+	if (ret)
+		pr_err("Failed to register notifier, err: %d\n", ret);
+
+	return ret;
+}
+
+static void __exit dsi_panel_dc_dim_exit(void)
+{
+	// Unregister the driver module as a client of the MSM DRM event notifier
+	msm_drm_unregister_client(&dsi_panel_dc_dim_notifier);
+}
+
+module_init(dsi_panel_dc_dim_init);
+module_exit(dsi_panel_dc_dim_exit);
+#endif
