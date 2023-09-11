@@ -76,13 +76,13 @@ fi
 
 if [[ ${COMPILER} == gcc ]]; then
 	if [ ! -d "${KDIR}/gcc64" ]; then
-		curl -sL https://github.com/cyberknight777/gcc-arm64/archive/refs/heads/master.tar.gz | tar -xzf -
-		mv "${KDIR}"/gcc-arm64-master "${KDIR}"/gcc64
+		curl -sL https://github.com/mvaisakh/gcc-arm64/archive/refs/heads/gcc-master.tar.gz | tar -xzf -
+		mv "${KDIR}"/gcc-arm64-gcc-master "${KDIR}"/gcc64
 	fi
 
 	if [ ! -d "${KDIR}/gcc32" ]; then
-		curl -sL https://github.com/cyberknight777/gcc-arm/archive/refs/heads/master.tar.gz | tar -xzf -
-		mv "${KDIR}"/gcc-arm-master "${KDIR}"/gcc32
+		curl -sL https://github.com/cyberknight777/gcc-arm/archive/refs/heads/gcc-master.tar.gz | tar -xzf -
+		mv "${KDIR}"/gcc-arm-gcc-master "${KDIR}"/gcc32
 	fi
 
 	KBUILD_COMPILER_STRING=$("${KDIR}"/gcc64/bin/aarch64-elf-gcc --version | head -n 1)
