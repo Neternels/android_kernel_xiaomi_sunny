@@ -272,8 +272,12 @@ mkzip() {
 		tg "*Building zip!*"
 	fi
 	echo -e "\n\e[1;93m[*] Building zip! \e[0m"
-	mv "${KDIR}"/out/arch/arm64/boot/dtbo.img "${KDIR}"/anykernel3-sunny
+	mkdir -p "${KDIR}"/anykernel3-sunny/dtbs
+	mv "${KDIR}"/out/arch/arm64/boot/dtbo.img "${KDIR}"/anykernel3-sunny/dtbs
 	cat "${KDIR}"/out/arch/arm64/boot/dts/qcom/sm6150.dtb >"${KDIR}"/anykernel3-sunny/dtb
+	sed -i 's/2047/4095/g' "${KDIR}"/arch/arm64/boot/dts/qcom/dsi_panel_k7_38_0c_0a_fhdp_video.dtsi
+	time make -j"$PROCS" "${MAKE[@]}" dtbo.img
+	mv "${KDIR}"/out/arch/arm64/boot/dtbo.img "${KDIR}"/anykernel3-sunny/dtbs/dtbo_aospa.img
 	mv "${KDIR}"/out/arch/arm64/boot/Image "${KDIR}"/anykernel3-sunny
 	cd "${KDIR}"/anykernel3-sunny || exit 1
 	zip -r9 "$zipn".zip . -x ".git*" -x "README.md" -x "LICENSE" -x "*.zip"
