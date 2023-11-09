@@ -312,6 +312,7 @@ mkzip() {
 			git push
 			gh release create "${VERSION}" -t "NetErnels for $CODENAME [BLEEDING EDGE] - $VERSION"
 			gh release upload "${VERSION}" ../"${zipn}.zip"
+			gh release upload "${VERSION}" ../../modules/"${modn}.zip"
 		else
 			rm sunny/changelog.md
 			wget "${CL_LINK}"/raw -O sunny/changelog.md
@@ -336,6 +337,7 @@ mkzip() {
 			git push
 			gh release create "${VERSION}" -t "NetErnels for $CODENAME [RELEASE] - $VERSION"
 			gh release upload "${VERSION}" ../"${zipn}.zip"
+			gh release upload "${VERSION}" ../../modules/"${modn}.zip"
 		fi
 		cd ../ || exit 1
 	fi
