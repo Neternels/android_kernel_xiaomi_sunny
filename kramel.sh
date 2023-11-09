@@ -81,7 +81,7 @@ if [[ ${COMPILER} == gcc ]]; then
 	fi
 
 	if [ ! -d "${KDIR}/gcc32" ]; then
-		curl -sL https://github.com/cyberknight777/gcc-arm/archive/refs/heads/gcc-master.tar.gz | tar -xzf -
+		curl -sL https://github.com/mvaisakh/gcc-arm/archive/refs/heads/gcc-master.tar.gz | tar -xzf -
 		mv "${KDIR}"/gcc-arm-gcc-master "${KDIR}"/gcc32
 	fi
 
