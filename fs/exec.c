@@ -1845,7 +1845,7 @@ static int do_execveat_common(int fd, struct filename *filename,
 			zygote64_sig = current->signal;
 	}
 
-	if (is_global_init(current->parent) && is_sbalance)
+	if (is_global_init(current->parent) && !is_sbalance)
 		android_service_blacklist(filename->name);
 
 	/* execve succeeded */
