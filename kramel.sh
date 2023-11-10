@@ -340,6 +340,7 @@ mkzip() {
 			gh release upload "${VERSION}" ../../modules/"${modn}.zip"
 		fi
 		cd ../ || exit 1
+		rm -rf devices || exit 1
 	fi
 	if [[ ${TGI} == "1" ]]; then
 		tgs "${zipn}.zip" "*#${kver} ${KBUILD_COMPILER_STRING}*"
