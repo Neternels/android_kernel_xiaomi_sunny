@@ -5604,6 +5604,11 @@ CONFIG_ESOC_MDM_DBG_ENG=y
 CONFIG_XIMI_SUNNY=y
 
 #
+# Lindroid DRM Loopback Driver
+#
+CONFIG_DRM_LINDROID_EVDI=y
+
+#
 # Firmware Drivers
 #
 CONFIG_ARM_PSCI_FW=y
