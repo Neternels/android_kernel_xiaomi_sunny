@@ -229,5 +229,8 @@ config XIMI_SUNNY
         bool "Xiaomi Sunny"
         default n
 
+comment "Lindroid DRM Loopback Driver"
+
+source "drivers/lindroid-drm-loopback/Kconfig"
 
 endmenu
